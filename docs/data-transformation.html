@@ -88,7 +88,10 @@
 <li class="chapter" data-level="2.4.4" data-path="data-sources.html"><a href="data-sources.html#characters-in-numbers"><i class="fa fa-check"></i><b>2.4.4</b> Characters in Numbers</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#transformation-process"><i class="fa fa-check"></i><b>3.1</b> Transformation Process</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#transformation-code"><i class="fa fa-check"></i><b>3.2</b> Transformation Code</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
 <li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#numemp-dataset"><i class="fa fa-check"></i><b>4.1</b> ‘numemp’ dataset</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="missing-values.html"><a href="missing-values.html#missing-value-analysis"><i class="fa fa-check"></i><b>4.1.1</b> Missing Value Analysis</a></li>
@@ -123,7 +126,30 @@
             <section class="normal" id="section-">
 <div id="data-transformation" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
+<div id="transformation-process" class="section level2">
+<h2><span class="header-section-number">3.1</span> Transformation Process</h2>
+<ol style="list-style-type: decimal">
+<li>We download the data from the data source and save them as .csv format.</li>
+<li>We extract the specific rows and columns we need.</li>
+<li>We deal with the missing data, namely, we fill the NAs by group averages within sub-datasets.</li>
+<li>We add some columns or rows in the data set. For example, we add a row to tell years and a row to tell races in datasets, when the years and races are only included in dataset names in the original version.</li>
+<li>We combine sub-datasets into on dataset as a whole. For example, after we add the information of years in different sub datasets, we will combine these data sets into one dataset that contains information of all of these years.</li>
+<li>For some NAs that still exists, we fill them by the group averages within combined datasets.</li>
+<li>We do calculations based on the existed variables to get other variables that we want add them as new columns.</li>
+</ol>
+</div>
+<div id="transformation-code" class="section level2">
+<h2><span class="header-section-number">3.2</span> Transformation Code</h2>
+<p><strong><code>numemp</code> dataset</strong></p>
+<p><a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/DataPreprocessing/Code/NumEmp" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/DataPreprocessing/Code/NumEmp</a></p>
+<p><strong><code>salary</code> dataset</strong></p>
+<p><a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/DataPreprocessing/Code/Salary" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/DataPreprocessing/Code/Salary</a></p>
+<p><strong><code>education</code> dataset</strong></p>
+<p><a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/DataPreprocessing/Code/education" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/DataPreprocessing/Code/education</a></p>
+<p><strong><code>gdp</code> dataset</strong></p>
+<p><a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/DataPreprocessing/Code/gdp" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/DataPreprocessing/Code/gdp</a></p>
 
+</div>
 </div>
             </section>
 
