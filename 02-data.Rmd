@@ -134,7 +134,7 @@ NYC GDP per capita | Numeric |  NYC GDP per capita in different years
 USA GDP per capita | Numeric |  USA GDP per capita in different years
 
 The form of `gdp` dataset is as follows:
-![](images/dataSources/gdp.png)
+![](images/dataSources/gdp.png){width=40%}
 
 ## Problems with Data
 
