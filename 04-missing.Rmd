@@ -1,1 +1,159 @@
 # Missing values
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+There are some missing values in the `numemp` (short for number of employed) dataset and `salary` dataset. We analyzed the missing data based on the `mi` package in r and pre-processed the missing values based on jupyter notebook.
+
+## 'numemp' dataset
+### Missing Value Analysis
+#### Initial Analysis
+```{r}
+# install packages
+library(tidyverse)
+library(dplyr)
+library(mi)
+library(RCurl)
+```
+
+First, we analyzed the origin version of the dataset, the form of this dataset is as follows. There are nine columns in this dataset. The `Bronx County, New York`, `Kings County, New York`, `New York County, New York`, `Queens County, New York` and `Richmond County, New York` provide us with the number of employed in the corresponding county. The `Occupations`, `year`, `race` and `Gender` columns give us information of each observation. For analysis convenience, we set the `Occupations`, `year`, `race` and `Gender` columns to NULL, so that we can focus on the missing values of number of employed in different groups.
+![](images/missingData/numemp_dataset1.png)
+```{r visualizing numemp data,echo=FALSE}
+numemp_combined <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/numemp_occupations.csv"))
+numemp_combined$X <- NULL
+numemp_combined$Occupations <- NULL
+numemp_combined$year <- NULL
+numemp_combined$race<-NULL
+numemp_combined$Gender <- NULL
+numemp1 <- missing_data.frame(numemp_combined)
+image(numemp1)
+```
+From this plot, we can see that there are missing values in `Bronx County, New York`, `New York County, New York` and `Richmond County, New York`. Also, the majority of the missing values are in `Richmond County, New York`. For some observations, all of the three values are missing.
+
+#### Further Analysis
+In order to find a better way to deal with the missing data, we do a further analysis on the missing values. 
+* First, we combine the information of counties and races and use the their combinations as new columns.
+```{r visualizing missing data}
+# read in file with missing values and preprocess the dataset by setting categories
+Data_with_missings <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/numemp_occupations.csv"))
+
+Data_with_missings$X <- NULL
+Data_with_missings <- Data_with_missings %>% rename("Bronx" = "Bronx.County..New.York",
+                        "Kings" = "Kings.County..New.York",
+                        "NY" = "New.York.County..New.York",
+                        "Queens" = "Queens.County..New.York",
+                        "Richmond" = "Richmond.County..New.York")
+
+Data_with_missings[Data_with_missings$race=="Asian Alone", "race"] <- "Asian"
+Data_with_missings[Data_with_missings$race=="BLACK OR AFRICAN AMERICAN ALONE", "race"] <- "African"
+Data_with_missings[Data_with_missings$race=="HISPANIC OR LATINO", "race"] <- "Hispanic"
+Data_with_missings[Data_with_missings$race=="Some Other Race Alone", "race"] <- "Other"
+Data_with_missings[Data_with_missings$race=="Two or More Races", "race"] <- "Above2"
+Data_with_missings[Data_with_missings$race=="White Alone", "race"] <- "White"
+Data_with_missings[Data_with_missings$race=="WHITE ALONE NOT HISPANIC OR LATINO", "race"] <- "White_not_Hisp."
+
+
+Data_with_missings <-Data_with_missings %>% pivot_longer(cols = !c("Occupations","year","race","Gender"),names_to = "County",values_to = "NumEmp")
+Data_with_missings$category <- paste(Data_with_missings$County,"_",Data_with_missings$race) 
+Data_with_missings <-Data_with_missings %>% select(1,2,4,6,7)
+Data_with_missings<- pivot_wider(Data_with_missings,names_from = category, values_from = NumEmp)
+Data_with_missings <- Data_with_missings %>% select(c(4:38))
+Data_with_missings <- as.data.frame(Data_with_missings)
+```
+* Second, we see the ratio of the number of NAs in each column.
+
+```{r}
+colMeans(is.na(Data_with_missings))
+```
+As can be seen from the result, all values in group `Richmond _ Above2` and group `Richmond _ Other` are missing. Missing values also appears in `Richmond _ Asian`, `Richmond _ African`, `Bronx _ Above2` and `NY _ Above2`. 
+It also shows that the type of these missing data is **Missing at Random (MAR)**, because most of the missing values are in some specific groups. As we can discover, most of the missing values are in the race group of `Two or More Races`. It might be because very limited amount of people are in this race group, so sometimes it is hard to do effective statistic for this group. 
+
+* Then, we use `mi` package to visualize the NAs.
+```{r}
+# use the mi package to analyze missing values
+numemp1 <- missing_data.frame(Data_with_missings)
+image(numemp1)
+```
+This visualization shows us that there is no strong pattern of the missing values in each observation.
+
+### Pre-process Missing Values
+Based on the patterns of missing values, we apply different data pre-preprocess methods to different groups of missing values. Below is our strategies for different groups.
+1. group `Richmond _ Above2` and group `Richmond _ Other`
+* Strategy: For the missing values in group `Richmond _ Above2` ('Richmond County' and 'Two or more races') and group `Richmond _ Other` (Richmond County and 'Some Other Race Alone'), we fill the NAs with 0.
+* Reason: All the values in this group are missing, including values of both genders and all years, so we cannot find a suitable value to represent the missing value.
+2. missing values in `Bronx County, New York`, `New York County, New York` and `Richmond County, New York`
+* Strategy: First, we group the dataset by `Occupations`, `race`, and `Gender`, then we calculate the mean value of different years and use that mean value to represent the NAs under each county.
+* Reason: For each combination of Occupation, race and Gender in these counties, there are always some valid data in some years. Therefore, we use the average value of the available years in corresponding groups to represent the missing values.
+
+The code of filling missing data in `numemp` dataset is attached below.
+https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/DataPreprocessing/Code/NumEmp/PreprocessMissingValues.ipynb
+
+## 'salary' dataset
+### Missing Value Analysis
+#### Initial Analysis
+We also analyzed the origin version of this dataset first, the form of this dataset is as follows. There are eight columns in this dataset. The `Bronx County, New York`, `Kings County, New York`, `New York County, New York`, `Queens County, New York` and `Richmond County, New York` provide us with the number of employed in the corresponding county. The `Occupations`, `year`, and `Gender` columns give us information of each observation. For analysis convenience, we set the `Occupations`, `year` and `Gender` columns to NULL, so that we can focus on the missing values of number of employed in different groups.
+![](images/missingData/salary_dataset1.png)
+
+```{r visualizing salary data,echo=FALSE}
+# salaryData <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/Salary/salary.csv"))
+salaryData <- read.csv("/Users/tracy/Documents/GitHub/STAT5702_NYC_Employment_Analysis/DataPreprocessing/Data/Salary/salary.csv")
+salaryData$X <- NULL
+salaryData$Occupations <- NULL
+salaryData$year <- NULL
+salaryData$Gender <- NULL
+salary1 <- missing_data.frame(salaryData)
+image(salary1)
+```
+From this plot, we can see that there are missing values in `Kings County, New York`, `Queens County, New York` and `Richmond County, New York`. Also, the majority of the missing values are in `Richmond County, New York`. In some observations, all of the three values are missing.
+
+#### Further Analysis
+In order to find suitable strategies for dealing with missing data in `salary` dataset, we change the form of `salary` dataset. To be specific, we set columns to be years. Each observation shows the corresponding salary of some certain combination of occupation and gender from 2010 to 2019. We do this rearrangement to see if there is a situation that for some specific combination of occupation and gender, all values are missing from 2010 to 2019.
+* First, we change the shape of our dataset.
+```{r}
+salaryData <- read.csv("/Users/tracy/Documents/GitHub/STAT5702_NYC_Employment_Analysis/DataPreprocessing/Data/Salary/salary.csv")
+salaryData$X <- NULL
+salaryData$Bronx.County..New.York <- as.numeric(salaryData$Bronx.County..New.York)
+salaryData$New.York.County..New.York <- as.numeric(salaryData$New.York.County..New.York)
+salaryData <- salaryData %>% pivot_longer(cols = c(2:6), names_to = "county", values_to = "salary")
+salaryData <- salaryData %>% pivot_wider(names_from = "year", values_from = "salary") 
+salaryData_numeric <- salaryData %>% select(4:13)
+salaryData_numeric <- as.data.frame(salaryData_numeric)
+
+salary2 <- missing_data.frame(salaryData_numeric)
+image(salary2)
+```
+As can be seen from this plot, the majority of missing values concentrate in several observations. We picked these rows out to see if there's some observations in which all values are missing.
+* Second, we picked out the rows with NAs to see the percentages of the missing values.
+```{r}
+rowMeans <- as.data.frame(rowMeans(is.na(salaryData_numeric)))
+row.names(rowMeans) <- 1:250
+rowMeans <- tibble::rownames_to_column(rowMeans,"rowname")
+rowMeans_not0 <- rowMeans[rowMeans$`rowMeans(is.na(salaryData_numeric))` != 0,]
+```
+
+As can be seen in the result, for the majority of observations with missing values, there are still some valid values there in some certain years. However, there are two rows where all values are missing. Therefore, we pick out the two rows to see their information in detail.
+* Third, we pick out the rows in which all values are missing.
+```{r}
+rowMeans_1 <- rowMeans[rowMeans$`rowMeans(is.na(salaryData_numeric))` == 1,]
+row1 <- salaryData[rownames(salaryData)==rowMeans_1[1,1],]
+row2 <- salaryData[rownames(salaryData)==rowMeans_1[2,1],]
+row1
+```
+
+```{r}
+row2
+```
+As can be seen from the result, the two groups are the male and female in farming, fishing, and forestry occupations in Richmond County. Therefore, for subsequent data pre-process of these two groups, we cannot use the average of other years to replace the missing values. Instead, we will use the average salary of other counties in the same occupation, year, gender group to represent the missing values in farming, fishing, and forestry occupations in Richmond County.
+
+### Pre-process Missing Values
+
+According to the analysis above, we follow the following steps to do data pre-process.
+1. Divide the `salary` dataset by county.
+2. Under each sub-dataset, we group the dataset by `Occupations`, `gender` and `year`, then we calculate the group mean of each group and use the mean values to replace missing values.
+3. For some occupations, the salary values of one gender are completely missing. For these occupations, we group the dataset by `Occupations` and `year`, and use the group mean to repalce the missing values.
+4. Combine the data of each sub-dataset together.
+5. For farming, fishing, and forestry occupations in Richmond County, where all values are missing, we plan to use the average salary of other counties in the same occupation, year, gender group to represent the missing values. Therefore, we group the combined dataset by `Occupations`, `gender`, `county` and `year`. Then we use the group average to replace the missing values.
+
+The code of filling missing data in `numemp` dataset is attached below.
+https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/DataPreprocessing/Code/Salary/Preprocess_MissingValue.ipynb

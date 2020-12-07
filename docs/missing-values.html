@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Missing values | YOUR TITLE HERE</title>
   <meta name="description" content="Chapter 4 Missing values | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Missing values | YOUR TITLE HERE" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="YOUR NAMES HERE" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-12-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="data-transformation.html"/>
 <link rel="next" href="results.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 
@@ -74,7 +75,16 @@
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#numemp-dataset"><i class="fa fa-check"></i><b>4.1</b> ‘numemp’ dataset</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="missing-values.html"><a href="missing-values.html#missing-value-analysis"><i class="fa fa-check"></i><b>4.1.1</b> Missing Value Analysis</a></li>
+<li class="chapter" data-level="4.1.2" data-path="missing-values.html"><a href="missing-values.html#pre-process-missing-values"><i class="fa fa-check"></i><b>4.1.2</b> Pre-process Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#salary-dataset"><i class="fa fa-check"></i><b>4.2</b> ‘salary’ dataset</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="missing-values.html"><a href="missing-values.html#missing-value-analysis-1"><i class="fa fa-check"></i><b>4.2.1</b> Missing Value Analysis</a></li>
+<li class="chapter" data-level="4.2.2" data-path="missing-values.html"><a href="missing-values.html#pre-process-missing-values-1"><i class="fa fa-check"></i><b>4.2.2</b> Pre-process Missing Values</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -97,9 +107,152 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="missing-values" class="section level1" number="4">
+<div id="missing-values" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
+<p>There are some missing values in the <code>numemp</code> (short for number of employed) dataset and <code>salary</code> dataset. We analyzed the missing data based on the <code>mi</code> package in r and pre-processed the missing values based on jupyter notebook.</p>
+<div id="numemp-dataset" class="section level2">
+<h2><span class="header-section-number">4.1</span> ‘numemp’ dataset</h2>
+<div id="missing-value-analysis" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Missing Value Analysis</h3>
+<div id="initial-analysis" class="section level4">
+<h4><span class="header-section-number">4.1.1.1</span> Initial Analysis</h4>
+<p>First, we analyzed the origin version of the dataset, the form of this dataset is as follows. There are nine columns in this dataset. The <code>Bronx County, New York</code>, <code>Kings County, New York</code>, <code>New York County, New York</code>, <code>Queens County, New York</code> and <code>Richmond County, New York</code> provide us with the number of employed in the corresponding county. The <code>Occupations</code>, <code>year</code>, <code>race</code> and <code>Gender</code> columns give us information of each observation. For analysis convenience, we set the <code>Occupations</code>, <code>year</code>, <code>race</code> and <code>Gender</code> columns to NULL, so that we can focus on the missing values of number of employed in different groups.
+<img src="images/missingData/numemp_dataset1.png" /></p>
+<pre><code>## NOTE: In the following pairs of variables, the missingness pattern of the first is a subset of the second.
+##  Please verify whether they are in fact logically distinct variables.
+##      [,1]                        [,2]                       
+## [1,] &quot;Bronx.County..New.York&quot;    &quot;Richmond.County..New.York&quot;
+## [2,] &quot;New.York.County..New.York&quot; &quot;Richmond.County..New.York&quot;</code></pre>
+<p><img src="finalproj_files/figure-html/visualizing%20numemp%20data-1.png" width="672" />
+From this plot, we can see that there are missing values in <code>Bronx County, New York</code>, <code>New York County, New York</code> and <code>Richmond County, New York</code>. Also, the majority of the missing values are in <code>Richmond County, New York</code>. For some observations, all of the three values are missing.</p>
+</div>
+<div id="further-analysis" class="section level4">
+<h4><span class="header-section-number">4.1.1.2</span> Further Analysis</h4>
+<p>In order to find a better way to deal with the missing data, we do a further analysis on the missing values.
+* First, we combine the information of counties and races and use the their combinations as new columns.</p>
+<ul>
+<li>Second, we see the ratio of the number of NAs in each column.</li>
+</ul>
+<pre><code>##              Bronx _ Asian              Kings _ Asian 
+##                        0.0                        0.0 
+##                 NY _ Asian             Queens _ Asian 
+##                        0.0                        0.0 
+##           Richmond _ Asian            Bronx _ African 
+##                        0.2                        0.0 
+##            Kings _ African               NY _ African 
+##                        0.0                        0.0 
+##           Queens _ African         Richmond _ African 
+##                        0.0                        0.8 
+##           Bronx _ Hispanic           Kings _ Hispanic 
+##                        0.0                        0.0 
+##              NY _ Hispanic          Queens _ Hispanic 
+##                        0.0                        0.0 
+##        Richmond _ Hispanic              Bronx _ Other 
+##                        0.0                        0.0 
+##              Kings _ Other                 NY _ Other 
+##                        0.0                        0.0 
+##             Queens _ Other           Richmond _ Other 
+##                        0.0                        1.0 
+##             Bronx _ Above2             Kings _ Above2 
+##                        0.6                        0.0 
+##                NY _ Above2            Queens _ Above2 
+##                        0.2                        0.0 
+##          Richmond _ Above2              Bronx _ White 
+##                        1.0                        0.0 
+##              Kings _ White                 NY _ White 
+##                        0.0                        0.0 
+##             Queens _ White           Richmond _ White 
+##                        0.0                        0.0 
+##    Bronx _ White_not_Hisp.    Kings _ White_not_Hisp. 
+##                        0.0                        0.0 
+##       NY _ White_not_Hisp.   Queens _ White_not_Hisp. 
+##                        0.0                        0.0 
+## Richmond _ White_not_Hisp. 
+##                        0.0</code></pre>
+<p>As can be seen from the result, all values in group <code>Richmond _ Above2</code> and group <code>Richmond _ Other</code> are missing. Missing values also appears in <code>Richmond _ Asian</code>, <code>Richmond _ African</code>, <code>Bronx _ Above2</code> and <code>NY _ Above2</code>.
+It also shows that the type of these missing data is <strong>Missing at Random (MAR)</strong>, because most of the missing values are in some specific groups. As we can discover, most of the missing values are in the race group of <code>Two or More Races</code>. It might be because very limited amount of people are in this race group, so sometimes it is hard to do effective statistic for this group.</p>
+<ul>
+<li>Then, we use <code>mi</code> package to visualize the NAs.</li>
+</ul>
+<pre><code>## NOTE: In the following pairs of variables, the missingness pattern of the second is a subset of the first.
+##  Please verify whether they are in fact logically distinct variables.
+##      [,1]               [,2]            
+## [1,] &quot;Richmond _ Other&quot; &quot;Bronx _ Above2&quot;
+## [2,] &quot;Richmond _ Other&quot; &quot;NY _ Above2&quot;</code></pre>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+This visualization shows us that there is no strong pattern of the missing values in each observation.</p>
+</div>
+</div>
+<div id="pre-process-missing-values" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Pre-process Missing Values</h3>
+<p>Based on the patterns of missing values, we apply different data pre-preprocess methods to different groups of missing values. Below is our strategies for different groups.
+1. group <code>Richmond _ Above2</code> and group <code>Richmond _ Other</code>
+* Strategy: For the missing values in group <code>Richmond _ Above2</code> (‘Richmond County’ and ‘Two or more races’) and group <code>Richmond _ Other</code> (Richmond County and ‘Some Other Race Alone’), we fill the NAs with 0.
+* Reason: All the values in this group are missing, including values of both genders and all years, so we cannot find a suitable value to represent the missing value.
+2. missing values in <code>Bronx County, New York</code>, <code>New York County, New York</code> and <code>Richmond County, New York</code>
+* Strategy: First, we group the dataset by <code>Occupations</code>, <code>race</code>, and <code>Gender</code>, then we calculate the mean value of different years and use that mean value to represent the NAs under each county.
+* Reason: For each combination of Occupation, race and Gender in these counties, there are always some valid data in some years. Therefore, we use the average value of the available years in corresponding groups to represent the missing values.</p>
+<p>The code of filling missing data in <code>numemp</code> dataset is attached below.
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/DataPreprocessing/Code/NumEmp/PreprocessMissingValues.ipynb" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/DataPreprocessing/Code/NumEmp/PreprocessMissingValues.ipynb</a></p>
+</div>
+</div>
+<div id="salary-dataset" class="section level2">
+<h2><span class="header-section-number">4.2</span> ‘salary’ dataset</h2>
+<div id="missing-value-analysis-1" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Missing Value Analysis</h3>
+<div id="initial-analysis-1" class="section level4">
+<h4><span class="header-section-number">4.2.1.1</span> Initial Analysis</h4>
+<p>We also analyzed the origin version of this dataset first, the form of this dataset is as follows. There are eight columns in this dataset. The <code>Bronx County, New York</code>, <code>Kings County, New York</code>, <code>New York County, New York</code>, <code>Queens County, New York</code> and <code>Richmond County, New York</code> provide us with the number of employed in the corresponding county. The <code>Occupations</code>, <code>year</code>, and <code>Gender</code> columns give us information of each observation. For analysis convenience, we set the <code>Occupations</code>, <code>year</code> and <code>Gender</code> columns to NULL, so that we can focus on the missing values of number of employed in different groups.
+<img src="images/missingData/salary_dataset1.png" /></p>
+<pre><code>## NOTE: In the following pairs of variables, the missingness pattern of the first is a subset of the second.
+##  Please verify whether they are in fact logically distinct variables.
+##      [,1]                        [,2]                       
+## [1,] &quot;Bronx.County..New.York&quot;    &quot;Richmond.County..New.York&quot;
+## [2,] &quot;Kings.County..New.York&quot;    &quot;Richmond.County..New.York&quot;
+## [3,] &quot;New.York.County..New.York&quot; &quot;Richmond.County..New.York&quot;
+## [4,] &quot;Queens.County..New.York&quot;   &quot;Richmond.County..New.York&quot;</code></pre>
+<p><img src="finalproj_files/figure-html/visualizing%20salary%20data-1.png" width="672" />
+From this plot, we can see that there are missing values in <code>Kings County, New York</code>, <code>Queens County, New York</code> and <code>Richmond County, New York</code>. Also, the majority of the missing values are in <code>Richmond County, New York</code>. In some observations, all of the three values are missing.</p>
+</div>
+<div id="further-analysis-1" class="section level4">
+<h4><span class="header-section-number">4.2.1.2</span> Further Analysis</h4>
+<p>In order to find suitable strategies for dealing with missing data in <code>salary</code> dataset, we change the form of <code>salary</code> dataset. To be specific, we set columns to be years. Each observation shows the corresponding salary of some certain combination of occupation and gender from 2010 to 2019. We do this rearrangement to see if there is a situation that for some specific combination of occupation and gender, all values are missing from 2010 to 2019.
+* First, we change the shape of our dataset.</p>
+<pre><code>## NOTE: In the following pairs of variables, the missingness pattern of the second is a subset of the first.
+##  Please verify whether they are in fact logically distinct variables.
+##      [,1]   [,2]  
+## [1,] &quot;2013&quot; &quot;2018&quot;</code></pre>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+As can be seen from this plot, the majority of missing values concentrate in several observations. We picked these rows out to see if there’s some observations in which all values are missing.
+* Second, we picked out the rows with NAs to see the percentages of the missing values.</p>
+<p>As can be seen in the result, for the majority of observations with missing values, there are still some valid values there in some certain years. However, there are two rows where all values are missing. Therefore, we pick out the two rows to see their information in detail.
+* Third, we pick out the rows in which all values are missing.</p>
+<pre><code>## # A tibble: 1 x 13
+##   Occupations Gender county `2010` `2011` `2012` `2013` `2014` `2015` `2016`
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Farming, f… Male   Richm…     NA     NA     NA     NA     NA     NA     NA
+## # … with 3 more variables: `2017` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2019` &lt;dbl&gt;</code></pre>
+<pre><code>## # A tibble: 1 x 13
+##   Occupations Gender county `2010` `2011` `2012` `2013` `2014` `2015` `2016`
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Farming, f… Female Richm…     NA     NA     NA     NA     NA     NA     NA
+## # … with 3 more variables: `2017` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2019` &lt;dbl&gt;</code></pre>
+<p>As can be seen from the result, the two groups are the male and female in farming, fishing, and forestry occupations in Richmond County. Therefore, for subsequent data pre-process of these two groups, we cannot use the average of other years to replace the missing values. Instead, we will use the average salary of other counties in the same occupation, year, gender group to represent the missing values in farming, fishing, and forestry occupations in Richmond County.</p>
+</div>
+</div>
+<div id="pre-process-missing-values-1" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Pre-process Missing Values</h3>
+<p>According to the analysis above, we follow the following steps to do data pre-process.
+1. Divide the <code>salary</code> dataset by county.
+2. Under each sub-dataset, we group the dataset by <code>Occupations</code>, <code>gender</code> and <code>year</code>, then we calculate the group mean of each group and use the mean values to replace missing values.
+3. For some occupations, the salary values of one gender are completely missing. For these occupations, we group the dataset by <code>Occupations</code> and <code>year</code>, and use the group mean to repalce the missing values.
+4. Combine the data of each sub-dataset together.
+5. For farming, fishing, and forestry occupations in Richmond County, where all values are missing, we plan to use the average salary of other counties in the same occupation, year, gender group to represent the missing values. Therefore, we group the combined dataset by <code>Occupations</code>, <code>gender</code>, <code>county</code> and <code>year</code>. Then we use the group average to replace the missing values.</p>
+<p>The code of filling missing data in <code>numemp</code> dataset is attached below.
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/DataPreprocessing/Code/Salary/Preprocess_MissingValue.ipynb" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/DataPreprocessing/Code/Salary/Preprocess_MissingValue.ipynb</a></p>
 
+</div>
+</div>
 </div>
             </section>
 
