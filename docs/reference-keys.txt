@@ -1,5 +1,14 @@
 introduction
 data-sources
+process-of-data-collection
+logistics-of-data-collection
+basic-information-of-datasets
+numemp-datasets
+sources-of-numemp
+basic-information
+basic-information-1
+basic-information-2
+basic-information-3
 data-transformation
 missing-values
 numemp-dataset
