@@ -23,7 +23,9 @@ Find the data tables that can show connections between variables. For later anal
 Find the website that includes variety aspects of data. It can make the data in different databases more unified. For example, the data can be obtained with a unified data acquisition method in one website, and this will facilitate subsequent data analysis.
 
 ## Basic Information of Datasets
+
 ### `numemp` Datasets
+
 #### Sources of `numemp`
 
 In our project, we use `numemp` to represent `Number of Employed`. The data is divided into different sub-datasets according to years and races. The year range is from 2010 to 2019, and the races include `White Alone`, `Black or African American Alone`, `Asian Alone`, `Some Other Race Alone`, `Two or More Races`, `White Alone Not Hispanic or Latino`, and `Hispanic or Latino`. The raw data of `numemp` is attached to the following Github repo:
@@ -46,7 +48,9 @@ Richmond County, New York / Estimate / Estimate | Numeric |  Number of Employed 
 
 Take the data for White Alone in year 2019 as an example, the form of each dataset is as follows:
 ![](images/dataSources/whiteAlonecsv_2019.png)
+
 ### `salary` Datasets
+
 #### Sources of `salary`
 
 The data is divided into different sub-datasets according to years. The year range is from 2010 to 2019. The raw data of `numemp` is attached to the following Github repo:
@@ -71,7 +75,9 @@ ps: The salary data has the data type of character due to the `,` in data.
 
 Take the data for in year 2019 as an example, the form of each dataset is as follows:
 ![](images/dataSources/salaryCsv_2019.png)
+
 ### `education` Datasets
+
 #### Sources of `education`
 
 The data is divided into different sub-datasets according to years. The year range is from 2010 to 2019. The raw data of `numemp` is attached to the following Github repo:
@@ -129,23 +135,35 @@ USA GDP per capita | Numeric |  USA GDP per capita in different years
 
 The form of `gdp` dataset is as follows:
 ![](images/dataSources/gdp.png)
+
 ## Problems with Data
+
 In the process of processing data, we encounter 5 major problems.
+
 ### Inconsistency in Occupation Names
+
 When visualizing `numemp` dataset, we discover that for the occupation of `Fire fighting and prevention, and other protective service workers including supervisors` and `Education, training, and library occupations`, the value of some years were 0. Therefore, we came back to the origin dataset to check. 
 We discover that for `Fire fighting and prevention, and other protective service workers including supervisors`, they are named with `Firefighting and prevention, and other protective service workers including supervisors` in some years, where **Fire fighting** is different from **Firefighting**.
 Also, for `Education, training, and library occupations`, they are named with `Educational instruction, and library occupations` in some years, where **training** is different from **instruction** in character level.
 Therefore, we unified these differences and solved this problem.
+
 ### Formating Problem Caused by File Download
+
 For the datasets online, there is an inclusion relationship between the values for `Label`. As is shown in the example below.
 ![](images/dataSources/whiteAloneOline_2019.png)
 However, after downloading the dataset, we cannot maintain this inclusion relationship. Instead, this relation is reflected by different numbers of spaces in each cell, which increases the difficulty of data processing. As is shown in the example below.
 ![](images/dataSources/whiteAlonecsv_2019.png)
 Also, the downloaded version of dataset does not have suitable column names, for it always combine the title and subtitle together. Therefore, we need to rename each column.
+
 ### Differences of Table Organizing Methods in Different Years.
+
 In the `education` dataset, the organization of data table in differen years are different. Sometimes we need to multiply percentages by total amount of people in order to get the the number of people with some specific education levels. Sometimes we can use the number of people directly. Therefore, we need to analyze the organizing methods in different years first, then do the data process correspondingly.
+
 ### Characters in Numbers
+
 In `salary` dataset and `education` dataset, there are `,` and `%` in numbers in raw data. We need to delete the characters and do some numerical conversions for the percentile.
+
 #### Different Expressions of NAs
+
 In some data tables, NAs are represented as (X) or -. We paid attention to the different representations and replaced them with NA for further processing.
 
