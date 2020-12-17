@@ -71,3 +71,5 @@ interactive-component
 conclusion
 gdp-datasets
 sources-of-gdp
+employment-by-years
+salary-by-years

@@ -3,7 +3,7 @@
 
   // set the initial margin, width, height
   var margin = { top: 50, right: 50, bottom: 47, left: 380 };
-  var svg = d3$1.select('svg');	
+  var svg = d3$1.select('svg#salary');	
   var width = +svg.attr('width');
   var height = +svg.attr('height');
   var innerWidth = width - margin.left - margin.right;
@@ -46,160 +46,160 @@
 
 
   // initialize buttons
-  const button = d3$1.select('div#container');
-  button.append('div').attr('id','year2010').text("2010").style("text-align","center");
-  button.append('div').attr('id','year2011').text("2011").style("text-align","center");
-  button.append('div').attr('id','year2012').text("2012").style("text-align","center");
-  button.append('div').attr('id','year2013').text("2013").style("text-align","center");
-  button.append('div').attr('id','year2014').text("2014").style("text-align","center");
-  button.append('div').attr('id','year2015').text("2015").style("text-align","center");
-  button.append('div').attr('id','year2016').text("2016").style("text-align","center");
-  button.append('div').attr('id','year2017').text("2017").style("text-align","center");
-  button.append('div').attr('id','year2018').text("2018").style("text-align","center");
-  button.append('div').attr('id','year2019').text("2019").style("text-align","center");
+  const button = d3$1.select('div#container2');
+  button.append('div').attr('id','salary2010').text("2010").style("text-align","center");
+  button.append('div').attr('id','salary2011').text("2011").style("text-align","center");
+  button.append('div').attr('id','salary2012').text("2012").style("text-align","center");
+  button.append('div').attr('id','salary2013').text("2013").style("text-align","center");
+  button.append('div').attr('id','salary2014').text("2014").style("text-align","center");
+  button.append('div').attr('id','salary2015').text("2015").style("text-align","center");
+  button.append('div').attr('id','salary2016').text("2016").style("text-align","center");
+  button.append('div').attr('id','salary2017').text("2017").style("text-align","center");
+  button.append('div').attr('id','salary2018').text("2018").style("text-align","center");
+  button.append('div').attr('id','salary2019').text("2019").style("text-align","center");
 
-  var str = "Occupations,year\nOffice and administrative support,779811.5\nSales and related,621491.25\nManagement,555152.0\n\"Education, training, and library\",398378.0\nBusiness and financial operations,341867.25\nFood preparation and serving related,336968.75\nBuilding and grounds cleaning and maintenance,299408.0\n\"Arts, design, entertainment, sports, and media\",297418.0\nConstruction and extraction,276049.5\nPersonal care and service,274269.25\nHealthcare support,253999.0\nTransportation,240034.5\nHealth diagnosing and treating practitioners and other technical,198486.5\nProduction,193545.5\nLegal,139558.25\nComputer and mathematical,129836.25\nCommunity and social service,122973.0\n\"Installation, maintenance, and repair\",111808.25\n\"Fire fighting and prevention, and other protective service workers including supervisors\",104832.5\nMaterial moving,102361.25\nHealth technologists and technicians,66799.0\nLaw enforcement workers including supervisors,57374.25\nArchitecture and engineering,54226.25\n\"Life, physical, and social science\",50566.5\n\"Farming, fishing, and forestry\",3604.0";
+  var str = 'Occupations,salary\n0,Management occupations,67094.8\n1,Business and financial operations occupations,64536.3\n2,Computer and mathematical occupations,68448.1\n3,Architecture and engineering occupations,57705.3\n4,"Life, physical, and social science occupations",61535.8\n5,Community and social service occupations,41639.0\n6,Legal occupations,86128.7\n7,"Education, training, and library occupations",47362.6\n8,"Arts, design, entertainment, sports, and media occupations",47020.0\n9,Health diagnosing and treating practitioners and other technical occupations,75638.6\n10,Health technologists and technicians,42933.6\n11,Healthcare support occupations,28315.1\n12,"Fire fighting and prevention, and other protective service workers including supervisors",30261.3\n13,Law enforcement workers including supervisors,68247.6\n14,Food preparation and serving related occupations,18100.9\n15,Building and grounds cleaning and maintenance occupations,23259.2\n16,Personal care and service occupations,21675.7\n17,Sales and related occupations,31559.5\n18,Office and administrative support occupations,33895.3\n19,"Farming, fishing, and forestry occupations",26358.875\n20,Construction and extraction occupations,26284.1\n21,"Installation, maintenance, and repair occupations",38968.7\n22,Production occupations,25414.6\n23,Transportation occupations,30460.6\n24,Material moving occupations,22734.8';
   draw(str);
-  d3.select("#year2010").style("background-color","palevioletred");
+  d3.select("#salary2010").style("background-color","palevioletred");
 
   // call functions when click
   d3.selectAll("div")
       .on("click", function () {
         var paraID = d3.select(this).attr("id");
-        if (paraID == "year2010") {
-          	d3.select("#year2010").style("background-color","palevioletred");
-          	d3.select("#year2011").style("background-color","pink");
-          	d3.select("#year2012").style("background-color","pink");
-          	d3.select("#year2013").style("background-color","pink");
-          	d3.select("#year2014").style("background-color","pink");
-          	d3.select("#year2015").style("background-color","pink");
-          	d3.select("#year2016").style("background-color","pink");
-          	d3.select("#year2017").style("background-color","pink");
-          	d3.select("#year2018").style("background-color","pink");
-          	d3.select("#year2019").style("background-color","pink");
-          	var str = "Occupations,year\nOffice and administrative support,779811.5\nSales and related,621491.25\nManagement,555152.0\n\"Education, training, and library\",398378.0\nBusiness and financial operations,341867.25\nFood preparation and serving related,336968.75\nBuilding and grounds cleaning and maintenance,299408.0\n\"Arts, design, entertainment, sports, and media\",297418.0\nConstruction and extraction,276049.5\nPersonal care and service,274269.25\nHealthcare support,253999.0\nTransportation,240034.5\nHealth diagnosing and treating practitioners and other technical,198486.5\nProduction,193545.5\nLegal,139558.25\nComputer and mathematical,129836.25\nCommunity and social service,122973.0\n\"Installation, maintenance, and repair\",111808.25\n\"Fire fighting and prevention, and other protective service workers including supervisors\",104832.5\nMaterial moving,102361.25\nHealth technologists and technicians,66799.0\nLaw enforcement workers including supervisors,57374.25\nArchitecture and engineering,54226.25\n\"Life, physical, and social science\",50566.5\n\"Farming, fishing, and forestry\",3604.0";
+        if (paraID == "salary2010") {
+          	d3.select("#salary2010").style("background-color","palevioletred");
+          	d3.select("#salary2011").style("background-color","pink");
+          	d3.select("#salary2012").style("background-color","pink");
+          	d3.select("#salary2013").style("background-color","pink");
+          	d3.select("#salary2014").style("background-color","pink");
+          	d3.select("#salary2015").style("background-color","pink");
+          	d3.select("#salary2016").style("background-color","pink");
+          	d3.select("#salary2017").style("background-color","pink");
+          	d3.select("#salary2018").style("background-color","pink");
+          	d3.select("#salary2019").style("background-color","pink");
+          	var str = 'Occupations,salary\n0,Management occupations,67094.8\n1,Business and financial operations occupations,64536.3\n2,Computer and mathematical occupations,68448.1\n3,Architecture and engineering occupations,57705.3\n4,"Life, physical, and social science occupations",61535.8\n5,Community and social service occupations,41639.0\n6,Legal occupations,86128.7\n7,"Education, training, and library occupations",47362.6\n8,"Arts, design, entertainment, sports, and media occupations",47020.0\n9,Health diagnosing and treating practitioners and other technical occupations,75638.6\n10,Health technologists and technicians,42933.6\n11,Healthcare support occupations,28315.1\n12,"Fire fighting and prevention, and other protective service workers including supervisors",30261.3\n13,Law enforcement workers including supervisors,68247.6\n14,Food preparation and serving related occupations,18100.9\n15,Building and grounds cleaning and maintenance occupations,23259.2\n16,Personal care and service occupations,21675.7\n17,Sales and related occupations,31559.5\n18,Office and administrative support occupations,33895.3\n19,"Farming, fishing, and forestry occupations",26358.875\n20,Construction and extraction occupations,26284.1\n21,"Installation, maintenance, and repair occupations",38968.7\n22,Production occupations,25414.6\n23,Transportation occupations,30460.6\n24,Material moving occupations,22734.8';
             draw(str);
-          } else if (paraID == "year2011") {
-          	d3.select("#year2011").style("background-color","palevioletred");
-          	d3.select("#year2010").style("background-color","pink");
-          	d3.select("#year2012").style("background-color","pink");
-          	d3.select("#year2013").style("background-color","pink");
-          	d3.select("#year2014").style("background-color","pink");
-          	d3.select("#year2015").style("background-color","pink");
-          	d3.select("#year2016").style("background-color","pink");
-          	d3.select("#year2017").style("background-color","pink");
-          	d3.select("#year2018").style("background-color","pink");
-          	d3.select("#year2019").style("background-color","pink");     	
-          	var str = 'Occupations,year\nOffice and administrative support,776806.5\nSales and related,659189.25\nManagement,538868.0\n"Education, training, and library",386141.0\nBusiness and financial operations,347058.25\nFood preparation and serving related,376449.75\nBuilding and grounds cleaning and maintenance,294417.0\n"Arts, design, entertainment, sports, and media",314854.0\nConstruction and extraction,275838.5\nPersonal care and service,296898.25\nHealthcare support,257936.0\nTransportation,235066.5\nHealth diagnosing and treating practitioners and other technical,194109.5\nProduction,180604.5\nLegal,145403.25\nComputer and mathematical,129610.25\nCommunity and social service,104616.0\n"Installation, maintenance, and repair",114664.25\n"Fire fighting and prevention, and other protective service workers including supervisors",109542.5\nMaterial moving,87665.25\nHealth technologists and technicians,68263.0\nLaw enforcement workers including supervisors,54686.25\nArchitecture and engineering,62655.25\n"Life, physical, and social science",56399.5\n"Farming, fishing, and forestry",8709.0';
+          } else if (paraID == "salary2011") {
+          	d3.select("#salary2011").style("background-color","palevioletred");
+          	d3.select("#salary2010").style("background-color","pink");
+          	d3.select("#salary2012").style("background-color","pink");
+          	d3.select("#salary2013").style("background-color","pink");
+          	d3.select("#salary2014").style("background-color","pink");
+          	d3.select("#salary2015").style("background-color","pink");
+          	d3.select("#salary2016").style("background-color","pink");
+          	d3.select("#salary2017").style("background-color","pink");
+          	d3.select("#salary2018").style("background-color","pink");
+          	d3.select("#salary2019").style("background-color","pink");     	
+          	var str = 'Occupations,salary\n0,Management occupations,69115.9\n1,Business and financial operations occupations,64437.3\n2,Computer and mathematical occupations,68393.6\n3,Architecture and engineering occupations,59233.7\n4,"Life, physical, and social science occupations",57386.6\n5,Community and social service occupations,41780.7\n6,Legal occupations,86242.2\n7,"Education, training, and library occupations",44433.2\n8,"Arts, design, entertainment, sports, and media occupations",45915.1\n9,Health diagnosing and treating practitioners and other technical occupations,73883.1\n10,Health technologists and technicians,44811.3\n11,Healthcare support occupations,26334.3\n12,"Fire fighting and prevention, and other protective service workers including supervisors",29108.1\n13,Law enforcement workers including supervisors,70108.7\n14,Food preparation and serving related occupations,18584.2\n15,Building and grounds cleaning and maintenance occupations,23153.3\n16,Personal care and service occupations,22224.5\n17,Sales and related occupations,30991.4\n18,Office and administrative support occupations,33567.9\n19,"Farming, fishing, and forestry occupations",26967.3416666667\n20,Construction and extraction occupations,38709.7\n21,"Installation, maintenance, and repair occupations",39929.8333333333\n22,Production occupations,24015.5\n23,Transportation occupations,33150.8\n24,Material moving occupations,24321.5333333333';
             draw(str);
             d3.select("rect")
     .on("click", function(event) {
       d3.select("svg").append("text").attr("x","700").attr("y","200")
         .text(`(${d3.pointer(event).map(Math.round)})`);
         });
-          } else if (paraID == "year2012") {
-          	d3.select("#year2012").style("background-color","palevioletred");
-          	d3.select("#year2010").style("background-color","pink");
-          	d3.select("#year2011").style("background-color","pink");
-          	d3.select("#year2013").style("background-color","pink");
-          	d3.select("#year2014").style("background-color","pink");
-          	d3.select("#year2015").style("background-color","pink");
-          	d3.select("#year2016").style("background-color","pink");
-          	d3.select("#year2017").style("background-color","pink");
-          	d3.select("#year2018").style("background-color","pink");
-          	d3.select("#year2019").style("background-color","pink");
-          	var str = 'Occupations,year\nOffice and administrative support,778614.625\nSales and related,661007.375\nManagement,603437.5\n"Education, training, and library",409996.25\nBusiness and financial operations,348813.625\nFood preparation and serving related,367739.0\nBuilding and grounds cleaning and maintenance,287872.125\n"Arts, design, entertainment, sports, and media",322478.5\nConstruction and extraction,274084.0\nPersonal care and service,295994.875\nHealthcare support,260978.75\nTransportation,257435.875\nHealth diagnosing and treating practitioners and other technical,213491.125\nProduction,187946.75\nLegal,145999.875\nComputer and mathematical,145511.25\nCommunity and social service,116521.375\n"Installation, maintenance, and repair",112345.125\n"Fire fighting and prevention, and other protective service workers including supervisors",111721.625\nMaterial moving,95917.625\nHealth technologists and technicians,69781.125\nLaw enforcement workers including supervisors,60926.0\nArchitecture and engineering,57477.0\n"Life, physical, and social science",52814.25\n"Farming, fishing, and forestry",4098.125';
+          } else if (paraID == "salary2012") {
+          	d3.select("#salary2012").style("background-color","palevioletred");
+          	d3.select("#salary2010").style("background-color","pink");
+          	d3.select("#salary2011").style("background-color","pink");
+          	d3.select("#salary2013").style("background-color","pink");
+          	d3.select("#salary2014").style("background-color","pink");
+          	d3.select("#salary2015").style("background-color","pink");
+          	d3.select("#salary2016").style("background-color","pink");
+          	d3.select("#salary2017").style("background-color","pink");
+          	d3.select("#salary2018").style("background-color","pink");
+          	d3.select("#salary2019").style("background-color","pink");
+          	var str = 'Occupations,salary\n0,Management occupations,72026.5\n1,Business and financial operations occupations,62463.1\n2,Computer and mathematical occupations,67254.8\n3,Architecture and engineering occupations,67040.0\n4,"Life, physical, and social science occupations",57263.3\n5,Community and social service occupations,43214.2\n6,Legal occupations,83018.3\n7,"Education, training, and library occupations",40823.8\n8,"Arts, design, entertainment, sports, and media occupations",45216.5\n9,Health diagnosing and treating practitioners and other technical occupations,78010.5\n10,Health technologists and technicians,45250.0\n11,Healthcare support occupations,25868.3\n12,"Fire fighting and prevention, and other protective service workers including supervisors",32949.6\n13,Law enforcement workers including supervisors,66834.1\n14,Food preparation and serving related occupations,17711.9\n15,Building and grounds cleaning and maintenance occupations,23100.4\n16,Personal care and service occupations,19194.3\n17,Sales and related occupations,31802.1\n18,Office and administrative support occupations,34271.2\n19,"Farming, fishing, and forestry occupations",30941.741666666698\n20,Construction and extraction occupations,36953.6\n21,"Installation, maintenance, and repair occupations",48886.1\n22,Production occupations,26122.6\n23,Transportation occupations,31903.8\n24,Material moving occupations,20068.6';
             draw(str);
-          } else if (paraID == "year2013") {
-            d3.select("#year2013").style("background-color","palevioletred");
-          	d3.select("#year2010").style("background-color","pink");
-          	d3.select("#year2011").style("background-color","pink");
-          	d3.select("#year2012").style("background-color","pink");
-          	d3.select("#year2014").style("background-color","pink");
-          	d3.select("#year2015").style("background-color","pink");
-          	d3.select("#year2016").style("background-color","pink");
-          	d3.select("#year2017").style("background-color","pink");
-          	d3.select("#year2018").style("background-color","pink");
-          	d3.select("#year2019").style("background-color","pink");
-          	var str = 'Occupations,year\nOffice and administrative support,768034.125\nSales and related,652067.75\nManagement,629771.25\n"Education, training, and library",425314.375\nBusiness and financial operations,370954.75\nFood preparation and serving related,371458.25\nBuilding and grounds cleaning and maintenance,317784.5\n"Arts, design, entertainment, sports, and media",348746.25\nConstruction and extraction,277003.0\nPersonal care and service,289360.5\nHealthcare support,275692.625\nTransportation,251799.5\nHealth diagnosing and treating practitioners and other technical,218173.75\nProduction,170748.25\nLegal,133874.125\nComputer and mathematical,158481.875\nCommunity and social service,124456.625\n"Installation, maintenance, and repair",127171.375\n"Fire fighting and prevention, and other protective service workers including supervisors",107395.25\nMaterial moving,94607.875\nHealth technologists and technicians,68170.5\nLaw enforcement workers including supervisors,55362.125\nArchitecture and engineering,51836.625\n"Life, physical, and social science",50389.625\n"Farming, fishing, and forestry",4093.0';
+          } else if (paraID == "salary2013") {
+            d3.select("#salary2013").style("background-color","palevioletred");
+          	d3.select("#salary2010").style("background-color","pink");
+          	d3.select("#salary2011").style("background-color","pink");
+          	d3.select("#salary2012").style("background-color","pink");
+          	d3.select("#salary2014").style("background-color","pink");
+          	d3.select("#salary2015").style("background-color","pink");
+          	d3.select("#salary2016").style("background-color","pink");
+          	d3.select("#salary2017").style("background-color","pink");
+          	d3.select("#salary2018").style("background-color","pink");
+          	d3.select("#salary2019").style("background-color","pink");
+          	var str = 'Occupations,salary\n0,Management occupations,73452.6\n1,Business and financial operations occupations,70016.1\n2,Computer and mathematical occupations,79152.3\n3,Architecture and engineering occupations,60269.7333333333\n4,"Life, physical, and social science occupations",66051.3\n5,Community and social service occupations,41905.0\n6,Legal occupations,88775.4\n7,"Education, training, and library occupations",42351.4\n8,"Arts, design, entertainment, sports, and media occupations",49550.6\n9,Health diagnosing and treating practitioners and other technical occupations,79992.2\n10,Health technologists and technicians,46363.3\n11,Healthcare support occupations,26287.8\n12,"Fire fighting and prevention, and other protective service workers including supervisors",32839.9\n13,Law enforcement workers including supervisors,67422.4\n14,Food preparation and serving related occupations,18832.0\n15,Building and grounds cleaning and maintenance occupations,23027.4\n16,Personal care and service occupations,20951.5\n17,Sales and related occupations,33047.4\n18,Office and administrative support occupations,34250.7\n19,"Farming, fishing, and forestry occupations",24350.875\n20,Construction and extraction occupations,46123.0\n21,"Installation, maintenance, and repair occupations",44763.7\n22,Production occupations,27496.7\n23,Transportation occupations,29299.5\n24,Material moving occupations,23117.0';
             draw(str);
-          } else if (paraID == "year2014") {
-          	d3.select("#year2014").style("background-color","palevioletred");
-          	d3.select("#year2011").style("background-color","pink");
-          	d3.select("#year2012").style("background-color","pink");
-          	d3.select("#year2013").style("background-color","pink");
-          	d3.select("#year2010").style("background-color","pink");
-          	d3.select("#year2015").style("background-color","pink");
-          	d3.select("#year2016").style("background-color","pink");
-          	d3.select("#year2017").style("background-color","pink");
-          	d3.select("#year2018").style("background-color","pink");
-          	d3.select("#year2019").style("background-color","pink");
-          	var str = 'Occupations,year\nOffice and administrative support,767100.625\nSales and related,652031.5\nManagement,685725.25\n"Education, training, and library",433337.375\nBusiness and financial operations,374852.5\nFood preparation and serving related,398292.5\nBuilding and grounds cleaning and maintenance,310608.5\n"Arts, design, entertainment, sports, and media",326988.25\nConstruction and extraction,298331.5\nPersonal care and service,302526.25\nHealthcare support,261548.625\nTransportation,280691.0\nHealth diagnosing and treating practitioners and other technical,222505.25\nProduction,170006.75\nLegal,140116.875\nComputer and mathematical,157821.625\nCommunity and social service,120567.625\n"Installation, maintenance, and repair",114496.125\n"Fire fighting and prevention, and other protective service workers including supervisors",101078.75\nMaterial moving,90894.625\nHealth technologists and technicians,81922.5\nLaw enforcement workers including supervisors,57527.875\nArchitecture and engineering,62845.375\n"Life, physical, and social science",53213.125\n"Farming, fishing, and forestry",4364.0';
+          } else if (paraID == "salary2014") {
+          	d3.select("#salary2014").style("background-color","palevioletred");
+          	d3.select("#salary2011").style("background-color","pink");
+          	d3.select("#salary2012").style("background-color","pink");
+          	d3.select("#salary2013").style("background-color","pink");
+          	d3.select("#salary2010").style("background-color","pink");
+          	d3.select("#salary2015").style("background-color","pink");
+          	d3.select("#salary2016").style("background-color","pink");
+          	d3.select("#salary2017").style("background-color","pink");
+          	d3.select("#salary2018").style("background-color","pink");
+          	d3.select("#salary2019").style("background-color","pink");
+          	var str = 'Occupations,salary\n0,Management occupations,71319.5\n1,Business and financial operations occupations,66972.5\n2,Computer and mathematical occupations,77417.2\n3,Architecture and engineering occupations,70454.1\n4,"Life, physical, and social science occupations",52731.0\n5,Community and social service occupations,44079.5\n6,Legal occupations,83236.5\n7,"Education, training, and library occupations",43953.1\n8,"Arts, design, entertainment, sports, and media occupations",47612.2\n9,Health diagnosing and treating practitioners and other technical occupations,78564.4\n10,Health technologists and technicians,46182.7\n11,Healthcare support occupations,24499.6\n12,"Fire fighting and prevention, and other protective service workers including supervisors",29797.5\n13,Law enforcement workers including supervisors,69203.4\n14,Food preparation and serving related occupations,17564.5\n15,Building and grounds cleaning and maintenance occupations,22849.4\n16,Personal care and service occupations,19475.6\n17,Sales and related occupations,34313.0\n18,Office and administrative support occupations,33121.8\n19,"Farming, fishing, and forestry occupations",12003.620833333302\n20,Construction and extraction occupations,39787.4\n21,"Installation, maintenance, and repair occupations",46003.4\n22,Production occupations,24485.3\n23,Transportation occupations,30026.3\n24,Material moving occupations,22313.8';
             draw(str);
-          } else if (paraID == "year2015") {
-          	d3.select("#year2015").style("background-color","palevioletred");
-          	d3.select("#year2011").style("background-color","pink");
-          	d3.select("#year2012").style("background-color","pink");
-          	d3.select("#year2013").style("background-color","pink");
-          	d3.select("#year2014").style("background-color","pink");
-          	d3.select("#year2010").style("background-color","pink");
-          	d3.select("#year2016").style("background-color","pink");
-          	d3.select("#year2017").style("background-color","pink");
-          	d3.select("#year2018").style("background-color","pink");
-          	d3.select("#year2019").style("background-color","pink");
-          	var str = 'Occupations,year\nOffice and administrative support,790438.5\nSales and related,639599.0\nManagement,710697.5\n"Education, training, and library",448925.0\nBusiness and financial operations,378538.5\nFood preparation and serving related,413959.0\nBuilding and grounds cleaning and maintenance,298689.5\n"Arts, design, entertainment, sports, and media",346099.5\nConstruction and extraction,293826.5\nPersonal care and service,308635.5\nHealthcare support,271790.5\nTransportation,288061.0\nHealth diagnosing and treating practitioners and other technical,226249.5\nProduction,171431.5\nLegal,149847.0\nComputer and mathematical,166344.0\nCommunity and social service,125916.5\n"Installation, maintenance, and repair",123636.5\n"Fire fighting and prevention, and other protective service workers including supervisors",106526.5\nMaterial moving,83841.5\nHealth technologists and technicians,91912.0\nLaw enforcement workers including supervisors,58624.5\nArchitecture and engineering,61046.5\n"Life, physical, and social science",61940.0\n"Farming, fishing, and forestry",6223.0';
+          } else if (paraID == "salary2015") {
+          	d3.select("#salary2015").style("background-color","palevioletred");
+          	d3.select("#salary2011").style("background-color","pink");
+          	d3.select("#salary2012").style("background-color","pink");
+          	d3.select("#salary2013").style("background-color","pink");
+          	d3.select("#salary2014").style("background-color","pink");
+          	d3.select("#salary2010").style("background-color","pink");
+          	d3.select("#salary2016").style("background-color","pink");
+          	d3.select("#salary2017").style("background-color","pink");
+          	d3.select("#salary2018").style("background-color","pink");
+          	d3.select("#salary2019").style("background-color","pink");
+          	var str = 'Occupations,salary\n0,Management occupations,73571.9\n1,Business and financial operations occupations,68185.0\n2,Computer and mathematical occupations,73205.0\n3,Architecture and engineering occupations,69207.8\n4,"Life, physical, and social science occupations",59742.6\n5,Community and social service occupations,43428.9\n6,Legal occupations,91585.2\n7,"Education, training, and library occupations",48814.3\n8,"Arts, design, entertainment, sports, and media occupations",44764.9\n9,Health diagnosing and treating practitioners and other technical occupations,85304.5\n10,Health technologists and technicians,41390.0\n11,Healthcare support occupations,26647.6\n12,"Fire fighting and prevention, and other protective service workers including supervisors",30215.6\n13,Law enforcement workers including supervisors,69478.0\n14,Food preparation and serving related occupations,19305.9\n15,Building and grounds cleaning and maintenance occupations,24977.5\n16,Personal care and service occupations,20143.8\n17,Sales and related occupations,33053.7\n18,Office and administrative support occupations,33969.0\n19,"Farming, fishing, and forestry occupations",15726.870833333302\n20,Construction and extraction occupations,42486.6\n21,"Installation, maintenance, and repair occupations",44439.2\n22,Production occupations,26725.2\n23,Transportation occupations,33713.1\n24,Material moving occupations,23291.2';
             draw(str);
-          } else if (paraID == "year2016") {
-          	d3.select("#year2016").style("background-color","palevioletred");
-          	d3.select("#year2011").style("background-color","pink");
-          	d3.select("#year2012").style("background-color","pink");
-          	d3.select("#year2013").style("background-color","pink");
-          	d3.select("#year2014").style("background-color","pink");
-          	d3.select("#year2015").style("background-color","pink");
-          	d3.select("#year2010").style("background-color","pink");
-          	d3.select("#year2017").style("background-color","pink");
-          	d3.select("#year2018").style("background-color","pink");
-          	d3.select("#year2019").style("background-color","pink");
-          	var str = 'Occupations,year\nOffice and administrative support,773342.5\nSales and related,658210.25\nManagement,738015.0\n"Education, training, and library",415227.0\nBusiness and financial operations,381351.25\nFood preparation and serving related,398791.75\nBuilding and grounds cleaning and maintenance,297485.0\n"Arts, design, entertainment, sports, and media",347484.0\nConstruction and extraction,288614.5\nPersonal care and service,331687.25\nHealthcare support,283578.0\nTransportation,295728.5\nHealth diagnosing and treating practitioners and other technical,236781.5\nProduction,157550.5\nLegal,150222.25\nComputer and mathematical,182507.25\nCommunity and social service,133204.0\n"Installation, maintenance, and repair",122622.25\n"Fire fighting and prevention, and other protective service workers including supervisors",104377.5\nMaterial moving,82524.25\nHealth technologists and technicians,79291.0\nLaw enforcement workers including supervisors,57021.25\nArchitecture and engineering,68765.25\n"Life, physical, and social science",58716.5\n"Farming, fishing, and forestry",3749.0';
+          } else if (paraID == "salary2016") {
+          	d3.select("#salary2016").style("background-color","palevioletred");
+          	d3.select("#salary2011").style("background-color","pink");
+          	d3.select("#salary2012").style("background-color","pink");
+          	d3.select("#salary2013").style("background-color","pink");
+          	d3.select("#salary2014").style("background-color","pink");
+          	d3.select("#salary2015").style("background-color","pink");
+          	d3.select("#salary2010").style("background-color","pink");
+          	d3.select("#salary2017").style("background-color","pink");
+          	d3.select("#salary2018").style("background-color","pink");
+          	d3.select("#salary2019").style("background-color","pink");
+          	var str = 'Occupations,salary\n0,Management occupations,76237.9\n1,Business and financial operations occupations,67834.3\n2,Computer and mathematical occupations,75486.0\n3,Architecture and engineering occupations,69612.7\n4,"Life, physical, and social science occupations",59379.6\n5,Community and social service occupations,42325.0\n6,Legal occupations,100981.1\n7,"Education, training, and library occupations",45966.4\n8,"Arts, design, entertainment, sports, and media occupations",49461.1\n9,Health diagnosing and treating practitioners and other technical occupations,79104.0\n10,Health technologists and technicians,44839.6\n11,Healthcare support occupations,25751.8\n12,"Fire fighting and prevention, and other protective service workers including supervisors",28529.5\n13,Law enforcement workers including supervisors,64433.6\n14,Food preparation and serving related occupations,20797.0\n15,Building and grounds cleaning and maintenance occupations,26210.2\n16,Personal care and service occupations,22910.6\n17,Sales and related occupations,34286.5\n18,Office and administrative support occupations,35857.2\n19,"Farming, fishing, and forestry occupations",16965.320833333302\n20,Construction and extraction occupations,43835.0\n21,"Installation, maintenance, and repair occupations",47686.7\n22,Production occupations,28437.6\n23,Transportation occupations,33283.3\n24,Material moving occupations,23752.4';
             draw(str);
-          } else if (paraID == "year2017") {
-          	d3.select("#year2017").style("background-color","palevioletred");
-          	d3.select("#year2011").style("background-color","pink");
-          	d3.select("#year2012").style("background-color","pink");
-          	d3.select("#year2013").style("background-color","pink");
-          	d3.select("#year2014").style("background-color","pink");
-          	d3.select("#year2015").style("background-color","pink");
-          	d3.select("#year2016").style("background-color","pink");
-          	d3.select("#year2010").style("background-color","pink");
-          	d3.select("#year2018").style("background-color","pink");
-          	d3.select("#year2019").style("background-color","pink");
-          	var str = 'Occupations,year\nOffice and administrative support,797758.125\nSales and related,627175.375\nManagement,727781.0\n"Education, training, and library",428639.25\nBusiness and financial operations,408266.125\nFood preparation and serving related,384540.0\nBuilding and grounds cleaning and maintenance,304999.625\n"Arts, design, entertainment, sports, and media",368612.0\nConstruction and extraction,306867.5\nPersonal care and service,323892.375\nHealthcare support,301163.25\nTransportation,293206.875\nHealth diagnosing and treating practitioners and other technical,239778.625\nProduction,158939.25\nLegal,144387.875\nComputer and mathematical,184616.25\nCommunity and social service,138300.875\n"Installation, maintenance, and repair",115965.625\n"Fire fighting and prevention, and other protective service workers including supervisors",107292.125\nMaterial moving,100902.125\nHealth technologists and technicians,92955.125\nLaw enforcement workers including supervisors,62573.5\nArchitecture and engineering,69674.5\n"Life, physical, and social science",56667.25\n"Farming, fishing, and forestry",5453.125';
+          } else if (paraID == "salary2017") {
+          	d3.select("#salary2017").style("background-color","palevioletred");
+          	d3.select("#salary2011").style("background-color","pink");
+          	d3.select("#salary2012").style("background-color","pink");
+          	d3.select("#salary2013").style("background-color","pink");
+          	d3.select("#salary2014").style("background-color","pink");
+          	d3.select("#salary2015").style("background-color","pink");
+          	d3.select("#salary2016").style("background-color","pink");
+          	d3.select("#salary2010").style("background-color","pink");
+          	d3.select("#salary2018").style("background-color","pink");
+          	d3.select("#salary2019").style("background-color","pink");
+          	var str = 'Occupations,salary2017\n0,Management occupations,77821.8\n1,Business and financial operations occupations,71643.8\n2,Computer and mathematical occupations,80663.1\n3,Architecture and engineering occupations,72242.45\n4,"Life, physical, and social science occupations",67315.7\n5,Community and social service occupations,41810.0\n6,Legal occupations,96452.0\n7,"Education, training, and library occupations",49658.9\n8,"Arts, design, entertainment, sports, and media occupations",50737.8\n9,Health diagnosing and treating practitioners and other technical occupations,81811.7\n10,Health technologists and technicians,46589.3\n11,Healthcare support occupations,25245.4\n12,"Fire fighting and prevention, and other protective service workers including supervisors",38574.0\n13,Law enforcement workers including supervisors,69608.7\n14,Food preparation and serving related occupations,21389.6\n15,Building and grounds cleaning and maintenance occupations,28024.3\n16,Personal care and service occupations,23227.9\n17,Sales and related occupations,35174.1\n18,Office and administrative support occupations,37235.8\n19,"Farming, fishing, and forestry occupations",21202.15\n20,Construction and extraction occupations,46430.1\n21,"Installation, maintenance, and repair occupations",46611.85\n22,Production occupations,31284.4\n23,Transportation occupations,35133.0\n24,Material moving occupations,23755.0';
             draw(str);
-          } else if (paraID == "year2018") {
-          	d3.select("#year2018").style("background-color","palevioletred");
-          	d3.select("#year2011").style("background-color","pink");
-          	d3.select("#year2012").style("background-color","pink");
-          	d3.select("#year2013").style("background-color","pink");
-          	d3.select("#year2014").style("background-color","pink");
-          	d3.select("#year2015").style("background-color","pink");
-          	d3.select("#year2016").style("background-color","pink");
-          	d3.select("#year2017").style("background-color","pink");
-          	d3.select("#year2010").style("background-color","pink");
-          	d3.select("#year2019").style("background-color","pink");
-          	var str = 'Occupations,year\nOffice and administrative support,703787.5\nSales and related,592583.0\nManagement,693368.5\n"Education, training, and library",452035.0\nBusiness and financial operations,419721.5\nFood preparation and serving related,377419.0\nBuilding and grounds cleaning and maintenance,297937.5\n"Arts, design, entertainment, sports, and media",355466.5\nConstruction and extraction,310193.5\nPersonal care and service,261423.5\nHealthcare support,351295.5\nTransportation,305408.0\nHealth diagnosing and treating practitioners and other technical,235305.5\nProduction,150561.5\nLegal,141583.0\nComputer and mathematical,212220.0\nCommunity and social service,115189.5\n"Installation, maintenance, and repair",95279.5\n"Fire fighting and prevention, and other protective service workers including supervisors",109167.5\nMaterial moving,134941.5\nHealth technologists and technicians,86006.0\nLaw enforcement workers including supervisors,60818.5\nArchitecture and engineering,68106.5\n"Life, physical, and social science",64962.0\n"Farming, fishing, and forestry",3162.0';
+          } else if (paraID == "salary2018") {
+          	d3.select("#salary2018").style("background-color","palevioletred");
+          	d3.select("#salary2011").style("background-color","pink");
+          	d3.select("#salary2012").style("background-color","pink");
+          	d3.select("#salary2013").style("background-color","pink");
+          	d3.select("#salary2014").style("background-color","pink");
+          	d3.select("#salary2015").style("background-color","pink");
+          	d3.select("#salary2016").style("background-color","pink");
+          	d3.select("#salary2017").style("background-color","pink");
+          	d3.select("#salary2010").style("background-color","pink");
+          	d3.select("#salary2019").style("background-color","pink");
+          	var str = 'Occupations,salary2018\n0,Management occupations,80119.1\n1,Business and financial operations occupations,74160.2\n2,Computer and mathematical occupations,82133.8\n3,Architecture and engineering occupations,77308.4\n4,"Life, physical, and social science occupations",74664.8\n5,Community and social service occupations,46766.7\n6,Legal occupations,104282.1\n7,"Education, training, and library occupations",49443.3\n8,"Arts, design, entertainment, sports, and media occupations",55391.6\n9,Health diagnosing and treating practitioners and other technical occupations,89215.4\n10,Health technologists and technicians,52378.6\n11,Healthcare support occupations,26585.2\n12,"Fire fighting and prevention, and other protective service workers including supervisors",34964.8\n13,Law enforcement workers including supervisors,68949.0\n14,Food preparation and serving related occupations,24147.0\n15,Building and grounds cleaning and maintenance occupations,27660.7\n16,Personal care and service occupations,27452.7\n17,Sales and related occupations,40100.8\n18,Office and administrative support occupations,42117.6\n19,"Farming, fishing, and forestry occupations",24234.45\n20,Construction and extraction occupations,56175.9\n21,"Installation, maintenance, and repair occupations",45133.3\n22,Production occupations,34433.5\n23,Transportation occupations,36810.1\n24,Material moving occupations,26267.5';
             draw(str);
-          } else if (paraID == "year2019"){
-          	d3.select("#year2019").style("background-color","palevioletred");
-          	d3.select("#year2011").style("background-color","pink");
-          	d3.select("#year2012").style("background-color","pink");
-          	d3.select("#year2013").style("background-color","pink");
-          	d3.select("#year2014").style("background-color","pink");
-          	d3.select("#year2015").style("background-color","pink");
-          	d3.select("#year2016").style("background-color","pink");
-          	d3.select("#year2017").style("background-color","pink");
-          	d3.select("#year2018").style("background-color","pink");
-          	d3.select("#year2010").style("background-color","pink");
-          	var str = 'Occupations,year\nOffice and administrative support,634458.5\nSales and related,605927.0\nManagement,748540.5\n"Education, training, and library",459713.0\nBusiness and financial operations,437783.5\nFood preparation and serving related,387215.0\nBuilding and grounds cleaning and maintenance,280558.5\n"Arts, design, entertainment, sports, and media",349345.5\nConstruction and extraction,303427.5\nPersonal care and service,253862.5\nHealthcare support,370240.5\nTransportation,282836.0\nHealth diagnosing and treating practitioners and other technical,241476.5\nProduction,149535.5\nLegal,147392.0\nComputer and mathematical,212493.0\nCommunity and social service,133721.5\n"Installation, maintenance, and repair",110389.5\n"Fire fighting and prevention, and other protective service workers including supervisors",120083.5\nMaterial moving,132797.5\nHealth technologists and technicians,88458.0\nLaw enforcement workers including supervisors,61299.5\nArchitecture and engineering,75378.5\n"Life, physical, and social science",61886.0\n"Farming, fishing, and forestry",5190.0';
+          } else if (paraID == "salary2019"){
+          	d3.select("#salary2019").style("background-color","palevioletred");
+          	d3.select("#salary2011").style("background-color","pink");
+          	d3.select("#salary2012").style("background-color","pink");
+          	d3.select("#salary2013").style("background-color","pink");
+          	d3.select("#salary2014").style("background-color","pink");
+          	d3.select("#salary2015").style("background-color","pink");
+          	d3.select("#salary2016").style("background-color","pink");
+          	d3.select("#salary2017").style("background-color","pink");
+          	d3.select("#salary2018").style("background-color","pink");
+          	d3.select("#salary2010").style("background-color","pink");
+          	var str = 'Occupations,salary2019\n0,Management occupations,86022.9\n1,Business and financial operations occupations,78493.8\n2,Computer and mathematical occupations,82734.8\n3,Architecture and engineering occupations,74947.0\n4,"Life, physical, and social science occupations",71876.8\n5,Community and social service occupations,53074.3\n6,Legal occupations,110089.9\n7,"Education, training, and library occupations",50917.6\n8,"Arts, design, entertainment, sports, and media occupations",56632.6\n9,Health diagnosing and treating practitioners and other technical occupations,93031.3\n10,Health technologists and technicians,53118.9\n11,Healthcare support occupations,26935.6\n12,"Fire fighting and prevention, and other protective service workers including supervisors",33966.5\n13,Law enforcement workers including supervisors,75077.9\n14,Food preparation and serving related occupations,24881.6\n15,Building and grounds cleaning and maintenance occupations,30035.9\n16,Personal care and service occupations,26490.0\n17,Sales and related occupations,40518.6\n18,Office and administrative support occupations,42243.9\n19,"Farming, fishing, and forestry occupations",23264.15\n20,Construction and extraction occupations,44230.4\n21,"Installation, maintenance, and repair occupations",45228.0\n22,Production occupations,33067.4\n23,Transportation occupations,36431.3\n24,Material moving occupations,26735.3';
             draw(str);
           }      });
 
@@ -214,7 +214,7 @@
       	 prewidth.push(+d3.select(this).attr('width'));
     	 });
     
-    const xValue = data => data.year;
+    const xValue = data => data.salary;
     const yValue = data => data.Occupations;
     
     xScale.domain([0, d3$1.max(data, xValue)]); 
@@ -273,7 +273,7 @@
   var data = d3.csvParse(str,function(d){
   	    return {
         	Occupations: d.Occupations, 
-          year:+d.year
+          salary:+d.salary
       }; 
   });
     return data;

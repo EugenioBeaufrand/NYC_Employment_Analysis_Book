@@ -1,13 +1,25 @@
 # Interactive component
 
-<html>
+## Employment by Years
+
+In order to have an idea of the changes of number of employed in different occupations by years, we use an interactive bar chart to show the trends more clearly. When you click on a year, the button will turn palevioletred and the bar chart will provide you with the employment data of that year. The palevioletred colored bars mean the number of employed in this specific occupation is larger than the one of your previous click. Instead, the pink bars represent the number of employed decrease.\
+\
+We've also posted this D3 code on vizhub, the link of the D3 code is attached here: https://vizhub.com/tracy3057/690c112af43a42e4a539a0a4c891f77e?edit=files&file=index.js&line
+
   <head>
     <title>Customizing Axes</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v6.js"></script>
   </head>
   <body>
-    <svg width="800" height="380"></svg>
+    <svg width="800" height="450"></svg>
+    <div id = "container"></div>
     <script src="scripts/numemp.js"></script>
   </body>
-</html>
+  
+## Salary by Years
+
+Similar to what we've done for number of employment, we also draw an interactive bar chart for salaries across different years to show the changing trends.\
+\
+
+  
