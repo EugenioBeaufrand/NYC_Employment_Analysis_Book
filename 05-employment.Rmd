@@ -1,0 +1,600 @@
+# Employment
+
+This sub-chapter shows an analysis of employment for different occupations in New York City.
+
+```{r Imports, include=FALSE,echo=FALSE}
+library(tidyverse)
+library(RCurl)
+library(plyr)
+library(dplyr)
+library(forcats)
+library(parcoords)
+library(scales)
+```
+
+```{r Data,include=FALSE,echo=FALSE}
+AggregateData <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/Occupation_Aggregate.csv"))
+
+
+AggregateYearlyData <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/Occupation_Yearly.csv"))
+
+
+GenderData <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/Occupation_Gender_Aggregate.csv"))
+
+GenderData.tidy <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/TidyGenderData.csv"))
+
+YearlyNumEmps <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/YearlyNumEmpsWithNorm.csv"))
+
+
+AverageEmpsByOccupation <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/AverageEmpsByOccupation.csv"))
+
+
+BoroughData <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/Occupation_County_Aggregate.csv"))
+
+
+RaceData <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/Occupation_Race_Aggregate.csv"))
+
+
+PropsByOccupation <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/PropsByOccupation.csv"))
+
+
+PropsOfGroupByOccupation <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/PropsOfGroupByOccupation.csv"))
+
+
+PropsOfPropsRace <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/PropsOfPropsRace.csv"))
+
+
+YearBoroughData <- read.csv("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/NumEmp/numemp_big_category.csv")
+
+```
+
+```{r Data Cleaning,include=FALSE,echo=FALSE}
+GenderData$X <- NULL
+YearBoroughData$X <- NULL
+
+AggregateData$Occupations<- plyr::revalue(AggregateData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+AggregateYearlyData$Occupations <- as.factor(AggregateYearlyData$Occupations)
+AggregateYearlyData$year <- as.ordered(AggregateYearlyData$year)
+AggregateYearlyData$Occupations <- plyr::revalue(AggregateData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+
+GenderData$Occupations <- plyr::revalue(GenderData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+YearlyNumEmps$Occupations <- plyr::revalue(AggregateData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+AverageEmpsByOccupation$index <- plyr::revalue(AggregateData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+BoroughData$Occupations <- plyr::revalue(AggregateData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+YearBoroughData$Occupations <- plyr::revalue(YearBoroughData$Occupations, c("Management, business, science, and arts occupations:" = "Management, business, science, and arts","Service occupations:" = "Service", "Sales and office occupations:" = "Sales and office", "Natural resources, construction, and maintenance occupations:" = "Natural resources, construction,maintenance", "Production, transportation, and material moving occupations:" = "Production, transportation,material moving"))
+
+
+RaceData$Occupations <- plyr::revalue(AggregateData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+PropsByOccupation$Occupation <- plyr::revalue(AggregateData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+PropsOfGroupByOccupation$Occupation <- plyr::revalue(AggregateData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+PropsOfPropsRace$Occupation <- plyr::revalue(AggregateData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
+
+#Sector groups employment across counties cleaning 
+
+YearBoroughData.tidy <- pivot_longer(YearBoroughData,cols = !c("Occupations","year"), names_to = "County", values_to = "NumEmp")
+
+YearBoroughData.tidy$County <- plyr::revalue(YearBoroughData.tidy$County, c("Bronx.County..New.York" = "Bronx County", "Kings.County..New.York" = "Kings County", "New.York.County..New.York" = "New York County", "Queens.County..New.York" = "Queens County", "Richmond.County..New.York" = "Richmond County"))
+
+YearBoroughData.tidy$Occupations <- plyr::revalue(YearBoroughData.tidy$Occupations, c("Management, business, science, and arts" = "MBSA", "Natural resources, construction,maintenance" = "NRCM", "Production, transportation,material moving" = "PTMM"))
+
+YearBoroughData.wide <- pivot_wider(YearBoroughData.tidy, names_from = Occupations, values_from = NumEmp)
+
+
+YearBoroughData.wide$year<-NULL
+YearBoroughData.wide['sumnumemp'] <- YearBoroughData.wide['MBSA']+YearBoroughData.wide['Service']+YearBoroughData.wide['Sales and office']+YearBoroughData.wide['NRCM']+YearBoroughData.wide['PTMM']
+
+YearBoroughData.wide['MBSA'] <- YearBoroughData.wide['MBSA']/YearBoroughData.wide['sumnumemp']
+YearBoroughData.wide['Service'] <- YearBoroughData.wide['Service']/YearBoroughData.wide['sumnumemp']
+YearBoroughData.wide['Sales and office'] <- YearBoroughData.wide['Sales and office']/YearBoroughData.wide['sumnumemp']
+YearBoroughData.wide['NRCM'] <- YearBoroughData.wide['NRCM']/YearBoroughData.wide['sumnumemp']
+YearBoroughData.wide['PTMM'] <- YearBoroughData.wide['PTMM']/YearBoroughData.wide['sumnumemp']
+
+YearBoroughData.wide$sumnumemp <- NULL
+YearBoroughData.wide$sum <- NULL
+
+detach(package:plyr)
+
+
+#Number Employed by Occupation NYC 2010-2019
+
+TrimmedAggregateYearlyData <- AggregateYearlyData[AggregateYearlyData$year == "2010" | AggregateYearlyData$year == "2015" | AggregateYearlyData$year == "2019",]
+AverageEmpsByOccupation <- AverageEmpsByOccupation[,2:3]
+AverageEmpsByOccupation <- dplyr::rename(AverageEmpsByOccupation,NumEmp = X0)
+
+# Employment in Sectors without clear trends data cleaning
+
+NotMonotonous <- AggregateYearlyData[AggregateYearlyData$Occupations == "Office and administrative support" |
+                                    AggregateYearlyData$Occupations == "Food preparation and serving related" |
+                                    AggregateYearlyData$Occupations == "Transportation"|
+                                    AggregateYearlyData$Occupations == "Material moving"|
+                                    AggregateYearlyData$Occupations == "Health technologists and technicians"|
+                                    AggregateYearlyData$Occupations == "Personal care and service"|
+                                    AggregateYearlyData$Occupations == "Building and grounds cleaning and maintenance"|
+                                    AggregateYearlyData$Occupations == "Sales and related"|
+                                    AggregateYearlyData$Occupations == "Legal"|
+                                    AggregateYearlyData$Occupations == "Installation, maintenance, and repair",]
+NotMonotonous$year <- as.character(NotMonotonous$year)
+NotMonotonous$Occupations <- factor(NotMonotonous$Occupations,levels = c("Office and administrative support",
+                                                                         "Food preparation and serving related",
+                                                                         "Transportation",
+                                                                         "Material moving",
+                                                                         "Health technologists and technicians",
+                                                                         "Personal care and service",
+                                                                         "Building and grounds cleaning and maintenance",
+                                                                         "Sales and related",
+                                                                         "Legal",
+                                                                         "Installation, maintenance, and repair"))
+
+# Composition of Genders by Occupation cleaning
+
+GenderData$Occupations <- as.factor(GenderData$Occupations)
+GenderData$Gender <- as.factor(GenderData$Gender)
+GenderData.wide <- pivot_wider(GenderData, names_from = "Gender", values_from = "MeanNumEmpbyGender")
+GenderData.wide$difference <- with(GenderData.wide,abs(Male - Female))
+GenderData.tidy <- pivot_longer(GenderData.wide, cols = c("Female","Male"), names_to = "Gender", values_to = "NumEmps")
+GenderData.tidy <- GenderData.tidy %>% 
+  group_by(Occupations) %>% 
+  mutate(prop = NumEmps/sum(NumEmps)) %>%
+  ungroup()
+GenderData.tidy <- GenderData.tidy %>% mutate(difference_pct = difference/sum(NumEmps))
+
+#Misc Cleaning
+
+GenderData$Gender <- as.factor(GenderData$Gender)
+```
+
+```{r theme,include=FALSE,echo=FALSE}
+mytheme <- theme(axis.text=element_text(size = 10),
+  axis.title=element_text(size=12, face = "bold"),
+  plot.title = element_text(size = 14, face = "bold"),
+  legend.title = element_text(size = 12),
+  legend.text = element_text(size = 10))
+
+mytheme1 <- theme(axis.text=element_text(size = 10),
+  axis.title=element_text(size=12, face = "bold"),
+  plot.title = element_text(size = 18, face = "bold"),
+  legend.title = element_text(size = 12),
+  legend.text = element_text(size = 10))
+
+mytheme2 <- theme(axis.text=element_text(size = 10),
+  axis.title=element_text(size=12, face = "bold"),
+  plot.title = element_text(size = 15, face = "bold"),
+  legend.title = element_text(size = 12),
+  legend.text = element_text(size = 10))
+```
+
+```{r scale,include=FALSE,echo=FALSE}
+ks <- function (x) { number_format(accuracy = 1,
+                                   scale = 1/1000,
+                                   suffix = "k",
+                                   big.mark = ",")(x) }
+```
+
+## Overview of Employment Distribution
+
+In order to have an overview of employment distribution according to different occupations in New York City, we draw a Cleveland Dot Plot to show the 10-year-average of number of employed first.\
+
+```{r Aggregate Cleveland Dot Plot,fig.width=10,echo=FALSE}
+# a general analysis with average numemp of all occupations by using cleveland dot plot
+
+ggplot(AggregateData) +
+  geom_point(aes(MeanNumEmp, reorder(Occupations,MeanNumEmp)),color = "royalblue3", size = 2, alpha = 0.75) + ylab('Occupation') + xlab('Number Employed') + 
+  ggtitle('Number Employed by Occupation NYC') +
+  scale_x_continuous(labels = ks)+
+  mytheme
+
+```
+
+**Observations on Number Employed by Occupation in NYC:**
+
+1. Huge Differences in Number of Employed in Different Occupations.\
+
+  * There is a huge difference in number of employed among occupations. The sector with the biggest number of employed is office and administrative support, and the number of employed is 757015. However, for farming, fishing and forestry, which has the smallest number of employed, there's only 4864 on average.
+
+2. Three clusters for employment. 
+
+  * The **first** group includes `Office and administrative support`, `Management`, `Sales and related`, which is a group with the biggest number of employed.
+  * The **second** group includes the majority of occupations and have relatively similar number of employed among occupations. 
+  * The **third** group contains `Farming, fishing, and forestry` only, which is the group with the smallest number of employed.
+
+3. Gaps between the three clusters.
+
+  * As can be seen from the plot, the gap between the first group and second group is very large, while the gap between the second and third group is relatively small.
+  
+4. Top 3 and Last 3 Occupations in Employment.
+
+  * Top 3
+    * Office and administrative support
+    * Management
+    * Sales and related
+    
+  * Last 3
+    * Farming, fishing, and forestry
+    * Life, physical, and social science
+    * Law enforcement workers
+\
+\
+
+## Analyze on Employment by Years
+
+One of the things that affects employment is time. So first, we have an analysis on employment in different years.
+
+### General Trend of Employment by Years
+
+```{r Aggregate Yearly Cleveland Dot Plot filtered into 3 years,fig.width=10,echo=FALSE}
+ggplot(TrimmedAggregateYearlyData) +
+geom_point(aes(YearlyNumEmp, reorder(Occupations,YearlyNumEmp), color = year),size = 2, alpha = 0.75) + ylab('Occupation') + xlab('Number Employed') + ggtitle('Number Employed by Occupation NYC 2010-2019') + scale_x_continuous(labels = ks) +
+  scale_fill_manual(values=c('purple','green','yellow')) +
+  mytheme
+```
+
+**Observations on Number Employed by Occupation NYC through 2010-2019:**
+
+The most striking observations from this Cleveland dot plot are where there are clear trends over the decade, that coincide with intuition about the general trend of a sector. Some of the most striking trends are:\
+
+1.) Production occupations steadily decreasing over the course of the decade, the only sector where the number of employees for 2010 is lowest of the three years.\
+
+2.) Material moving occupations steadily increasing over the course of the decade.\
+
+3.) Computer and mathematical as well as architecture and engineering occupations quite quickly increasing over the course of the decade especially relative to their size.\
+
+4.) Health care support occupations growing at a stagnant rate from 2010 to 2015, but then growing rapidly from 2015 to 2019.\
+
+5.) Food preparation and serving related occupations growing steadily from 2010 to 2019.\
+\
+
+In order to see the employment variances of the 25 occupations in detail, we draw boxplot for comparisons.\
+
+```{r Yearly BoxPlot,fig.width=10,fig.height=6,echo=FALSE}
+ggplot(YearlyNumEmps) +
+  geom_boxplot(aes(x = YearlyNumEmp, y = reorder(x = Occupations,YearlyNumEmp, FUN = median)),
+               color = "black", fill = "dark red", alpha = 0.7) + 
+  ggtitle("Number working in sector per year") +
+  xlab("Number Employed") + ylab("Occupations") + 
+  mytheme1 +
+  scale_x_continuous(labels = ks)
+```
+
+**Observations from Boxplot of number working in sector per year:**
+
+Occupations that seem prone to dramatic fluctuation over time:\
+
+1.) Management occupations\
+
+2.) Office and administrative support occupations\
+
+3.) Health care support occupations\
+
+4.) Computer and Mathematical occupations\
+
+Occupations where the number of employees has fluctuated very little:\
+
+1.)Law enforcement\
+
+2.)Fire fighting\
+
+3.)Building and grounds keeping occupations\
+
+4.)Legal occupations\
+
+Something to be noted when reading this plot is that the number of people working in any particular occupation may change the viewers perception as to what constitutes more variation. To address this, a second plot has been created in which the box plots are normalized by dividing the number employed in each year by the mean across this sector. While the variation in total number employed won't be apparent, the relative degrees of fluctuation will become more apparent.
+\
+\
+\
+\
+```{r Yearly Normalized BoxPlot,fig.width=10,fig.height=6,echo=FALSE}
+ggplot(YearlyNumEmps) +
+  geom_boxplot(aes(x = Normalized, y = reorder(x = Occupations,Normalized, FUN = median)),
+               color = "black", fill = "dark red", alpha = 0.7) + 
+  ggtitle("Normalized number working in sector per year") +
+  xlab("Number Employed") + ylab("Occupations") +
+  mytheme1
+```
+
+**Observations from number working in sector per year:**
+
+In this plot, the total values of employees working in each field in each year are normalized by their averages. In doing this, changes in employment in a sector that on an absolute scale would be small, may be more pronounced as a function of variation relative to it's own size.
+
+In this plot, the average quantity across all years is normalized to one for illustrative purposes, which allows for new interpretations and findings:
+
+1.) Fields such as management which had a large absolute spread from the years 2010-2019 aren't necessarily the ones which seem to display the most variation with respect to themselves. While management had the largest box in the previous plot, it is in the middle of the pack in this one.
+
+2.) Of the fields with the smallest numbers of workers: Farming, fishing and forestry occupations, Life, physical and social science occupations, Law enforcement occupations, firefighting occupations, and architecture and engineering occupations; The spreads across this decade were shown to be much more profound than in the previous plot, that is with the exception of law enforcement workers and firefighting workers. While the boxes grew somewhat in spread, the growth was not even nearly proportional to that of the other fields. 
+
+This indicates that the number of people working in law enforcement and firefighting is very stable, and this would make sense because a steady supply of people in these roles is necessary. With regards to the other occupations, it also makes sense that relatively unpopulated occupations would be more prone to greater variation as a percent of itself, since relatively few can leave or join, and a big impact can be had.
+
+3.) As a percent of the number of employees working in each sector, the following were most prone to large shifts in number employed:
+
+  * Farming, fishing and forestry
+  * Material moving occupations
+  * Computer and mathematical occupations
+  * Health technologists and technicians
+  * Healthcare support occupations
+
+By contrast, these professions were the most stable:
+
+  * Legal occupations
+  * Sales occupations
+  * Law enforcement workers
+  * Fire fighters
+  * Construction and extraction occupations
+\
+\
+
+
+### Monotonicity in Employment Trends
+
+From the plot above, we can divide all occupations into three catogories. The first group is in a monotonous increasing trend, the second group is in a monotonous decreasing trend, and the third group do not have a monotonous trend in number of employed people by years. 
+
+#### Monotonous Increasing
+
+We have 14 kinds of occupations in this group:\
+1. Management Occupations\
+2. Healthcare support occupations\
+3. Business and financial operations occupations\
+4. Computer and mathematical occupations\
+5. Education, training and library occupations\
+6. Art, design, entertainment, sports and media occupations\
+7. Health, design and treating practitioners and other technical occupations\
+8. Construction and extraction occupations\
+9. Architecture and engineering occupations\
+10. Fire fighting and prevention, and other protective service workers including supervisors\
+11. Community and social service occupations\
+12. Life, physical, and social service occupations\
+13. Law enforcement workers including supervisors\
+14. Farming, fishing and forestry occupations\
+
+#### Monotonous Decreasing
+We have only one kind of occupations in this group:\
+1. Production occupations\
+
+#### Not monotonous
+We have 10 kinds of occupations in this group:\
+1. Office and administrative support occupations\
+2. Food preparation and serving related occupations\
+3. Transportation occupations\
+4. Material moving occupations\
+5. Health technologists and technicians\
+6. Personal care and service occupations\
+7. Building and grounds cleaning and maintenance occupations\
+8. Sales and related occupations\
+9. Legal occupations\
+10. Installation, maintenance, and repair occupations\
+
+We further study on the group that does not a monotonous trend with line chart.
+
+
+#### Occupations without Monotonous Trend
+
+```{r, fig.height=11,fig.width=10,echo=FALSE}
+ggplot(NotMonotonous,aes(year,YearlyNumEmp,group = Occupations)) +
+  geom_line(size = 1,color = "black") +
+  geom_point(color = "royalblue3", size = 2) +
+  facet_wrap(~Occupations,ncol=2,scales = "free_y") +
+  scale_y_continuous(labels = ks) +
+    theme(axis.text=element_text(size=8),
+      axis.title=element_text(size=15,face="bold"),
+        strip.text.x = element_text(
+        size = 12, face = "bold.italic"
+        ),
+      strip.text.y = element_text(
+        size = 12, color = "red", face = "bold.italic"
+        ),
+      plot.title = element_text(size = 18, face = "bold"))+
+  ylab('Number of Employees') + xlab('Occupations') + ggtitle('Employment in Sectors without clear trends')
+```
+
+**Observations from sectors without clear employment trends:**
+
+Here are descriptions of how these sectors have fluctuated:\
+
+1. Office and administrative support occupations\
+The number of employees in this group was consistently high before 2017, while from 2017 to 2019, the number of employees dropped dramatically.\
+
+2. Food preparation and serving related occupations\
+In this group, the peak of the number of employees were present in 2015.\
+
+3. Transportation occupations\
+Generally speaking, the number of employees was increasing. However, from 2018 to 2019, there was a rather pronounced drop, which is the reason that the number of employed in 2019 was smaller than that in 2015.\
+
+4. Material moving occupations\
+For this group, the number of employees dropped slightly from 2010 to 2011, then increased from 2011 to 2012. Afterwards, the number of employees started to decrease again until 2016. Then there was a sudden increase from 2016 to 2018 and maintained at a high level in 2019 with a subtle decrease.\
+
+5. Health technologists and technicians\
+The number of employees was consistently low from 2010 to 2013. Then the number started to increase until 2015 and maintained a relatively high level afterwards. Despite frequent dips and spikes, it seems that the number of employees in this occupation is trending upward on the whole.\
+
+6. Personal care and service occupations\
+Generally speaking, the number of employees in this group increased from 2010 to 2016, then it dropped slightly from 2016 to 2017 and then dropped significantly lot from 2017 to 2018, accompanied by another slight drop from 2018 to 2019.\
+
+7. Building and grounds cleaning and maintenance occupations\
+From 2010 to 2012, the number of employees in this group was decreasing, then the number increased a lot from 2012 to 2013 and continued to decrease from 2013 to 2016. Then it continued to increase for a little bit again from 2016 to 2017, but returned to a dropping trend from 2017 to 2019.\
+
+8. Sales and related occupations\
+The number of employed increased a lot from 2010 to 2011 for this group. Then within the year range from 2011 to 2016, the number remained at a high value, with two relatively low values in 2013 and 2015. However, the number of employed dropped a lot from 2016 to 2018, accompanied by a subtle increase from 2018 to 2019.\
+
+9. Legal occupations\
+Generally speaking, the number of employees for this group was relatively stable, the changing pattern was in the shape of a wave. The two troughs were in year 2013 and 2018 and the two crests were in year 2012 and 2016.\
+
+10. Installation, maintenance and repair occupations\
+The number of employees in this group was relatively stable as well and the changing pattern was also like the shape of a wave. The trough were in year 2016 and the two crests were in year 2013 and 2015.\
+\
+\
+
+## Analyze on Employment by Counties
+
+Employment also shows different characteristics in different counties. So we also do analysis on employment in different counties.\
+
+```{r,fig.height=6,echo=FALSE}
+parcoords(YearBoroughData.wide,
+          rownames = F,
+          brushMode = "1D-axes",
+          reorderable = T,
+          queue = T,
+          color = list(
+            colorBy = "County",
+            colorScale = "scaleOrdinal",
+            colorScheme = "schemeCategory10"
+          ),
+          withD3 = TRUE) 
+```
+
+**Plot abbreviations key:**
+
+**MBSC**: Management, business, science, and arts\
+**NRCM**: Natural resources, construction, maintenance\
+**PTMM**: Production, transportation, material moving\
+
+Note: Each line represents one year. The numbers on the axis represent the proportion of the working population of that county working in each of the categories for that year. The numbers across each sector for each year sum to one.
+
+
+**Observations from sector groups employment across counties:**
+\
+\
+Observing this plot is that certain counties stand out in terms of how many of their people work in certain areas:
+\
+\
+New York has great representation in Management, business, science, and arts with roughly 60% of its population routinely working in those fields across 2010-2019, which is at roughly 15% higher than for any other county. 
+\
+\
+Bronx County has great representation in service occupations, with roughly 35% of its population working routinely in this sector, which is at least 10% higher than for any other county.
+\
+\
+Richmond County and Queens County seem to have good representation in natural resources, construction, and maintenance occupations. 
+\
+\
+New York, perhaps because of the high representation in the management, business, science, and arts cluster has clearly the lowest representation in service, natural resources, construction and maintenance, and production, transportation, management and material moving. New York also has the lowest representation in several years in Sales and Office occupations.
+\
+\
+Of all the counties, Queens county, Kings county, and Richmond county seem to track each other most, and have the most similar levels of representation across the sector clusters.
+\
+\
+Of all the counties, New York county and Bronx county seem to be the most different. Across almost each sector, low values for one almost certainly means that high values will appear for the other.
+
+
+## Analyze on Employment by Genders
+
+Employment in different occupations have different gender distributions. In order to have a more comprehensive understanding on this aspect, we analyze Employment by genders.\
+
+```{r Gender Cleveland Dot Plot,fig.width=10,echo=FALSE}
+ggplot(GenderData, aes(MeanNumEmpbyGender,fct_reorder2(Occupations,Gender=='Female',MeanNumEmpbyGender, .desc=FALSE), color = Gender)) + 
+  geom_point(size = 2, alpha = 0.7) +
+  ylab('Occupations') + xlab('NumEmps') + ggtitle('Number Employed by Occupation and Gender in NYC') +
+scale_x_continuous(labels = ks) + scale_color_manual(values=c('seagreen3','mediumorchid')) +
+  mytheme
+```
+
+**Observations on Number Employed by Occupation NYC for different genders:**
+
+A broad takeaway from studying this plot is that generally men tend to dominate the majority of professions, with 17 occupations being majority male, and only 8 occupations being majority female.
+\
+\
+The occupations in which females account for the vast majority of employees are Office and administrative support, education, training, and library, healthcare support, and personal care and service.
+\
+\
+The occupations in which males account for the vast majority of employees are construction and extraction, transportation, and installation, maintenance and repair.
+\
+\
+```{r Gender Composition by Occupation,fig.width=10,fig.height=6,echo=FALSE}
+ggplot(GenderData.tidy,aes(x = fct_reorder2(Occupations,Gender == "Female",prop,.desc=FALSE), y=prop,fill=Gender,group=Gender)) + 
+  geom_bar(position='fill', stat='identity')+
+  coord_flip()+
+  ylab('Proportion') + xlab('Occupations') + ggtitle('Gender Composition by Occupation')+
+  scale_fill_manual(values=c('mediumorchid','seagreen3')) +
+  mytheme
+```
+
+**Observations from gender composition by occupation:**
+
+From this plot, we can list the top ten occupations with high percentages of male and the top 10 occupations with high percentages of female.\
+
+**Top 10 occupations for males:**
+
+1. Construction and extraction occupations\
+
+2. Installation, maintenance and repair occupations\
+
+3. Transportation occupations\
+
+4. Material moving occupations\
+
+5. Architecture and engineering occupations\
+
+6. Fire fighting and prevention, and other protective service workers including supervisors\
+
+7. Computer and mathematical occupations\
+
+8. Law enforcement workers including supervisors\
+
+9. Farming, fishing and forestry occupations\
+
+10. Food preparation and serving related occupations\
+
+**Top 10 occupations for females:**
+
+1. Healthcare support occupations\
+
+2. Personal care and service occupations\
+
+3. Health, design and treating practitioners and other technical occupations\
+
+4. Education, training and library occupations\
+
+5. Health technologists and technicians\
+
+6. Community and social service occupations\
+
+7. Office and administrative support occupations\
+
+8. Life, physical, and social service occupations\
+
+9. Business and financial operations occupations\
+
+10. Legal occupations\
+
+\
+
+## Analyze on Employment by Races
+
+Races also have influences on Employment, we analyze it from relative likelihood of sector employment by race.
+
+```{r Race and Gender by Occupation Stacked Bar Charts,fig.width=10,fig.height=6,echo=FALSE}
+PropsOfPropsRace$Occupation <- as.factor(PropsOfPropsRace$Occupation)
+PropsOfPropsRace$Occupation <- fct_reorder(PropsOfPropsRace$Occupation, PropsOfPropsRace$White, .desc = FALSE)
+PropsOfPropsRaceTidy <- pivot_longer(PropsOfPropsRace, cols = c('White','Asian','Hispanic','Black'), names_to = 'race', values_to = 'Proportion') 
+PropsOfPropsRaceTidy$Occupation <- as.factor(PropsOfPropsRaceTidy$Occupation)
+ggplot(PropsOfPropsRaceTidy, aes(fill = race, y = Occupation, x = Proportion)) + geom_bar(position = 'stack',stat = 'identity') + ggtitle('Race Proportions by Sector Given Equal Populations') + 
+  scale_fill_manual(values=c('gold2','hotpink1','turquoise3','tan2')) +
+  mytheme2
+
+```
+
+**Observations from Relative Likelihood of Sector Employment by Race:**
+\
+Note: This plot was formed by comparing the proportions of each race group working in each sector. If for a particular sector each group accounts for 0.25 in this plot, then each race group has the same percentage of its people working in that sector. This has the effect of displaying what the race demographics of a sector would look like assuming all races had the same population.
+\
+\
+1.) It seems that a typical white person is much more likely than persons of other races to work legal profession compared to other races. They are also quite likely compared to other races to engage in Management occupations, physical, life and social science occupations, and art, design, entertainment, sports and media occupations.\ \
+
+2.) It seems that a typical white person is much less likely than persons of other races to work in health care support occupations, transportation occupations, production occupations, personal care and service occupations, material moving operations, and building and grounds cleaning and maintenance occupations\ \
+
+3.) It seems that a typical Hispanic person is much more likely than person of other races to work in Farming, Fishing and forestry occupations. They are also quite likely compared to other races to engage in building and grounds cleaning and maintenance occupations, construction and extraction operations, and material moving operations.\ \
+
+4.) It seems that a typical Hispanic person is much less likely than persons of other races to work in health diagnosing and treating practitioners and other technical occupations, business and financial operations, computer and mathematical occupations, legal occupations, art, design, entertainment, sports, and media occupations, architecture and engineering occupations, and life, physical, and social science occupations.\ \
+
+5.) It seems that a typical Black person is much more likely than persons of other races to work in fire fighting and prevention and other protective services including supervisors, law enforcement workers including supervisors, healthcare and support occupations, and community and social service occupations.\ \
+
+6.) It seems that a typical Black person is much less likely than persons of other races to work in architecture and engineering occupations, art, design, entertainment, sports and media occupations, farming, fishing, and forestry occupations, food preparation and serving occupations, life, physical and social science occupations, and legal occupations.\ \
+
+7.) It seems that a typical Asian person is much more likely than persons of other races to work in computer and mathematical operations, architecture and engineering operations, business and financial operations, health diagnosing and treating practitioners and other technical occupations.\ \
+
+8.) It seems that a typical Asian person is much less likely than persons of other races to work in Law enforcement occupations, fire fighting and prevention occupations, community and social service occupations, and building and grounds cleaning and maintenance occupations.\\
+\

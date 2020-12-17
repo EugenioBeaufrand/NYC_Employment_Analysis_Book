@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Data sources | NYC Employment Analysis</title>
+  <meta name="description" content="Chapter 2 Data sources | NYC Employment Analysis" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Data sources | NYC Employment Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Data sources | NYC Employment Analysis" />
+  
+  
+  
+
+<meta name="author" content="Xinyi Liu, Eugenio Beaufrand" />
+
+
+<meta name="date" content="2020-12-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="data-transformation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">NYC Employment Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#background"><i class="fa fa-check"></i><b>1.1</b> Background</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.2</b> Purpose</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#areas-of-interest"><i class="fa fa-check"></i><b>1.3</b> Areas of interest</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-sources"><i class="fa fa-check"></i><b>1.4</b> Data Sources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-sources-1.html"><a href="data-sources-1.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-sources-1.html"><a href="data-sources-1.html#process-of-data-collection"><i class="fa fa-check"></i><b>2.1</b> Process of Data Collection</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources-1.html"><a href="data-sources-1.html#logistics-of-data-collection"><i class="fa fa-check"></i><b>2.2</b> Logistics of Data Collection</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources-1.html"><a href="data-sources-1.html#basic-information-of-datasets"><i class="fa fa-check"></i><b>2.3</b> Basic Information of Datasets</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-sources-1.html"><a href="data-sources-1.html#numemp-datasets"><i class="fa fa-check"></i><b>2.3.1</b> <code>numemp</code> Datasets</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data-sources-1.html"><a href="data-sources-1.html#salary-datasets"><i class="fa fa-check"></i><b>2.3.2</b> <code>salary</code> Datasets</a></li>
+<li class="chapter" data-level="2.3.3" data-path="data-sources-1.html"><a href="data-sources-1.html#education-datasets"><i class="fa fa-check"></i><b>2.3.3</b> <code>education</code> Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-sources-1.html"><a href="data-sources-1.html#problems-with-data"><i class="fa fa-check"></i><b>2.4</b> Problems with Data</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="data-sources-1.html"><a href="data-sources-1.html#inconsistency-in-occupation-names"><i class="fa fa-check"></i><b>2.4.1</b> Inconsistency in Occupation Names</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data-sources-1.html"><a href="data-sources-1.html#formating-problem-caused-by-file-download"><i class="fa fa-check"></i><b>2.4.2</b> Formating Problem Caused by File Download</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data-sources-1.html"><a href="data-sources-1.html#differences-of-table-organizing-methods-in-different-years."><i class="fa fa-check"></i><b>2.4.3</b> Differences of Table Organizing Methods in Different Years.</a></li>
+<li class="chapter" data-level="2.4.4" data-path="data-sources-1.html"><a href="data-sources-1.html#characters-in-numbers"><i class="fa fa-check"></i><b>2.4.4</b> Characters in Numbers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#transformation-process"><i class="fa fa-check"></i><b>3.1</b> Transformation Process</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#transformation-code"><i class="fa fa-check"></i><b>3.2</b> Transformation Code</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#numemp-dataset"><i class="fa fa-check"></i><b>4.1</b> ‘numemp’ dataset</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="missing-values.html"><a href="missing-values.html#missing-value-analysis"><i class="fa fa-check"></i><b>4.1.1</b> Missing Value Analysis</a></li>
+<li class="chapter" data-level="4.1.2" data-path="missing-values.html"><a href="missing-values.html#pre-process-missing-values"><i class="fa fa-check"></i><b>4.1.2</b> Pre-process Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#salary-dataset"><i class="fa fa-check"></i><b>4.2</b> ‘salary’ dataset</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="missing-values.html"><a href="missing-values.html#missing-value-analysis-1"><i class="fa fa-check"></i><b>4.2.1</b> Missing Value Analysis</a></li>
+<li class="chapter" data-level="4.2.2" data-path="missing-values.html"><a href="missing-values.html#pre-process-missing-values-1"><i class="fa fa-check"></i><b>4.2.2</b> Pre-process Missing Values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NYC Employment Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-sources-1" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
+<p>There are four parts of our datasets, namely, number of employed, salary, education and gdp.</p>
+<div id="process-of-data-collection" class="section level2">
+<h2><span class="header-section-number">2.1</span> Process of Data Collection</h2>
+<p><strong>List Variables</strong>
+* List variables related to employment conditions in New York City, for example, GDP in New York City, occupations, races, ages, genders, education levels, etc.
+<strong>Search with Keywords</strong>
+* Search these key words in google and filter suitable data sources.
+<strong>Select the website</strong>
+* Find a suitable website for reliable data, in our project, most of the data are from: United States Census (<a href="https://data.census.gov/cedsci/" class="uri">https://data.census.gov/cedsci/</a>).
+<strong>Filter the Data</strong>
+* Use the <code>Advanced Search</code> function in the website to filter the data we are interested in.</p>
+</div>
+<div id="logistics-of-data-collection" class="section level2">
+<h2><span class="header-section-number">2.2</span> Logistics of Data Collection</h2>
+<p><strong>Authority</strong>
+* Find more official data sources. For example, we came across multiple data sources with the data we want during the searching process, but finally, we selected United States Census, which is the most authoritative one.
+<strong>Primitive</strong>
+Find the most primitive data source. For example, some websites provide data that have been processed. At this time, we will look for more primitive data sets and analyze the original data.
+<strong>Relevance</strong>
+Find the data tables that can show connections between variables. For later analysis, we need to get rid of over summarizing and find the data that can show the relationship between different variables, which requires as many variables as possible in the same data table.
+<strong>Unity</strong>
+Find the website that includes variety aspects of data. It can make the data in different databases more unified. For example, the data can be obtained with a unified data acquisition method in one website, and this will facilitate subsequent data analysis.</p>
+</div>
+<div id="basic-information-of-datasets" class="section level2">
+<h2><span class="header-section-number">2.3</span> Basic Information of Datasets</h2>
+<div id="numemp-datasets" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> <code>numemp</code> Datasets</h3>
+<div id="sources-of-numemp" class="section level4">
+<h4><span class="header-section-number">2.3.1.1</span> Sources of <code>numemp</code></h4>
+<p>In our project, we use <code>numemp</code> to represent <code>Number of Employed</code>. The data is divided into different sub-datasets according to years and races. The year range is from 2010 to 2019, and the races include <code>White Alone</code>, <code>Black or African American Alone</code>, <code>Asian Alone</code>, <code>Some Other Race Alone</code>, <code>Two or More Races</code>, <code>White Alone Not Hispanic or Latino</code>, and <code>Hispanic or Latino</code>. The raw data of <code>numemp</code> is attached to the following Github repo:
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/RawData/numemp" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/RawData/numemp</a>
+The origin data source urls are provided in:
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/RawData/numemp/datasource.txt" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/RawData/numemp/datasource.txt</a></p>
+</div>
+<div id="basic-information" class="section level4">
+<h4><span class="header-section-number">2.3.1.2</span> Basic Information</h4>
+<p>Each sub-dataset includes 73 records and 6 variables.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable names</th>
+<th>Types of Variables</th>
+<th>Types of Variables</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Label</td>
+<td>Character</td>
+<td>Occupation Type</td>
+</tr>
+<tr class="even">
+<td>Bronx County, New York / Estimate</td>
+<td>Numeric</td>
+<td>Number of Employed in Bronx County</td>
+</tr>
+<tr class="odd">
+<td>Kings County, New York / Estimate</td>
+<td>Numeric</td>
+<td>Number of Employed in Kings County</td>
+</tr>
+<tr class="even">
+<td>New York County, New York / Estimate</td>
+<td>Numeric</td>
+<td>Number of Employed in New York County</td>
+</tr>
+<tr class="odd">
+<td>Queens County, New York / Estimate</td>
+<td>Numeric</td>
+<td>Number of Employed in Queens County</td>
+</tr>
+<tr class="even">
+<td>Richmond County, New York / Estimate / Estimate</td>
+<td>Numeric</td>
+<td>Number of Employed in Richmond County</td>
+</tr>
+</tbody>
+</table>
+<p>Take the data for White Alone in year 2019 as an example, the form of each dataset is as follows:
+<img src="images/dataSources/whiteAlonecsv_2019.png" /></p>
+</div>
+</div>
+<div id="salary-datasets" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> <code>salary</code> Datasets</h3>
+<div id="sources-of-salary" class="section level4">
+<h4><span class="header-section-number">2.3.2.1</span> Sources of <code>salary</code></h4>
+<p>The data is divided into different sub-datasets according to years. The year range is from 2010 to 2019. The raw data of <code>numemp</code> is attached to the following Github repo:
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/RawData/salary/CountySalary" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/RawData/salary/CountySalary</a>
+The origin data source urls are provided in:
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/RawData/salary/datasource.txt" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/RawData/salary/datasource.txt</a></p>
+</div>
+<div id="basic-information-1" class="section level4">
+<h4><span class="header-section-number">2.3.2.2</span> Basic Information</h4>
+<p>Each sub-dataset includes 73 records and 6 variables.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable names</th>
+<th>Types of Variables</th>
+<th>Types of Variables</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Label</td>
+<td>Character</td>
+<td>Occupation Type</td>
+</tr>
+<tr class="even">
+<td>Bronx County, New York!!Estimate</td>
+<td>Character</td>
+<td>Salary in Bronx County</td>
+</tr>
+<tr class="odd">
+<td>Kings County, New York!!stimate</td>
+<td>Character</td>
+<td>Salary in Kings County</td>
+</tr>
+<tr class="even">
+<td>New York County, New York!!Estimate</td>
+<td>Character</td>
+<td>Salary in New York County</td>
+</tr>
+<tr class="odd">
+<td>Queens County, New York!!Estimate</td>
+<td>Character</td>
+<td>Salary in Queens County</td>
+</tr>
+<tr class="even">
+<td>Richmond County, New York!!Estimate!!Estimate</td>
+<td>Character</td>
+<td>Salary in Richmond County</td>
+</tr>
+</tbody>
+</table>
+<p>ps: The salary data has the data type of character due to the <code>,</code> in data.</p>
+<p>Take the data for in year 2019 as an example, the form of each dataset is as follows:
+<img src="images/dataSources/salaryCsv_2019.png" /></p>
+</div>
+</div>
+<div id="education-datasets" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> <code>education</code> Datasets</h3>
+<div id="sources-of-education" class="section level4">
+<h4><span class="header-section-number">2.3.3.1</span> Sources of <code>education</code></h4>
+<p>The data is divided into different sub-datasets according to years. The year range is from 2010 to 2019. The raw data of <code>numemp</code> is attached to the following Github repo:
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/RawData/education" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/RawData/education</a>
+The origin data source urls are provided in:
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/RawData/education/datasource.txt" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/RawData/education/datasource.txt</a></p>
+</div>
+<div id="basic-information-2" class="section level4">
+<h4><span class="header-section-number">2.3.3.2</span> Basic Information</h4>
+<p>For <code>education</code> dataset, the organization of data has small differences by years. The sub-datasets from 2010 to 2014 use the same organizing method, the sub-datasets from 2015 to 2018 use the same organizing method, the sub-dataset in 2019 use another organizing method.</p>
+<p><strong>year 2010 to 2014</strong>
+From year 2010 to 2014, each sub-dataset includes 41 records and 19 variables.
+The first column is named <code>Label</code>, it shows the names of different education levels. The type of this column is character.
+The other columns include the information of percentages of different education levels in different counties. The type of these columns are character.
+ps: The salary data has the data type of character due to the <code>,</code> and <code>%</code> in data.</p>
+<p>Take the data for in year 2010 as an example, the form of each dataset is as follows:
+<img src="images/dataSources/educationCsv_2010.png" />
+<strong>year 2015 to 2018</strong>
+From year 2015 to 2018, each sub-dataset includes 68 records and 37 variables.
+The first column is named <code>Label</code>, it shows the names of different education levels. The type of this column is character.
+The other columns include both percentages and exact number of different education levels in different counties. The type of these columns are character.</p>
+<p>ps: The salary data has the data type of character due to the <code>,</code> and <code>%</code> in data.</p>
+<p>Take the data for in year 2010 as an example, the form of each dataset is as follows:
+<img src="images/dataSources/educationCsv_2015.png" />
+<strong>year 2019</strong>
+In year 2019, each sub-dataset includes 68 records and 19 variables.
+The first column is named <code>Label</code>, it shows the names of different education levels. The type of this column is character.
+The other columns include the exact number of different education levels in different counties. The type of these columns are character.</p>
+<p>ps: The salary data has the data type of character due to the <code>,</code> in data.</p>
+<p>Take the data for in year 2010 as an example, the form of each dataset is as follows:
+<img src="images/dataSources/educationCsv_2019.png" />
+### <code>gdp</code> Datasets
+#### Sources of <code>gdp</code></p>
+<p>For gdp dataset, we include GDP per capita in both USA and NYC. The raw data of <code>gdp</code> is attached to the following Github repo:
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/RawData/gdp" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/tree/main/RawData/gdp</a>
+The origin data source urls are provided in:
+<a href="https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/RawData/gdp/datasource.txt" class="uri">https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/RawData/gdp/datasource.txt</a></p>
+</div>
+<div id="basic-information-3" class="section level4">
+<h4><span class="header-section-number">2.3.3.3</span> Basic Information</h4>
+<p>Each sub-dataset includes 10 records and 3 variables.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable names</th>
+<th>Types of Variables</th>
+<th>Types of Variables</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>year</td>
+<td>Numeric</td>
+<td>year 2010 - 2019</td>
+</tr>
+<tr class="even">
+<td>NYC GDP per capita</td>
+<td>Numeric</td>
+<td>NYC GDP per capita in different years</td>
+</tr>
+<tr class="odd">
+<td>USA GDP per capita</td>
+<td>Numeric</td>
+<td>USA GDP per capita in different years</td>
+</tr>
+</tbody>
+</table>
+<p>The form of <code>gdp</code> dataset is as follows:</p>
+<p><img src="images/dataSources/gdp.png" style="width:40.0%" /></p>
+</div>
+</div>
+</div>
+<div id="problems-with-data" class="section level2">
+<h2><span class="header-section-number">2.4</span> Problems with Data</h2>
+<p>In the process of processing data, we encounter 5 major problems.</p>
+<div id="inconsistency-in-occupation-names" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Inconsistency in Occupation Names</h3>
+<p>When visualizing <code>numemp</code> dataset, we discover that for the occupation of <code>Fire fighting and prevention, and other protective service workers including supervisors</code> and <code>Education, training, and library occupations</code>, the value of some years were 0. Therefore, we came back to the origin dataset to check.
+We discover that for <code>Fire fighting and prevention, and other protective service workers including supervisors</code>, they are named with <code>Firefighting and prevention, and other protective service workers including supervisors</code> in some years, where <strong>Fire fighting</strong> is different from <strong>Firefighting</strong>.
+Also, for <code>Education, training, and library occupations</code>, they are named with <code>Educational instruction, and library occupations</code> in some years, where <strong>training</strong> is different from <strong>instruction</strong> in character level.
+Therefore, we unified these differences and solved this problem.</p>
+</div>
+<div id="formating-problem-caused-by-file-download" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Formating Problem Caused by File Download</h3>
+<p>For the datasets online, there is an inclusion relationship between the values for <code>Label</code>. As is shown in the example below.
+<img src="images/dataSources/whiteAloneOline_2019.png" />
+However, after downloading the dataset, we cannot maintain this inclusion relationship. Instead, this relation is reflected by different numbers of spaces in each cell, which increases the difficulty of data processing. As is shown in the example below.
+<img src="images/dataSources/whiteAlonecsv_2019.png" />
+Also, the downloaded version of dataset does not have suitable column names, for it always combine the title and subtitle together. Therefore, we need to rename each column.</p>
+</div>
+<div id="differences-of-table-organizing-methods-in-different-years." class="section level3">
+<h3><span class="header-section-number">2.4.3</span> Differences of Table Organizing Methods in Different Years.</h3>
+<p>In the <code>education</code> dataset, the organization of data table in differen years are different. Sometimes we need to multiply percentages by total amount of people in order to get the the number of people with some specific education levels. Sometimes we can use the number of people directly. Therefore, we need to analyze the organizing methods in different years first, then do the data process correspondingly.</p>
+</div>
+<div id="characters-in-numbers" class="section level3">
+<h3><span class="header-section-number">2.4.4</span> Characters in Numbers</h3>
+<p>In <code>salary</code> dataset and <code>education</code> dataset, there are <code>,</code> and <code>%</code> in numbers in raw data. We need to delete the characters and do some numerical conversions for the percentile.</p>
+<div id="different-expressions-of-nas" class="section level4">
+<h4><span class="header-section-number">2.4.4.1</span> Different Expressions of NAs</h4>
+<p>In some data tables, NAs are represented as (X) or -. We paid attention to the different representations and replaced them with NA for further processing.</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/edit/main/02-data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/blob/main/02-data.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

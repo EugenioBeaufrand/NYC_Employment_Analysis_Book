@@ -157,3 +157,9 @@ According to the analysis above, we follow the following steps to do data pre-pr
 
 The code of filling missing data in `numemp` dataset is attached below.
 https://github.com/tracy3057/STAT5702_NYC_Employment_Analysis/blob/main/DataPreprocessing/Code/Salary/Preprocess_MissingValue.ipynb
+
+```{r}
+# remotes::install_github("/extracat") doesn't work
+#https://github.com/heike/extracat
+```
+
