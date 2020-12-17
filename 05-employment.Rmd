@@ -333,7 +333,7 @@ By contrast, these professions were the most stable:
 
 ### Monotonicity in Employment Trends
 
-From the plot above, we can divide all occupations into three catogories. The first group is in a monotonous increasing trend, the second group is in a monotonous decreasing trend, and the third group do not have a monotonous trend in number of employed people by years. 
+From the cleveland plot above, we can divide all occupations into three categories. The first group is in a monotonous increasing trend, the second group is in a monotonous decreasing trend, and the third group do not have a monotonous trend in number of employed people by years. 
 
 #### Monotonous Increasing
 

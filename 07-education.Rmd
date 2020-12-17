@@ -24,10 +24,6 @@ Education$Education_Level <-plyr::revalue(Education$Education_Level, c("Bechelor
 NumEmp_edu$X <- NULL
 Salary_edu$X <- NULL
 
-
-
-
-
 # New York Analysis
 # New York Salary
 New_YorkSalary <- Salary_edu[which(Salary_edu$Boroughs=='New York County'), ]
