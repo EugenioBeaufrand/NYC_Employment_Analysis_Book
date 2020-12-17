@@ -1,17 +1,13 @@
-# education
+# Education
 
-```{r setup,  include=FALSE,echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r Imports, include=FALSE,echo=FALSE}
+```{r Imports3, include=FALSE,echo=FALSE}
 library(tidyverse)
 library(RCurl)
 library(dplyr)
 library(scales)
 ```
 
-```{r Data,include=FALSE,echo=FALSE}
+```{r Data3,include=FALSE,echo=FALSE}
 Education <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/education/Education.csv"))
 PropBachelor <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/education/PropBachelor.csv"))
 PropBachelorByGender <- read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/education/PropBachelorByGender.csv"))
@@ -68,7 +64,7 @@ Total_New_York$Education_Level <- factor(Total_New_York$Education_Level, c("Less
 Total_New_York
 ```
 
-```{r theme, include=FALSE,echo=FALSE}
+```{r theme3, include=FALSE,echo=FALSE}
 mytheme <- theme(axis.text=element_text(size = 10),
   axis.title=element_text(size=12, face = "bold"),
   plot.title = element_text(size = 14, face = "bold"),
@@ -88,7 +84,7 @@ mytheme2 <- theme(axis.text=element_text(size = 10),
   legend.text = element_text(size = 10))
 ```
 
-```{r scale,include=FALSE}
+```{r scaleedu,include=FALSE}
 ks <- function (x) { number_format(accuracy = 1,
                                    scale = 1/1000,
                                    suffix = "k",

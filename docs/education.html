@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Interactive component | NYC Employment Analysis</title>
-  <meta name="description" content="Chapter 9 Interactive component | NYC Employment Analysis" />
+  <title>Chapter 7 Education | NYC Employment Analysis</title>
+  <meta name="description" content="Chapter 7 Education | NYC Employment Analysis" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Interactive component | NYC Employment Analysis" />
+  <meta property="og:title" content="Chapter 7 Education | NYC Employment Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Interactive component | NYC Employment Analysis" />
+  <meta name="twitter:title" content="Chapter 7 Education | NYC Employment Analysis" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="gdp.html"/>
-<link rel="next" href="conclusion.html"/>
+<link rel="prev" href="salary.html"/>
+<link rel="next" href="gdp.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,10 @@
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/parallel-coordinates-2.1.8/parcoords.css" rel="stylesheet" />
+<script src="libs/parcoords-binding-1.0.0/parcoords.js"></script>
+<script src="libs/d3-5.16.0/d3.min.js"></script>
 
 
 
@@ -85,7 +89,6 @@
 <li class="chapter" data-level="2.3.1" data-path="data-sources-1.html"><a href="data-sources-1.html#numemp-datasets"><i class="fa fa-check"></i><b>2.3.1</b> <code>numemp</code> Datasets</a></li>
 <li class="chapter" data-level="2.3.2" data-path="data-sources-1.html"><a href="data-sources-1.html#salary-datasets"><i class="fa fa-check"></i><b>2.3.2</b> <code>salary</code> Datasets</a></li>
 <li class="chapter" data-level="2.3.3" data-path="data-sources-1.html"><a href="data-sources-1.html#education-datasets"><i class="fa fa-check"></i><b>2.3.3</b> <code>education</code> Datasets</a></li>
-<li class="chapter" data-level="2.3.4" data-path="data-sources-1.html"><a href="data-sources-1.html#gdp-datasets"><i class="fa fa-check"></i><b>2.3.4</b> <code>gdp</code> Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="data-sources-1.html"><a href="data-sources-1.html#problems-with-data"><i class="fa fa-check"></i><b>2.4</b> Problems with Data</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="data-sources-1.html"><a href="data-sources-1.html#inconsistency-in-occupation-names"><i class="fa fa-check"></i><b>2.4.1</b> Inconsistency in Occupation Names</a></li>
@@ -157,22 +160,54 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="interactive-component" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Interactive component</h1>
-<html>
-<head>
-<title>
-Customizing Axes
-</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://d3js.org/d3.v6.js"></script>
-</head>
-<body>
-<svg width="800" height="380">
-</svg>
-<script src="scripts/numemp.js"></script>
-</body>
-</html>
+<div id="education" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Education</h1>
+<p><img src="finalproj_files/figure-html/NYC%20Salary%20vs.%20Education%20Level-1.png" width="672" /></p>
+<p><br />
+<strong>Observations from Number Educated vs Salary from 2010-2019</strong><br />
+<br />
+A broad take away that can be observed from this plot is that as the number of people becoming more highly educated increases, the number of people earning more increases. Also, as the number of people with lower educational credentials increases, the number of people with increasingly lower salaries also increases.<br />
+<br />
+Considering the plot concerning those with less education than high school, it is clear to see that in years where the number of employees is higher, that the average salary is lower.<br />
+<br />
+Considering the plot concerning high school graduates, it seems that there exists no clear relationship.<br />
+<br />
+Considering the plot for those who have completed some college or an associates degree, it seems that for years in which the number of people in this category is higher, the average salary in those years is lower. This relationship appears as a line upon which both males and females lie, however it may be worth noting that they are on opposite sides.<br />
+<br />
+Considering the plot for Bachelors degree and up, there is a clear and strong relationship. As the number of people educated increase, the average salary in that year will also be higher. This plot is distinct from the one for some college or associates degree because males and females in this case both lie upon their line, which in this plot are both upsloping.<br />
+<br />
+<br />
+<br />
+<img src="finalproj_files/figure-html/Proportion%20with%20Bachelors%20Degree%20vs%20Average%20NYC%20Salary-1.png" width="672" /><br />
+<strong>Observations from Proportion with Bachelors Degree vs Average NYC Salary from 2010-2019:</strong><br />
+<br />
+It seems that in years where the Proportion of people with Bachelor’s Degrees increases, that the average salary is higher. This would suggest that when there are more educated people, the typical person earns more. According to the trend observed in this plot, it seems that the average salary has risen by 1700 dollars for each percentage point increase in bachelors degree education proportion.<br />
+<br />
+It is worth noting that this linear relationship cannot be certified to be causal and there is no way given this data to make a determination. It can be seen in the next plot that the total number of Bachelor’s Degrees over time is steadily rising over time. Since salaries also tend to rise over time, it isn’t clear that salaries would stop rising if education levels stopped rising.<br />
+<br />
+<br />
+<br />
+</p>
+<p><img src="finalproj_files/figure-html/Proportion%20with%20Bachelors%20Degree-1.png" width="672" /></p>
+<p><strong>Observation of Bachelor’s proportions over time:</strong><br />
+<br />
+It appears that the proportion of people with Bachelor’s Degrees is steadily increasing over time. In the last 10 years the proportion of people with a bachelors has increased by roughly 5%, from around 32.5% to 37.5%. This indicates an average increase of just under half a percent per year.<br />
+<br />
+<br />
+<br />
+<img src="finalproj_files/figure-html/Proportion%20Male%20and%20Female%20with%20Bachelors%20Degree-1.png" width="672" />
+<strong>Observations from Proportion of Males and Females with Bachelors Degrees from 2010-2019:</strong><br />
+<br />
+It seems that in 2010, a larger proportion of females than men had bachelor’s degrees, and this trend maintains throughout the entirety of the decade. While the proportions are increasing over time for both males and females, it seems that the rate of increase for both genders is relatively equal.<br />
+<br />
+This is confirmed by the gap between the male and female dots on the graph fluctuating in distance from each other but remaining relatively equally spaced apart. It seems that in NYC, while females have more bachelors degrees, both males and females are becoming more well educated at a similar rate.<br />
+<br />
+<br />
+<br />
+<img src="finalproj_files/figure-html/Difference%20between%20Female%20and%20Male%20with%20Bachelors-1.png" width="672" /><br />
+<strong>Observations from Difference in Proportion of Females and Males with a Bachelor’s Degree from 2010-2019:</strong><br />
+<br />
+Confirming the observation from the last graph, the difference between the proportion of females and males with a bachelors degree over the decade has seen some minor fluctuation, but overall has remained relatively unchanged. Females have had throughout the course 1.25% to 2.5% higher of a proportion of bachelors degree than men.</p>
 
 </div>
             </section>
@@ -180,8 +215,8 @@ Customizing Axes
           </div>
         </div>
       </div>
-<a href="gdp.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="salary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gdp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -212,7 +247,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/edit/main/09-interactive.Rmd",
+"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/edit/main/07-education.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -220,7 +255,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/blob/main/09-interactive.Rmd",
+"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/blob/main/07-education.Rmd",
 "text": null
 },
 "download": null,

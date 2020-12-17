@@ -1,8 +1,8 @@
-# salary
+# Salary
 
 This sub-chapter shows an analysis of salary for different occupations in New York City.
 
-```{r imports, include=FALSE,echo=FALSE}
+```{r imports2, include=FALSE,echo=FALSE}
 library(tidyverse)
 library(mosaic)
 library(vcd)
@@ -12,7 +12,7 @@ library(dplyr)
 library(scales)
 ```
 
-```{r Data, include=FALSE,echo=FALSE}
+```{r Data2, include=FALSE,echo=FALSE}
 NewSalary <-read.csv(text = getURL("https://raw.githubusercontent.com/tracy3057/STAT5702_NYC_Employment_Analysis/main/DataPreprocessing/Data/Salary/NewSalary.csv"))
 
 NewSalary$Occupations<- plyr::revalue(NewSalary$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
@@ -40,7 +40,7 @@ NewSalary$year <- as.factor(NewSalary$year)
 NewSalary$year_range <- as.factor(NewSalary$year_range)
 ```
 
-```{r Data Cleaning,include=FALSE,echo=FALSE}
+```{r Data Cleaning2,include=FALSE,echo=FALSE}
 RaceData$Occupations<- plyr::revalue(RaceData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
 
 TidyGenderData$Occupations<- plyr::revalue(TidyGenderData$Occupations, c("Management occupations"="Management", "Business and financial operations occupations"="Business and financial operations","Computer and mathematical occupations" = "Computer and mathematical", "Architecture and engineering occupations" = "Architecture and engineering", "Life, physical, and social science occupations" = "Life, physical, and social science","Community and social service occupations" = "Community and social service", "Legal occupations" = "Legal", "Education, training, and library occupations" = "Education, training, and library", "Arts, design, entertainment, sports, and media occupations" = "Arts, design, entertainment, sports, and media", "Health diagnosing and treating practitioners and other technical occupations" = "Health diagnosing and treating practitioners and other technical", "Healthcare support occupations" = "Healthcare support", "Fire fighting and prevention, and other protective service workers including supervisors" = "Fire fighting and prevention", "Law enforcement workers including supervisors" = "Law enforcement workers", "Food preparation and serving related occupations" = "Food preparation and serving related", "Building and grounds cleaning and maintenance occupations" = "Building and grounds cleaning and maintenance", "Personal care and service occupations" = "Personal care and service", "Sales and related occupations" = "Sales and related", "Office and administrative support occupations" = "Office and administrative support", "Farming, fishing, and forestry occupations" = "Farming, fishing, and forestry", "Construction and extraction occupations" = "Construction and extraction","Installation, maintenance, and repair occupations" ="Installation, maintenance, and repair", "Production occupations" = "Production", "Transportation occupations" = "Transportation", "Material moving occupations" = "Material moving"))
@@ -48,7 +48,7 @@ TidyGenderData$Occupations<- plyr::revalue(TidyGenderData$Occupations, c("Manage
 detach(package:plyr)
 ```
 
-```{r theme,include=FALSE,echo=FALSE}
+```{r theme salary,include=FALSE,echo=FALSE}
 mytheme <- theme(axis.text=element_text(size = 10),
   axis.title=element_text(size=12, face = "bold"),
   plot.title = element_text(size = 14, face = "bold"),
@@ -70,7 +70,7 @@ mytheme2 <- theme(axis.text=element_text(size = 10),
 ```
 
 
-```{r scale,include=FALSE,echo=FALSE}
+```{r scale2,include=FALSE,echo=FALSE}
 ks <- function (x) { number_format(accuracy = 1,
                                    scale = 1/1000,
                                    suffix = "k",
@@ -222,7 +222,7 @@ Salaries where the number of employees has fluctuated very little:\
 When reading this plot is that the salaries in any particular occupation may change the viewers perception as to what constitutes more variation. To address this, a second plot has been created in which the box plots are normalized by dividing the salaries in each year by the mean across this sector. While the variation won't be apparent, the relative degrees of fluctuation will become more apparent.
 \
 
-```{r Yearly Normalized BoxPlot,fig.width=10,fig.height=6,include=FALSE,fig.align='center'}
+```{r Yearly Normalized BoxPlot2,fig.width=10,fig.height=6,include=FALSE,fig.align='center'}
 NewSalaryWithVariance2 <- NewSalaryWithVariance %>% select(1,2,5)%>%unique()
 NewSalaryWithVariance2$Normalized<-NewSalaryWithVariance2$Salary_YearlyAvg/NewSalaryWithVariance2$Salary_occupation
   

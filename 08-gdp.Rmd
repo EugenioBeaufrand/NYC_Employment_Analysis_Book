@@ -30,7 +30,7 @@ Salary_NumEmp <- Salary_NumEmp %>% pivot_longer(cols = c(5:13),names_to = "Earni
 Salary_NumEmp$Earning_Category = factor(Salary_NumEmp$Earning_Category, levels=c('$1 to $9999 or loss','$10000 to $14999','$15000 to $24999','$25000 to $34999','$35000 to $49999','$50000 to $64999','$65000 to $74999','$75000 to $99999','$100000 or more'))
 ```
 
-```{r scale,echo=FALSE,include=FALSE}
+```{r scalegdp,echo=FALSE,include=FALSE}
 ks <- function (x) { number_format(accuracy = 1,
                                    scale = 1/1000,
                                    suffix = "k",

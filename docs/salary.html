@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Salary | NYC Employment Analysis</title>
+  <meta name="description" content="Chapter 6 Salary | NYC Employment Analysis" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Salary | NYC Employment Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Salary | NYC Employment Analysis" />
+  
+  
+  
+
+<meta name="author" content="Xinyi Liu, Eugenio Beaufrand" />
+
+
+<meta name="date" content="2020-12-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="employment.html"/>
+<link rel="next" href="education.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/parallel-coordinates-2.1.8/parcoords.css" rel="stylesheet" />
+<script src="libs/parcoords-binding-1.0.0/parcoords.js"></script>
+<script src="libs/d3-5.16.0/d3.min.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">NYC Employment Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#background"><i class="fa fa-check"></i><b>1.1</b> Background</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#purpose"><i class="fa fa-check"></i><b>1.2</b> Purpose</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#areas-of-interest"><i class="fa fa-check"></i><b>1.3</b> Areas of interest</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-sources"><i class="fa fa-check"></i><b>1.4</b> Data Sources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-sources-1.html"><a href="data-sources-1.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-sources-1.html"><a href="data-sources-1.html#process-of-data-collection"><i class="fa fa-check"></i><b>2.1</b> Process of Data Collection</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources-1.html"><a href="data-sources-1.html#logistics-of-data-collection"><i class="fa fa-check"></i><b>2.2</b> Logistics of Data Collection</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources-1.html"><a href="data-sources-1.html#basic-information-of-datasets"><i class="fa fa-check"></i><b>2.3</b> Basic Information of Datasets</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-sources-1.html"><a href="data-sources-1.html#numemp-datasets"><i class="fa fa-check"></i><b>2.3.1</b> <code>numemp</code> Datasets</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data-sources-1.html"><a href="data-sources-1.html#salary-datasets"><i class="fa fa-check"></i><b>2.3.2</b> <code>salary</code> Datasets</a></li>
+<li class="chapter" data-level="2.3.3" data-path="data-sources-1.html"><a href="data-sources-1.html#education-datasets"><i class="fa fa-check"></i><b>2.3.3</b> <code>education</code> Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-sources-1.html"><a href="data-sources-1.html#problems-with-data"><i class="fa fa-check"></i><b>2.4</b> Problems with Data</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="data-sources-1.html"><a href="data-sources-1.html#inconsistency-in-occupation-names"><i class="fa fa-check"></i><b>2.4.1</b> Inconsistency in Occupation Names</a></li>
+<li class="chapter" data-level="2.4.2" data-path="data-sources-1.html"><a href="data-sources-1.html#formating-problem-caused-by-file-download"><i class="fa fa-check"></i><b>2.4.2</b> Formating Problem Caused by File Download</a></li>
+<li class="chapter" data-level="2.4.3" data-path="data-sources-1.html"><a href="data-sources-1.html#differences-of-table-organizing-methods-in-different-years."><i class="fa fa-check"></i><b>2.4.3</b> Differences of Table Organizing Methods in Different Years.</a></li>
+<li class="chapter" data-level="2.4.4" data-path="data-sources-1.html"><a href="data-sources-1.html#characters-in-numbers"><i class="fa fa-check"></i><b>2.4.4</b> Characters in Numbers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#transformation-process"><i class="fa fa-check"></i><b>3.1</b> Transformation Process</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#transformation-code"><i class="fa fa-check"></i><b>3.2</b> Transformation Code</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#numemp-dataset"><i class="fa fa-check"></i><b>4.1</b> ‘numemp’ dataset</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="missing-values.html"><a href="missing-values.html#missing-value-analysis"><i class="fa fa-check"></i><b>4.1.1</b> Missing Value Analysis</a></li>
+<li class="chapter" data-level="4.1.2" data-path="missing-values.html"><a href="missing-values.html#pre-process-missing-values"><i class="fa fa-check"></i><b>4.1.2</b> Pre-process Missing Values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#salary-dataset"><i class="fa fa-check"></i><b>4.2</b> ‘salary’ dataset</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="missing-values.html"><a href="missing-values.html#missing-value-analysis-1"><i class="fa fa-check"></i><b>4.2.1</b> Missing Value Analysis</a></li>
+<li class="chapter" data-level="4.2.2" data-path="missing-values.html"><a href="missing-values.html#pre-process-missing-values-1"><i class="fa fa-check"></i><b>4.2.2</b> Pre-process Missing Values</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="employment.html"><a href="employment.html"><i class="fa fa-check"></i><b>5</b> Employment</a><ul>
+<li class="chapter" data-level="5.1" data-path="employment.html"><a href="employment.html#overview-of-employment-distribution"><i class="fa fa-check"></i><b>5.1</b> Overview of Employment Distribution</a></li>
+<li class="chapter" data-level="5.2" data-path="employment.html"><a href="employment.html#analyze-on-employment-by-years"><i class="fa fa-check"></i><b>5.2</b> Analyze on Employment by Years</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="employment.html"><a href="employment.html#general-trend-of-employment-by-years"><i class="fa fa-check"></i><b>5.2.1</b> General Trend of Employment by Years</a></li>
+<li class="chapter" data-level="5.2.2" data-path="employment.html"><a href="employment.html#monotonicity-in-employment-trends"><i class="fa fa-check"></i><b>5.2.2</b> Monotonicity in Employment Trends</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="employment.html"><a href="employment.html#analyze-on-employment-by-counties"><i class="fa fa-check"></i><b>5.3</b> Analyze on Employment by Counties</a></li>
+<li class="chapter" data-level="5.4" data-path="employment.html"><a href="employment.html#analyze-on-employment-by-genders"><i class="fa fa-check"></i><b>5.4</b> Analyze on Employment by Genders</a></li>
+<li class="chapter" data-level="5.5" data-path="employment.html"><a href="employment.html#analyze-on-employment-by-races"><i class="fa fa-check"></i><b>5.5</b> Analyze on Employment by Races</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="salary.html"><a href="salary.html"><i class="fa fa-check"></i><b>6</b> Salary</a><ul>
+<li class="chapter" data-level="6.1" data-path="salary.html"><a href="salary.html#overview-of-salary-distribution"><i class="fa fa-check"></i><b>6.1</b> Overview of Salary Distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="salary.html"><a href="salary.html#analyze-on-salary-by-years"><i class="fa fa-check"></i><b>6.2</b> Analyze on Salary by Years</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="salary.html"><a href="salary.html#general-trend-of-salary-by-years"><i class="fa fa-check"></i><b>6.2.1</b> General Trend of Salary by Years</a></li>
+<li class="chapter" data-level="6.2.2" data-path="salary.html"><a href="salary.html#monotonicity-in-salary-trends"><i class="fa fa-check"></i><b>6.2.2</b> Monotonicity in Salary Trends</a></li>
+<li class="chapter" data-level="6.2.3" data-path="salary.html"><a href="salary.html#percentage-difference-by-years"><i class="fa fa-check"></i><b>6.2.3</b> Percentage Difference by Years</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="salary.html"><a href="salary.html#analyze-on-salary-by-counties"><i class="fa fa-check"></i><b>6.3</b> Analyze on Salary by Counties</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="salary.html"><a href="salary.html#distribution-of-the-highest-and-lowest-wages-in-different-counties"><i class="fa fa-check"></i><b>6.3.1</b> Distribution of the Highest and Lowest Wages in Different Counties</a></li>
+<li class="chapter" data-level="6.3.2" data-path="salary.html"><a href="salary.html#percentage-difference-of-salaries-in-different-counties"><i class="fa fa-check"></i><b>6.3.2</b> Percentage Difference of Salaries in Different Counties</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="salary.html"><a href="salary.html#analyze-on-salary-by-genders"><i class="fa fa-check"></i><b>6.4</b> Analyze on Salary by Genders</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="salary.html"><a href="salary.html#percentage-difference-of-salaries-between-genders"><i class="fa fa-check"></i><b>6.4.1</b> Percentage Difference of Salaries between Genders</a></li>
+<li class="chapter" data-level="6.4.2" data-path="salary.html"><a href="salary.html#relation-between-percentage-differenct-of-employment-and-salary-in-gender"><i class="fa fa-check"></i><b>6.4.2</b> Relation between Percentage Differenct of Employment and Salary in Gender</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="education.html"><a href="education.html"><i class="fa fa-check"></i><b>7</b> Education</a></li>
+<li class="chapter" data-level="8" data-path="gdp.html"><a href="gdp.html"><i class="fa fa-check"></i><b>8</b> GDP</a></li>
+<li class="chapter" data-level="9" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>9</b> Interactive component</a></li>
+<li class="chapter" data-level="10" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>10</b> Conclusion</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NYC Employment Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="salary" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Salary</h1>
+<p>This sub-chapter shows an analysis of salary for different occupations in New York City.</p>
+<div id="overview-of-salary-distribution" class="section level2">
+<h2><span class="header-section-number">6.1</span> Overview of Salary Distribution</h2>
+<p>In order to have an overview of salary distribution according to different occupations in New York City, we draw a Cleveland Dot Plot to show the 10-year-average salary of different occupations first.</p>
+<p><strong>Observations on Average Salaries by Occupation in NYC:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Huge Differences in Salary for Different Occupations.</li>
+</ol>
+<ul>
+<li>There is a huge difference in salary for different kinds of occupations. The range is up to 72947, which is about 3 times of minimum salary.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Five clusters for salary distribution.</li>
+</ol>
+<ul>
+<li>The <strong>first</strong> group is <code>Legal</code>, which has much higher average salary compare with all other occupations.</li>
+<li>The <strong>second</strong> group includes 7 different occupations, which ranks second in salary levels among all occupations. We can also divide the second group into four sub-groups according to the salary.
+<ul>
+<li>The first sub-group only includes <code>Health diagnosing and treating practitioners and other technical</code>, which has the second largest salary.</li>
+<li>The second sub-group includes <code>Computer and mathematical</code> and <code>Management</code>. They have very similar average salary, the difference in salary of the two occupations is only 810.</li>
+<li>The third sub-group includes <code>Law enforcement workers</code>, <code>Business and financial operations</code> and <code>Architecture and engineering</code>. The salary range of this sub-group is also small, it is NA.</li>
+<li>The fourth sub-group contains only one occupation, which is <code>Life, physical, and social science</code></li>
+</ul></li>
+<li>The <strong>third</strong> group contains <code>Arts, design, entertainment, sports, and media</code>, <code>Health technologists and technicians</code>, <code>Education, training, and library</code>, <code>Installation, maintenance, and repair</code>, <code>Community and social service</code> and <code>Construction and extraction</code>. The salary range of this group is 7128.</li>
+<li>The <strong>Fourth</strong> group contains <code>Office and administrative support</code>, <code>Sales and related</code>, <code>Transportation</code> and <code>Fire fighting and prevention</code>. The salary range of this group is 3932.</li>
+<li>The <strong>Fifth</strong> group contains <code>Production</code>, <code>Healthcare support</code>, <code>Building and grounds cleaning and maintenance</code>, <code>Material moving</code>, <code>Personal care and service</code>, <code>Farming, fishing, and forestry</code>, <code>Food preparation and serving related</code>. The salary range of this group is 8016.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Gaps between the five clusters.</li>
+</ol>
+<ul>
+<li>From the first group to the fifth group, the salary gap between groups is 11623, 13564, 6048, 11989.</li>
+<li>Among all the gaps, the biggest one is between group 2 and group 3, and the gap is 13564. The smallest gap is between gtoup 3 and group 4, and the gap is 6048.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Top 3 and Last 3 Occupations in Salaries.</li>
+</ol>
+<ul>
+<li>Top 3
+<ul>
+<li>Legal</li>
+<li>Health diagnosing and treating practitioners and other technical</li>
+<li>Computer and mathematical</li>
+</ul></li>
+<li>Last 3
+<ul>
+<li>Personal care and service</li>
+<li>Farming, fishing, and forestry</li>
+<li>Food preparation and serving related</li>
+</ul></li>
+<li>As can be seen from the plot, the salary range for the top 3 occupations are large. However, for the last 3 occupations, the salary range is relatively small.</li>
+</ul>
+</div>
+<div id="analyze-on-salary-by-years" class="section level2">
+<h2><span class="header-section-number">6.2</span> Analyze on Salary by Years</h2>
+<p>One of the things that affects salary is time. So first, we have an analysis on salaries in different years.</p>
+<div id="general-trend-of-salary-by-years" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> General Trend of Salary by Years</h3>
+<p><strong>Observations on Salaries by Occupation NYC through 2010-2019:</strong><br />
+</p>
+<ol style="list-style-type: decimal">
+<li>Salary Trends for Top 3 and Last 3 Occupations<br />
+</li>
+</ol>
+<p>Top 3<br />
+</p>
+<p>1.) Legal occupations<br />
+</p>
+<p>This occupation is in an monotonous increasing trend in salary, and the increasing speed is also becoming faster.<br />
+</p>
+<p>2.) Health diagnosing and treating practitioners and other technical occupations<br />
+</p>
+<p>This occupation also has a monotonous increasing trend in salary.<br />
+</p>
+<p>3.) Computer and mathematical occupations<br />
+</p>
+<p>This occupation also has a monotonous increasing trend in salary.<br />
+</p>
+<p>Last 3<br />
+</p>
+<p>1.) Food preparation and serving related occupations<br />
+</p>
+<p>This occupation has the lowest salary within the year range in 2010. However, its salary is in an increasing trend by years.<br />
+</p>
+<p>2.) Farming, fishing, and forestry occupations<br />
+</p>
+<p>The salary for this occupation decreased first and then increased. However, it still did not reach the salary level in 2019 as it was in 2010.<br />
+</p>
+<p>3.) Personal care and service occupations<br />
+</p>
+<p>The salary trend for this occupation also decreased first and then increased. Different from the occupation of farming, fishing, and forestry occupations, the salary only dropped a little bit first and then increased a lot. Therefore, generally speaking, the salary of this occupation increased.<br />
+</p>
+<p>In order to see the salary variances of the 25 occupations in detail, we draw boxplot for comparisons.<br />
+</p>
+<p><strong>Observations from Boxplot of salaries per year:</strong></p>
+<p>Salaries that seem prone to dramatic fluctuation over time:<br />
+</p>
+<p>1.) Legal occupations<br />
+</p>
+<p>2.) Computer and Mathematical occupations<br />
+</p>
+<p>3.) Architecture and engineering occupations<br />
+</p>
+<p>4.) Life, physical, and social science<br />
+</p>
+<p>5.) Farming, fishing, and forestry occupations<br />
+</p>
+<p>Salaries where the number of employees has fluctuated very little:<br />
+</p>
+<p>1.) Law enforcement<br />
+</p>
+<p>2.) Health technologists and technicians<br />
+</p>
+<p>3.) Installation, maintenance, and repair<br />
+</p>
+<p>4.) Community and social service<br />
+</p>
+<p>5.) Healthcare support<br />
+</p>
+<p>6.) Material moving<br />
+</p>
+<p>When reading this plot is that the salaries in any particular occupation may change the viewers perception as to what constitutes more variation. To address this, a second plot has been created in which the box plots are normalized by dividing the salaries in each year by the mean across this sector. While the variation won’t be apparent, the relative degrees of fluctuation will become more apparent.<br />
+</p>
+<p><strong>Observations from salaries in sector per year:</strong></p>
+<p>In this plot, the total values of employees working in each field in each year are normalized by their averages. There are something special you can see from this normalized boxplot.<br />
+</p>
+<p>1.) Farming, fishing and forestry ranks first in variation in salaries.
+This makes sense because this occupation has relatively low salaries, so when normalized, it is more likely to show high variation in salary by years.<br />
+</p>
+<p>2.) Construction and extraction also has huge variance, even when the average salary for this occupation is not very low.
+There are two outliers in this sector, in 2010, it has the lowest salary which is 26284, and in 2018, it has the highest salary which is 56175. Without the two data points, the variance will be much smaller. There might be more buildings under construction in 2018 and much fewer in 2010.<br />
+</p>
+<p>3.) Healthcare support and Law enforcement workers are the two most stable sectors in salaries.
+Among all the occupations, Healthcare support and Law enforcement workers has the smallest variance after normalized. Of all the occupation types, it seems that law enforcement occupations have the most stable salaries. This might be because the salaries for these kinds of jobs are set by the local government, and government jobs tend to have stable and consistent pay.<br />
+</p>
+</div>
+<div id="monotonicity-in-salary-trends" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Monotonicity in Salary Trends</h3>
+<p>Usually, we tend to think salaries should have increasing trends by years. From the plot, however, we can discover the salaries do not have an increasing trend for all types of occupations. Among all types of occupations, only two types of occupations have lower salaries in the 2019 than in 2010 to 2013, namely, farming, fishing and forestry occupations and healthcare support occupations. Generally speaking, there are two different trends of salaries, namely, a monotonous increasing trend, which includes 18 occupations, and the trend that first decreases then increases, which includes 7 occupations.</p>
+<div id="monotonous-increase" class="section level4">
+<h4><span class="header-section-number">6.2.2.1</span> Monotonous Increase</h4>
+<p>There are kinds of occupations in this trend group.
+1. Legal occupations
+2. Health diagnosing and treating practitioners and other technical occupations
+3. Computer and mathematical occupations
+4. Management occupations
+5. Business and financial operations occupations
+6. Architecture and engineering occupations
+7. Arts, design, entertainment, sports, and media occupations
+8. Education, training, and library occupations
+9. Installation, maintenance, and repair occupations
+10. Community and social service occupations
+11. Construction and extraction occupations
+12. Office and administrative support occupations
+13. Sales and related occupations
+14. Transportation occupations
+15. Production occupations
+16. Building and grounds cleaning and maintenance occupations
+17. Material moving occupations
+18. Food preparation and serving related occupations</p>
+</div>
+<div id="first-decrease-then-increase" class="section level4">
+<h4><span class="header-section-number">6.2.2.2</span> First Decrease Then Increase</h4>
+<ol style="list-style-type: decimal">
+<li>Law enforcement workers including supervisors</li>
+<li>Life, physical, and social science occupations</li>
+<li>Health technologists and technicians</li>
+<li>Fire fighting and prevention, and other protective service workers including supervisors</li>
+<li>Healthcare support occupations</li>
+<li>Personal care and service occupations</li>
+<li>Farming, fishing, and forestry occupations</li>
+</ol>
+<p>In this category, the salaries of some occupations decreased a lot and then increased a little, which makes these categories have a decreasing trend in general. However, for other occupations, the salaries decreased a little first and then increased a lot. For these occupations, they are in an increasing trend in general. To learn more about the exact changing trends of salaries in this group, we draw scatter plots to analyze the trends of these occupations in detail.</p>
+</div>
+<div id="detailed-analysis-on-first-decrease-then-increase-occupations" class="section level4">
+<h4><span class="header-section-number">6.2.2.3</span> Detailed Analysis on “First Decrease Then Increase” Occupations</h4>
+<p><strong>Observations from sectors without clear salary trends:</strong></p>
+<p>From the above plots, we see both the variations in salaries and the general trends for these occupations.<br />
+1. Law enforcement workers including supervisors<br />
+For this occupation, the salary is in the trend of a wave. The crests are in year 2011, year 2015, and year 2019. The troughs are in year 2012 and year 2016. Besides, there are two special points for this occupation.<br />
+a) The salary dropped a lot from 2015 to 2016, and then returned to normal quickly from 2016 to 2017.<br />
+b) The salary was in an decreasing trend from 2017 to 2018, but it did not continue to decrease, instead, it increased a lot from year 2018 to 2019.<br />
+2. Life, physical, and social science occupations<br />
+For this occupation, the salary is in also in the trend of a wave. At the same time, it is in an increasing trend in general. The crests are in year 2013 and 2018. The troughs are in year 2012 and 2014.<br />
+3. Health technologists and technicians<br />
+From year 2010 to 2013, the salary of this occupation grew slightly at a steady rate. However, from 2014 to 2015, the salary had a sudden drop. After that, the salary started to increase at a higher rate.<br />
+4. Fire fighting and prevention, and other protective service workers including supervisors<br />
+The salary of this group is in a waving trend and remains at a certain level in general. The crests are in 2012, 2013 and 2017, and the troughs are in 2011 and 2016. However, there is a special point for this occupation.<br />
+a) The salary had a sudden increase from year 2016 to year 2017.<br />
+5. Healthcare support occupations<br />
+Generally speaking, the salary trend is in a decreasing trend. The crests occurred in year 2010, 2013, and 2015. The troughs occured in year 2014 and 2017.<br />
+6. Personal care and service occupations<br />
+Generally speaking, the salary of this occupation is in an increasing trend. It remained relatively stable before 2015, after that, the salary increased at a relatively high speed.<br />
+7. Farming, fishing, and forestry occupations<br />
+For this occupation, it salary increased a little from 2011 to 2012, and then began to decrease at a high speed from 2012 to 2014. After that, the salary recovered at a lower but steady speed.<br />
+</p>
+</div>
+</div>
+<div id="percentage-difference-by-years" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> Percentage Difference by Years</h3>
+<p>It is also very important to analyze on the variations of salaries of different occupations. Because different occupations have different base wages, sometimes it might be more meaningful to calculate the percentage of wage fluctuations in wages. Here, we use the average wages to represent the wage of different occupations.</p>
+<p><strong>Observations from percentage difference of salary via gender:</strong></p>
+<p>As we can see from the above plot, we can discover that the majority of these occupations have increased in salaries in the past decade. Only two of these categories have decreased in salaries. Among all occupations, the occupation of Construction and extraction occupations has the biggest Percentage Difference in salary in 2010 and 2019, and the occupation of Healthcare support occupations have the smallest.<br />
+</p>
+</div>
+</div>
+<div id="analyze-on-salary-by-counties" class="section level2">
+<h2><span class="header-section-number">6.3</span> Analyze on Salary by Counties</h2>
+<p><strong>Observations on Salaries by Occupation NYC for different counties:</strong></p>
+<p>As can be seen in this plot, for different occupations, the counties with the highest and lowest wages in each occupation are different. For the majority of the occupations, the highest salaries are in New York County and their lowest salaries are in Bronx County. For the relatively low-paid occupations, the highest salaries are in Richmond County.<br />
+</p>
+<div id="distribution-of-the-highest-and-lowest-wages-in-different-counties" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Distribution of the Highest and Lowest Wages in Different Counties</h3>
+<p>We draw a dodged bar chart to reflect the specific distribution data of the highest and lowest wages in different counties.<br />
+</p>
+<p><br />
+<strong>Observations on the Distribution of the Highest and Lowest wages in Different Counties:</strong></p>
+<p>As can be seen from this plot, many occupations have the lowest salaries in Bronx County, some of them are in Kings County and New York County, but none of them appears in Queens County and Richmond County.<br />
+</p>
+<p>For the occupations with highest salaries, the majority of them are in New York County and Richmond County. Several of them also appear in Queens County, but none of them appear in Bronx County and Kings County.<br />
+</p>
+<p>To see whether there are changes of the distribution of highest and lowest wages in different countries, we draw a stacked bar chart by years. We use different colors to represent different counties.</p>
+<p><strong>Observations on the Probability of having the Highest/Lowest Salaries in Different Counties:</strong></p>
+<p>As can be seen in this plot, from the perspective of each year alone, the situation is slightly different from the overall average, which is reflected in the following aspects.<br />
+</p>
+<ol style="list-style-type: decimal">
+<li>For the highest salary<br />
+</li>
+</ol>
+<p>In the overall trend, maximum salary for all occupations do not lie in Bronx County and Kings County. However, as can be seen from the stacked bar chart, in year 2010, 2012, 2013 and 2014, there are some occupations with highest salary in Bronx County. Also, except for year 2014 and year 2017, there are some occupations with highest salary in Kings County.<br />
+</p>
+<ol start="2" style="list-style-type: decimal">
+<li>For the lowest salary<br />
+</li>
+</ol>
+<p>In the overall trend, minimum salary for all occupations do not lie in Queens County and Richmond County. However, as can be seen from the stacked bar chart, except for year 2013, there are some occupations with lowest salary in Queens County. Also, except for year 2018, there are some occupations with lowest salary in Richmond County.<br />
+</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Percentage Difference in salaries between different counties<br />
+</li>
+</ol>
+<p>We also discover that the variations among different boroughs for different occupations are different. Therefore, we use a bar chart to order the degree of variance among different boroughs for all types of occupations. For each occupation, we use the salary in five counties to minus the smallest salary, add them up and divide the sum by 5. Then, we divide the value by the smallest salary to represent the variance of each occupation.<br />
+</p>
+</div>
+<div id="percentage-difference-of-salaries-in-different-counties" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Percentage Difference of Salaries in Different Counties</h3>
+<p><strong>Observations on Percentage Difference of Salaries in Different Counties:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Top 5 in Variation<br />
+</li>
+</ol>
+<p>1.) Sales and related occupation<br />
+</p>
+<p>2.) Legal occupations<br />
+</p>
+<p>3.) Management occupations<br />
+</p>
+<p>4.) Farming, fishing, and forestry occupations<br />
+</p>
+<p>5.) Arts, design, entertainment, sports, and media occupations<br />
+</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Last 5 in Variation<br />
+</li>
+</ol>
+<p>1.) Personal care and service occupations<br />
+</p>
+<p>2.) Health technologists and technicians<br />
+</p>
+<p>3.) Community and social service occupations<br />
+</p>
+<p>4.) Food preparation and serving related occupations<br />
+</p>
+<p>5.) Life, physical, and social science occupations<br />
+</p>
+</div>
+</div>
+<div id="analyze-on-salary-by-genders" class="section level2">
+<h2><span class="header-section-number">6.4</span> Analyze on Salary by Genders</h2>
+<p><strong>Observations on the Salaries of Different Occupations of Different Genders in NYC:</strong></p>
+<p>As can be seen in this Cleveland dot plot, the salaries of some occupations varies a lot between different genders, while some other occupations have similar salaries for two genders. Also, for some kinds of occupations, male have higher salaries and for other kinds of occupations, woman have higher salaries. To have a deeper understanding of these characteristics, we have a deeper analysis on salaries for different genders in different occupations.<br />
+</p>
+<div id="percentage-difference-of-salaries-between-genders" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Percentage Difference of Salaries between Genders</h3>
+<p>We use a bar chart to order the salary variance between genders for different occupations. To quantify the difference, we divide the income difference between male and female by the average salary of the occupation.<br />
+</p>
+<p><strong>Observations on the Percentage Difference of Salaries for Different Genders:</strong></p>
+<p>From the horizontal bar chart above, we discover the following characteristics.<br />
+</p>
+<p>For most of the occupations, male employees have higher salaries than female employees. Female employees only have higher salaries in 4 kinds of occupations among the 25 kinds of occupations, namely, Construction and extraction occupations, Installation, maintenance, and repair occupations, Community and social service occupations, and Transportation occupations.<br />
+</p>
+<div id="top-5-and-last-5-in-variance" class="section level4">
+<h4><span class="header-section-number">6.4.1.1</span> Top 5 and Last 5 in Variance</h4>
+<ol style="list-style-type: decimal">
+<li>Top 5<br />
+</li>
+</ol>
+<p>1.) Sales and related occupations<br />
+</p>
+<p>2.) Building and grounds cleaning and maintenance occupations<br />
+</p>
+<p>3.) Material moving occupations<br />
+</p>
+<p>4.) Production occupations<br />
+</p>
+<p>5.)Personal care and service occupations<br />
+</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Last 5<br />
+</li>
+</ol>
+<p>1.) Transportation occupations<br />
+</p>
+<p>2.) Office and administrative support occupations<br />
+</p>
+<p>3.) Community and social service occupations<br />
+</p>
+<p>4.) Installation, maintenance, and repair occupations<br />
+</p>
+<p>5.) Computer and mathematical occupations</p>
+</div>
+</div>
+<div id="relation-between-percentage-differenct-of-employment-and-salary-in-gender" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Relation between Percentage Differenct of Employment and Salary in Gender</h3>
+<p>Intuitively, the gender composition of employees in a profession is related to the level of wages for gender. We want to analyze if this intuition makes sense. Therefore, we use two categorical variables to represent the two characteristics, namely “Gender Distribution” and “Salary Distribution”. For the category of “Gender Distribution”, there are two values, Male-dominated, which means there are more male employees in this occupation than female employees, and Female-dominated, which means there are more female employees in this occupation than male employees. For the category of “Salary Distribution”, we also set two values, Male-higher, which means male employees have higher salary in this occupation, and Female-higher, which means female employees have higher salary in this occupation. Then, we draw a mosaic plot to measure the relation.<br />
+</p>
+<p>From this mosaic plot, we can see that salary distribution is related to gender composition. However, the characteristic of this connection is against tuition. We tend to think that in the “Female-higher” salary distribution group, there will be more female-dominated occupations, and in the “Male-higher” salary distribution group, there will be more male-dominated occupations. However, the conclusion from the plot is opposite against our tuition.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="employment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="education.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/edit/main/06-salary.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/blob/main/06-salary.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Interactive component | NYC Employment Analysis</title>
-  <meta name="description" content="Chapter 9 Interactive component | NYC Employment Analysis" />
+  <title>Chapter 8 GDP | NYC Employment Analysis</title>
+  <meta name="description" content="Chapter 8 GDP | NYC Employment Analysis" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Interactive component | NYC Employment Analysis" />
+  <meta property="og:title" content="Chapter 8 GDP | NYC Employment Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Interactive component | NYC Employment Analysis" />
+  <meta name="twitter:title" content="Chapter 8 GDP | NYC Employment Analysis" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="gdp.html"/>
-<link rel="next" href="conclusion.html"/>
+<link rel="prev" href="education.html"/>
+<link rel="next" href="interactive-component.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,10 @@
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/parallel-coordinates-2.1.8/parcoords.css" rel="stylesheet" />
+<script src="libs/parcoords-binding-1.0.0/parcoords.js"></script>
+<script src="libs/d3-5.16.0/d3.min.js"></script>
 
 
 
@@ -85,7 +89,6 @@
 <li class="chapter" data-level="2.3.1" data-path="data-sources-1.html"><a href="data-sources-1.html#numemp-datasets"><i class="fa fa-check"></i><b>2.3.1</b> <code>numemp</code> Datasets</a></li>
 <li class="chapter" data-level="2.3.2" data-path="data-sources-1.html"><a href="data-sources-1.html#salary-datasets"><i class="fa fa-check"></i><b>2.3.2</b> <code>salary</code> Datasets</a></li>
 <li class="chapter" data-level="2.3.3" data-path="data-sources-1.html"><a href="data-sources-1.html#education-datasets"><i class="fa fa-check"></i><b>2.3.3</b> <code>education</code> Datasets</a></li>
-<li class="chapter" data-level="2.3.4" data-path="data-sources-1.html"><a href="data-sources-1.html#gdp-datasets"><i class="fa fa-check"></i><b>2.3.4</b> <code>gdp</code> Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="data-sources-1.html"><a href="data-sources-1.html#problems-with-data"><i class="fa fa-check"></i><b>2.4</b> Problems with Data</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="data-sources-1.html"><a href="data-sources-1.html#inconsistency-in-occupation-names"><i class="fa fa-check"></i><b>2.4.1</b> Inconsistency in Occupation Names</a></li>
@@ -157,22 +160,12 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="interactive-component" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Interactive component</h1>
-<html>
-<head>
-<title>
-Customizing Axes
-</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://d3js.org/d3.v6.js"></script>
-</head>
-<body>
-<svg width="800" height="380">
-</svg>
-<script src="scripts/numemp.js"></script>
-</body>
-</html>
+<div id="gdp" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> GDP</h1>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-33-1.png" width="1344" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" width="1344" /></p>
+<p><strong>Observations on NumEmp vs GDP/NYC GDP Per Capita:</strong></p>
+<p>The scatter dot plots above show us the relationship between employment and GDP/NYC GDP per capita in different salary categories. From the plots, we can see clearly that there is a turning point in the categories of ‘$25000 to $34999’,‘$35000 to $49999’. Before the two categories, the number of employed is in a decreasing trend when GDP/NYC GDP per capita goes up. However, in the groups with higher salaries, the number of employed is in a increasing trend when GDP/NYC GDP per capita goes up.</p>
 
 </div>
             </section>
@@ -180,8 +173,8 @@ Customizing Axes
           </div>
         </div>
       </div>
-<a href="gdp.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="education.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interactive-component.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -212,7 +205,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/edit/main/09-interactive.Rmd",
+"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/edit/main/08-gdp.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -220,7 +213,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/blob/main/09-interactive.Rmd",
+"link": "https://github.com/tracy3057/NYC_Employment_Analysis_Book/blob/main/08-gdp.Rmd",
 "text": null
 },
 "download": null,

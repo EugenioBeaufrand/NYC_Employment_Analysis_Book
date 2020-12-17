@@ -48,7 +48,7 @@ YearBoroughData <- read.csv("https://raw.githubusercontent.com/tracy3057/STAT570
 
 ```
 
-```{r Data Cleaning,include=FALSE,echo=FALSE}
+```{r Cleaning,include=FALSE,echo=FALSE}
 GenderData$X <- NULL
 YearBoroughData$X <- NULL
 
@@ -152,7 +152,7 @@ GenderData.tidy <- GenderData.tidy %>% mutate(difference_pct = difference/sum(Nu
 GenderData$Gender <- as.factor(GenderData$Gender)
 ```
 
-```{r theme,include=FALSE,echo=FALSE}
+```{r theme1,include=FALSE,echo=FALSE}
 mytheme <- theme(axis.text=element_text(size = 10),
   axis.title=element_text(size=12, face = "bold"),
   plot.title = element_text(size = 14, face = "bold"),
