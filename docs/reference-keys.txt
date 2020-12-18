@@ -47,21 +47,18 @@ general-trend-of-employment-by-years
 monotonicity-in-employment-trends
 analysis-of-employment-by-counties
 analysis-on-employment-by-gender
-analyze-on-employment-by-races
+analysis-on-employment-by-race
 salary
 overview-of-salary-distribution
 analyzing-average-salary-from-2010-2019
 general-trend-of-salary-from-2010-2019
 monotonicity-in-salary-trends
-monotonic-increase
-first-decrease-then-increase
 percentage-difference-by-years
 analysis-of-salary-by-counties
 distribution-of-the-highest-and-lowest-wages-in-different-counties
 percentage-difference-of-salaries-in-different-counties
 analyzing-salary-by-genders
 percentage-difference-of-salaries-between-genders
-top-5-and-bottom-5-in-magnitude-of-percent-difference
 relation-between-percentage-difference-of-employment-and-salary-in-gender
 education
 gdp
@@ -69,4 +66,3 @@ interactive-component
 employment-by-years
 salary-by-years
 conclusion
-analysis-on-employment-by-race
