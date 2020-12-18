@@ -1,0 +1,18 @@
+# Conclusion
+
+Throughout the course of this project, a thorough analysis was done on the topics of employment, salary, education, and gdp relating to the population of NYC.
+\
+\
+Several interesting discoveries were made by exploring the data and creating visualizations to get a better sense of the dynamics and landscape of these areas. Particularly interesting findings were the proportional representation of race groups in different occupations assuming equal population, investigations into the stability of different occupations, investigations into salary percentage differences and how they varied from males to females, and female and male relative proportionality of having a bachelors degree.
+\
+\
+One limitation of this work is that many of the plots and data are simply estimates. These estimates are within a certain range of confidence, so while they may be fairly representative for data summaries in which a large number of entries were present and the confidence was high, this wasn't always the case. A more thorough analysis could include a detailed consideration of confidence of each data estimate with relation to how the data is being used. 
+\
+\
+Another limitation of this work is that since many of these trends take place over the course of merely a decade, the analyses in this work are very uncertain to be a good baseline for identifying long term trends and behaviors with respect to what was investigated. However these findings may be contemporarily relevant and provide insight perhaps into the next couple of years and potentially beyond.
+\
+\
+Future directions for this work, and something that would have been of great interest during this work is to do a similar analysis but find a data source containing a more comprehensive dataset where income, race, age, educational attaintment, gender, and occupation are all linked. This was not the case in this analysis and in some cases, research on some areas such as education and GDP were limited.
+\
+\
+One lesson learned during the course of this project is that a relatively confined set of data can be permuted in many ways to discover many findings, and that the imagination can be a great asset in finding meaning and intrigue and value from what had been before been a mess of numbers and factors. Another lesson learned is that formatting a large project in RMD is not as easy as it seems. One last lesson learned is that employing this kind of exploratory and visualization work before creating models could very instructive in terms of providing a framework for what to do next. It is the opinion of the authors that with this deep background relating to NYC, that hitting the ground running in taking the next step of the Data Science process will have been aided greatly by this work.
