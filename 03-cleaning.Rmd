@@ -1,13 +1,19 @@
 # Data transformation
 
 ## Transformation Process
-1. We download the data from the data source and save them as .csv format.
-2. We extract the specific rows and columns we need.
-3. We deal with the missing data, namely, we fill the NAs by group averages within sub-datasets.
-4. We add some columns or rows in the data set. For example, we add a row to tell years and a row to tell races in datasets, when the years and races are only included in dataset names in the original version.
-5. We combine sub-datasets into on dataset as a whole. For example, after we add the information of years in different sub datasets, we will combine these data sets into one dataset that contains information of all of these years.
-6. For some NAs that still exists, we fill them by the group averages within combined datasets.
-7. We do calculations based on the existed variables to get other variables that we want add them as new columns.
+1. We download the data from the data source and save them as .csv format.\
+
+2. We extract the specific rows and columns we need.\
+
+3. We deal with the missing data, namely, we fill the NAs by group averages within sub-datasets.\
+
+4. We add some columns or rows in the data set. For example, we add a row to tell years and a row to tell races in datasets, when the years and races are only included in dataset names in the original version.\
+
+5. We combine sub-datasets into on dataset as a whole. For example, after we add the information of years in different sub datasets, we will combine these data sets into one dataset that contains information of all of these years.\
+
+6. For some NAs that still exists, we fill them by the group averages within combined datasets.\
+
+7. We do calculations based on the existed variables to get other variables that we want add them as new columns.\
 
 ## Transformation Code
 
