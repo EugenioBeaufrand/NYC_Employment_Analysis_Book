@@ -109,3 +109,6 @@ percentage-difference-of-salaries-between-genders-1
 top-5-and-bottom-5-in-magnitude-of-percent-difference-1
 relation-between-percentage-difference-of-employment-and-salary-in-gender-1
 >>>>>>> 4c88752c5466030068b1b512e732b5f642fb2ad8
+results
+overview-of-employment-distribution-1
+overview-of-salary-distribution-1
