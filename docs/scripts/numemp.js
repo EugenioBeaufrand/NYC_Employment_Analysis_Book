@@ -46,7 +46,7 @@
 
 
   // initialize buttons
-  const button = d3$1.select('div#container');
+  const button = d3$1.select("div").select('div#container');
   button.append('div').attr('id','year2010').text("2010").style("text-align","center");
   button.append('div').attr('id','year2011').text("2011").style("text-align","center");
   button.append('div').attr('id','year2012').text("2012").style("text-align","center");
@@ -63,7 +63,7 @@
   d3.select("#year2010").style("background-color","palevioletred");
 
   // call functions when click
-  d3.selectAll("div")
+  button.selectAll("div")
       .on("click", function () {
         var paraID = d3.select(this).attr("id");
         if (paraID == "year2010") {
@@ -92,11 +92,6 @@
           	d3.select("#year2019").style("background-color","pink");     	
           	var str = 'Occupations,year\nOffice and administrative support,776806.5\nSales and related,659189.25\nManagement,538868.0\n"Education, training, and library",386141.0\nBusiness and financial operations,347058.25\nFood preparation and serving related,376449.75\nBuilding and grounds cleaning and maintenance,294417.0\n"Arts, design, entertainment, sports, and media",314854.0\nConstruction and extraction,275838.5\nPersonal care and service,296898.25\nHealthcare support,257936.0\nTransportation,235066.5\nHealth diagnosing and treating practitioners and other technical,194109.5\nProduction,180604.5\nLegal,145403.25\nComputer and mathematical,129610.25\nCommunity and social service,104616.0\n"Installation, maintenance, and repair",114664.25\n"Fire fighting and prevention, and other protective service workers including supervisors",109542.5\nMaterial moving,87665.25\nHealth technologists and technicians,68263.0\nLaw enforcement workers including supervisors,54686.25\nArchitecture and engineering,62655.25\n"Life, physical, and social science",56399.5\n"Farming, fishing, and forestry",8709.0';
             draw(str);
-            d3.select("rect")
-    .on("click", function(event) {
-      d3.select("svg").append("text").attr("x","700").attr("y","200")
-        .text(`(${d3.pointer(event).map(Math.round)})`);
-        });
           } else if (paraID == "year2012") {
           	d3.select("#year2012").style("background-color","palevioletred");
           	d3.select("#year2010").style("background-color","pink");

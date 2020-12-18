@@ -3,23 +3,23 @@
 
   // set the initial margin, width, height
   var margin = { top: 50, right: 50, bottom: 47, left: 380 };
-  var svg = d3$1.select('svg#salary');	
-  var width = +svg.attr('width');
-  var height = +svg.attr('height');
+  var svg2 = d3$1.select('svg#salary');	
+  var width = +svg2.attr('width');
+  var height = +svg2.attr('height');
   var innerWidth = width - margin.left - margin.right;
   var innerHeight = height - margin.top - margin.bottom;
 
   // set title and axis names
-  const titleText = 'Number of Employed in NYC';
-  const xAxisLabelText = 'Population';
+  const titleText = 'Salary in NYC';
+  const xAxisLabelText = 'Salary';
 
   // set x-scale and x-axis
   const xAxisTickFormat = number => d3$1.format('.3s')(number).replace('G', 'B');
   var xScale = d3$1.scaleLinear().range([0, innerWidth]);
   var xAxis = d3$1.axisBottom(xScale).tickFormat(xAxisTickFormat).tickSize(-innerHeight);
 
-  svg.append("g")
-    .attr("class", "x_axis")
+  svg2.append("g")
+    .attr("class", "x_axis2")
     .attr("transform", `translate(${margin.left},${height - margin.bottom})`)
     .call(xAxis);  
 
@@ -27,179 +27,177 @@
   var yScale = d3$1.scaleBand().range([0, innerHeight]).padding(0.1);
   var yAxis = d3.axisLeft(yScale).tickSizeOuter(0);
     
-  svg.append("g")
-    .attr("class", "y_axis")
+  svg2.append("g")
+    .attr("class", "y_axis2")
     .attr("transform", `translate(${margin.left},${margin.top})`)
     .call(yAxis);  
 
-    svg.append('text')
+    svg2.append('text')
         .attr('class', 'xAxisLabelText')
     		.attr('x',550)
         .attr('y', 440)
         .text(xAxisLabelText);
-    svg.append('text')
+    svg2.append('text')
         .attr('class', 'title')
-    		.attr('x',400)
+    		.attr('x',420)
         .attr('y', 35)
         .text(titleText);
 
 
 
-  // initialize buttons
-  const button = d3$1.select('div#container2');
-  button.append('div').attr('id','salary2010').text("2010").style("text-align","center");
-  button.append('div').attr('id','salary2011').text("2011").style("text-align","center");
-  button.append('div').attr('id','salary2012').text("2012").style("text-align","center");
-  button.append('div').attr('id','salary2013').text("2013").style("text-align","center");
-  button.append('div').attr('id','salary2014').text("2014").style("text-align","center");
-  button.append('div').attr('id','salary2015').text("2015").style("text-align","center");
-  button.append('div').attr('id','salary2016').text("2016").style("text-align","center");
-  button.append('div').attr('id','salary2017').text("2017").style("text-align","center");
-  button.append('div').attr('id','salary2018').text("2018").style("text-align","center");
-  button.append('div').attr('id','salary2019').text("2019").style("text-align","center");
+  // initialize button2s
+  const button2 = d3$1.select('div#container2');
+  button2.append('div').attr('id','y2010').text("2010").style("text-align","center");
+  button2.append('div').attr('id','y2011').text("2011").style("text-align","center");
+  button2.append('div').attr('id','y2012').text("2012").style("text-align","center");
+  button2.append('div').attr('id','y2013').text("2013").style("text-align","center");
+  button2.append('div').attr('id','y2014').text("2014").style("text-align","center");
+  button2.append('div').attr('id','y2015').text("2015").style("text-align","center");
+  button2.append('div').attr('id','y2016').text("2016").style("text-align","center");
+  button2.append('div').attr('id','y2017').text("2017").style("text-align","center");
+  button2.append('div').attr('id','y2018').text("2018").style("text-align","center");
+  button2.append('div').attr('id','y2019').text("2019").style("text-align","center");
 
-  var str = 'Occupations,salary\n0,Management occupations,67094.8\n1,Business and financial operations occupations,64536.3\n2,Computer and mathematical occupations,68448.1\n3,Architecture and engineering occupations,57705.3\n4,"Life, physical, and social science occupations",61535.8\n5,Community and social service occupations,41639.0\n6,Legal occupations,86128.7\n7,"Education, training, and library occupations",47362.6\n8,"Arts, design, entertainment, sports, and media occupations",47020.0\n9,Health diagnosing and treating practitioners and other technical occupations,75638.6\n10,Health technologists and technicians,42933.6\n11,Healthcare support occupations,28315.1\n12,"Fire fighting and prevention, and other protective service workers including supervisors",30261.3\n13,Law enforcement workers including supervisors,68247.6\n14,Food preparation and serving related occupations,18100.9\n15,Building and grounds cleaning and maintenance occupations,23259.2\n16,Personal care and service occupations,21675.7\n17,Sales and related occupations,31559.5\n18,Office and administrative support occupations,33895.3\n19,"Farming, fishing, and forestry occupations",26358.875\n20,Construction and extraction occupations,26284.1\n21,"Installation, maintenance, and repair occupations",38968.7\n22,Production occupations,25414.6\n23,Transportation occupations,30460.6\n24,Material moving occupations,22734.8';
+  var str = 'Occupations,year\nLegal,86128.7\nHealth diagnosing and treating practitioners and other technical,75638.6\nComputer and mathematical,68448.1\nLaw enforcement workers including supervisors,68247.6\nManagement,67094.8\nBusiness and financial operations,64536.3\n"Life, physical, and social science",61535.8\nArchitecture and engineering,57705.3\n"Education, training, and library",47362.6\n"Arts, design, entertainment, sports, and media",47020.0\nHealth technologists and technicians,42933.6\nCommunity and social service,41639.0\n"Installation, maintenance, and repair",38968.7\nOffice and administrative support,33895.3\nSales and related,31559.5\nTransportation,30460.6\n"Fire fighting and prevention, and other protective service workers including supervisors",30261.3\nHealthcare support,28315.1\n"Farming, fishing, and forestry",26358.875\nConstruction and extraction,26284.1\nProduction,25414.6\nBuilding and grounds cleaning and maintenance,23259.2\nMaterial moving,22734.8\nPersonal care and service,21675.7\nFood preparation and serving related,18100.9';
   draw(str);
-  d3.select("#salary2010").style("background-color","palevioletred");
+  d3.select("#y2010").style("background-color","palevioletred");
 
   // call functions when click
-  d3.selectAll("div")
+  button2.selectAll("div")
       .on("click", function () {
         var paraID = d3.select(this).attr("id");
-        if (paraID == "salary2010") {
-          	d3.select("#salary2010").style("background-color","palevioletred");
-          	d3.select("#salary2011").style("background-color","pink");
-          	d3.select("#salary2012").style("background-color","pink");
-          	d3.select("#salary2013").style("background-color","pink");
-          	d3.select("#salary2014").style("background-color","pink");
-          	d3.select("#salary2015").style("background-color","pink");
-          	d3.select("#salary2016").style("background-color","pink");
-          	d3.select("#salary2017").style("background-color","pink");
-          	d3.select("#salary2018").style("background-color","pink");
-          	d3.select("#salary2019").style("background-color","pink");
-          	var str = 'Occupations,salary\n0,Management occupations,67094.8\n1,Business and financial operations occupations,64536.3\n2,Computer and mathematical occupations,68448.1\n3,Architecture and engineering occupations,57705.3\n4,"Life, physical, and social science occupations",61535.8\n5,Community and social service occupations,41639.0\n6,Legal occupations,86128.7\n7,"Education, training, and library occupations",47362.6\n8,"Arts, design, entertainment, sports, and media occupations",47020.0\n9,Health diagnosing and treating practitioners and other technical occupations,75638.6\n10,Health technologists and technicians,42933.6\n11,Healthcare support occupations,28315.1\n12,"Fire fighting and prevention, and other protective service workers including supervisors",30261.3\n13,Law enforcement workers including supervisors,68247.6\n14,Food preparation and serving related occupations,18100.9\n15,Building and grounds cleaning and maintenance occupations,23259.2\n16,Personal care and service occupations,21675.7\n17,Sales and related occupations,31559.5\n18,Office and administrative support occupations,33895.3\n19,"Farming, fishing, and forestry occupations",26358.875\n20,Construction and extraction occupations,26284.1\n21,"Installation, maintenance, and repair occupations",38968.7\n22,Production occupations,25414.6\n23,Transportation occupations,30460.6\n24,Material moving occupations,22734.8';
+        if (paraID == "y2010") {
+          	d3.select("#y2010").style("background-color","palevioletred");
+          	d3.select("#y2011").style("background-color","pink");
+          	d3.select("#y2012").style("background-color","pink");
+          	d3.select("#y2013").style("background-color","pink");
+          	d3.select("#y2014").style("background-color","pink");
+          	d3.select("#y2015").style("background-color","pink");
+          	d3.select("#y2016").style("background-color","pink");
+          	d3.select("#y2017").style("background-color","pink");
+          	d3.select("#y2018").style("background-color","pink");
+          	d3.select("#y2019").style("background-color","pink");
+          	var str = 'Occupations,year\nLegal,86128.7\nHealth diagnosing and treating practitioners and other technical,75638.6\nComputer and mathematical,68448.1\nLaw enforcement workers including supervisors,68247.6\nManagement,67094.8\nBusiness and financial operations,64536.3\n"Life, physical, and social science",61535.8\nArchitecture and engineering,57705.3\n"Education, training, and library",47362.6\n"Arts, design, entertainment, sports, and media",47020.0\nHealth technologists and technicians,42933.6\nCommunity and social service,41639.0\n"Installation, maintenance, and repair",38968.7\nOffice and administrative support,33895.3\nSales and related,31559.5\nTransportation,30460.6\n"Fire fighting and prevention, and other protective service workers including supervisors",30261.3\nHealthcare support,28315.1\n"Farming, fishing, and forestry",26358.875\nConstruction and extraction,26284.1\nProduction,25414.6\nBuilding and grounds cleaning and maintenance,23259.2\nMaterial moving,22734.8\nPersonal care and service,21675.7\nFood preparation and serving related,18100.9';
             draw(str);
-          } else if (paraID == "salary2011") {
-          	d3.select("#salary2011").style("background-color","palevioletred");
-          	d3.select("#salary2010").style("background-color","pink");
-          	d3.select("#salary2012").style("background-color","pink");
-          	d3.select("#salary2013").style("background-color","pink");
-          	d3.select("#salary2014").style("background-color","pink");
-          	d3.select("#salary2015").style("background-color","pink");
-          	d3.select("#salary2016").style("background-color","pink");
-          	d3.select("#salary2017").style("background-color","pink");
-          	d3.select("#salary2018").style("background-color","pink");
-          	d3.select("#salary2019").style("background-color","pink");     	
-          	var str = 'Occupations,salary\n0,Management occupations,69115.9\n1,Business and financial operations occupations,64437.3\n2,Computer and mathematical occupations,68393.6\n3,Architecture and engineering occupations,59233.7\n4,"Life, physical, and social science occupations",57386.6\n5,Community and social service occupations,41780.7\n6,Legal occupations,86242.2\n7,"Education, training, and library occupations",44433.2\n8,"Arts, design, entertainment, sports, and media occupations",45915.1\n9,Health diagnosing and treating practitioners and other technical occupations,73883.1\n10,Health technologists and technicians,44811.3\n11,Healthcare support occupations,26334.3\n12,"Fire fighting and prevention, and other protective service workers including supervisors",29108.1\n13,Law enforcement workers including supervisors,70108.7\n14,Food preparation and serving related occupations,18584.2\n15,Building and grounds cleaning and maintenance occupations,23153.3\n16,Personal care and service occupations,22224.5\n17,Sales and related occupations,30991.4\n18,Office and administrative support occupations,33567.9\n19,"Farming, fishing, and forestry occupations",26967.3416666667\n20,Construction and extraction occupations,38709.7\n21,"Installation, maintenance, and repair occupations",39929.8333333333\n22,Production occupations,24015.5\n23,Transportation occupations,33150.8\n24,Material moving occupations,24321.5333333333';
+          } else if (paraID == "y2011") {
+          	d3.select("#y2011").style("background-color","palevioletred");
+          	d3.select("#y2010").style("background-color","pink");
+          	d3.select("#y2012").style("background-color","pink");
+          	d3.select("#y2013").style("background-color","pink");
+          	d3.select("#y2014").style("background-color","pink");
+          	d3.select("#y2015").style("background-color","pink");
+          	d3.select("#y2016").style("background-color","pink");
+          	d3.select("#y2017").style("background-color","pink");
+          	d3.select("#y2018").style("background-color","pink");
+          	d3.select("#y2019").style("background-color","pink");     	
+          	var str = 'Occupations,year\nLegal,86242.2\nHealth diagnosing and treating practitioners and other technical,73883.1\nComputer and mathematical,68393.6\nLaw enforcement workers including supervisors,70108.7\nManagement,69115.9\nBusiness and financial operations,64437.3\n"Life, physical, and social science",57386.6\nArchitecture and engineering,59233.7\n"Education, training, and library",44433.2\n"Arts, design, entertainment, sports, and media",45915.1\nHealth technologists and technicians,44811.3\nCommunity and social service,41780.7\n"Installation, maintenance, and repair",39929.8333333333\nOffice and administrative support,33567.9\nSales and related,30991.4\nTransportation,33150.8\n"Fire fighting and prevention, and other protective service workers including supervisors",29108.1\nHealthcare support,26334.3\n"Farming, fishing, and forestry",26967.3416666667\nConstruction and extraction,38709.7\nProduction,24015.5\nBuilding and grounds cleaning and maintenance,23153.3\nMaterial moving,24321.5333333333\nPersonal care and service,22224.5\nFood preparation and serving related,18584.2';
             draw(str);
-            d3.select("rect")
-    .on("click", function(event) {
-      d3.select("svg").append("text").attr("x","700").attr("y","200")
-        .text(`(${d3.pointer(event).map(Math.round)})`);
-        });
-          } else if (paraID == "salary2012") {
-          	d3.select("#salary2012").style("background-color","palevioletred");
-          	d3.select("#salary2010").style("background-color","pink");
-          	d3.select("#salary2011").style("background-color","pink");
-          	d3.select("#salary2013").style("background-color","pink");
-          	d3.select("#salary2014").style("background-color","pink");
-          	d3.select("#salary2015").style("background-color","pink");
-          	d3.select("#salary2016").style("background-color","pink");
-          	d3.select("#salary2017").style("background-color","pink");
-          	d3.select("#salary2018").style("background-color","pink");
-          	d3.select("#salary2019").style("background-color","pink");
-          	var str = 'Occupations,salary\n0,Management occupations,72026.5\n1,Business and financial operations occupations,62463.1\n2,Computer and mathematical occupations,67254.8\n3,Architecture and engineering occupations,67040.0\n4,"Life, physical, and social science occupations",57263.3\n5,Community and social service occupations,43214.2\n6,Legal occupations,83018.3\n7,"Education, training, and library occupations",40823.8\n8,"Arts, design, entertainment, sports, and media occupations",45216.5\n9,Health diagnosing and treating practitioners and other technical occupations,78010.5\n10,Health technologists and technicians,45250.0\n11,Healthcare support occupations,25868.3\n12,"Fire fighting and prevention, and other protective service workers including supervisors",32949.6\n13,Law enforcement workers including supervisors,66834.1\n14,Food preparation and serving related occupations,17711.9\n15,Building and grounds cleaning and maintenance occupations,23100.4\n16,Personal care and service occupations,19194.3\n17,Sales and related occupations,31802.1\n18,Office and administrative support occupations,34271.2\n19,"Farming, fishing, and forestry occupations",30941.741666666698\n20,Construction and extraction occupations,36953.6\n21,"Installation, maintenance, and repair occupations",48886.1\n22,Production occupations,26122.6\n23,Transportation occupations,31903.8\n24,Material moving occupations,20068.6';
+
+          } else if (paraID == "y2012") {
+          	d3.select("#y2012").style("background-color","palevioletred");
+          	d3.select("#y2010").style("background-color","pink");
+          	d3.select("#y2011").style("background-color","pink");
+          	d3.select("#y2013").style("background-color","pink");
+          	d3.select("#y2014").style("background-color","pink");
+          	d3.select("#y2015").style("background-color","pink");
+          	d3.select("#y2016").style("background-color","pink");
+          	d3.select("#y2017").style("background-color","pink");
+          	d3.select("#y2018").style("background-color","pink");
+          	d3.select("#y2019").style("background-color","pink");
+          	var str = 'Occupations,year\nLegal,83018.3\nHealth diagnosing and treating practitioners and other technical,78010.5\nComputer and mathematical,67254.8\nLaw enforcement workers including supervisors,66834.1\nManagement,72026.5\nBusiness and financial operations,62463.1\n"Life, physical, and social science",57263.3\nArchitecture and engineering,67040.0\n"Education, training, and library",40823.8\n"Arts, design, entertainment, sports, and media",45216.5\nHealth technologists and technicians,45250.0\nCommunity and social service,43214.2\n"Installation, maintenance, and repair",48886.1\nOffice and administrative support,34271.2\nSales and related,31802.1\nTransportation,31903.8\n"Fire fighting and prevention, and other protective service workers including supervisors",32949.6\nHealthcare support,25868.3\n"Farming, fishing, and forestry",30941.741666666698\nConstruction and extraction,36953.6\nProduction,26122.6\nBuilding and grounds cleaning and maintenance,23100.4\nMaterial moving,20068.6\nPersonal care and service,19194.3\nFood preparation and serving related,17711.9';
             draw(str);
-          } else if (paraID == "salary2013") {
-            d3.select("#salary2013").style("background-color","palevioletred");
-          	d3.select("#salary2010").style("background-color","pink");
-          	d3.select("#salary2011").style("background-color","pink");
-          	d3.select("#salary2012").style("background-color","pink");
-          	d3.select("#salary2014").style("background-color","pink");
-          	d3.select("#salary2015").style("background-color","pink");
-          	d3.select("#salary2016").style("background-color","pink");
-          	d3.select("#salary2017").style("background-color","pink");
-          	d3.select("#salary2018").style("background-color","pink");
-          	d3.select("#salary2019").style("background-color","pink");
-          	var str = 'Occupations,salary\n0,Management occupations,73452.6\n1,Business and financial operations occupations,70016.1\n2,Computer and mathematical occupations,79152.3\n3,Architecture and engineering occupations,60269.7333333333\n4,"Life, physical, and social science occupations",66051.3\n5,Community and social service occupations,41905.0\n6,Legal occupations,88775.4\n7,"Education, training, and library occupations",42351.4\n8,"Arts, design, entertainment, sports, and media occupations",49550.6\n9,Health diagnosing and treating practitioners and other technical occupations,79992.2\n10,Health technologists and technicians,46363.3\n11,Healthcare support occupations,26287.8\n12,"Fire fighting and prevention, and other protective service workers including supervisors",32839.9\n13,Law enforcement workers including supervisors,67422.4\n14,Food preparation and serving related occupations,18832.0\n15,Building and grounds cleaning and maintenance occupations,23027.4\n16,Personal care and service occupations,20951.5\n17,Sales and related occupations,33047.4\n18,Office and administrative support occupations,34250.7\n19,"Farming, fishing, and forestry occupations",24350.875\n20,Construction and extraction occupations,46123.0\n21,"Installation, maintenance, and repair occupations",44763.7\n22,Production occupations,27496.7\n23,Transportation occupations,29299.5\n24,Material moving occupations,23117.0';
+          } else if (paraID == "y2013") {
+            d3.select("#y2013").style("background-color","palevioletred");
+          	d3.select("#y2010").style("background-color","pink");
+          	d3.select("#y2011").style("background-color","pink");
+          	d3.select("#y2012").style("background-color","pink");
+          	d3.select("#y2014").style("background-color","pink");
+          	d3.select("#y2015").style("background-color","pink");
+          	d3.select("#y2016").style("background-color","pink");
+          	d3.select("#y2017").style("background-color","pink");
+          	d3.select("#y2018").style("background-color","pink");
+          	d3.select("#y2019").style("background-color","pink");
+          	var str = 'Occupations,year\nLegal,88775.4\nHealth diagnosing and treating practitioners and other technical,79992.2\nComputer and mathematical,79152.3\nLaw enforcement workers including supervisors,67422.4\nManagement,73452.6\nBusiness and financial operations,70016.1\n"Life, physical, and social science",66051.3\nArchitecture and engineering,60269.7333333333\n"Education, training, and library",42351.4\n"Arts, design, entertainment, sports, and media",49550.6\nHealth technologists and technicians,46363.3\nCommunity and social service,41905.0\n"Installation, maintenance, and repair",44763.7\nOffice and administrative support,34250.7\nSales and related,33047.4\nTransportation,29299.5\n"Fire fighting and prevention, and other protective service workers including supervisors",32839.9\nHealthcare support,26287.8\n"Farming, fishing, and forestry",24350.875\nConstruction and extraction,46123.0\nProduction,27496.7\nBuilding and grounds cleaning and maintenance,23027.4\nMaterial moving,23117.0\nPersonal care and service,20951.5\nFood preparation and serving related,18832.0';
             draw(str);
-          } else if (paraID == "salary2014") {
-          	d3.select("#salary2014").style("background-color","palevioletred");
-          	d3.select("#salary2011").style("background-color","pink");
-          	d3.select("#salary2012").style("background-color","pink");
-          	d3.select("#salary2013").style("background-color","pink");
-          	d3.select("#salary2010").style("background-color","pink");
-          	d3.select("#salary2015").style("background-color","pink");
-          	d3.select("#salary2016").style("background-color","pink");
-          	d3.select("#salary2017").style("background-color","pink");
-          	d3.select("#salary2018").style("background-color","pink");
-          	d3.select("#salary2019").style("background-color","pink");
-          	var str = 'Occupations,salary\n0,Management occupations,71319.5\n1,Business and financial operations occupations,66972.5\n2,Computer and mathematical occupations,77417.2\n3,Architecture and engineering occupations,70454.1\n4,"Life, physical, and social science occupations",52731.0\n5,Community and social service occupations,44079.5\n6,Legal occupations,83236.5\n7,"Education, training, and library occupations",43953.1\n8,"Arts, design, entertainment, sports, and media occupations",47612.2\n9,Health diagnosing and treating practitioners and other technical occupations,78564.4\n10,Health technologists and technicians,46182.7\n11,Healthcare support occupations,24499.6\n12,"Fire fighting and prevention, and other protective service workers including supervisors",29797.5\n13,Law enforcement workers including supervisors,69203.4\n14,Food preparation and serving related occupations,17564.5\n15,Building and grounds cleaning and maintenance occupations,22849.4\n16,Personal care and service occupations,19475.6\n17,Sales and related occupations,34313.0\n18,Office and administrative support occupations,33121.8\n19,"Farming, fishing, and forestry occupations",12003.620833333302\n20,Construction and extraction occupations,39787.4\n21,"Installation, maintenance, and repair occupations",46003.4\n22,Production occupations,24485.3\n23,Transportation occupations,30026.3\n24,Material moving occupations,22313.8';
+          } else if (paraID == "y2014") {
+          	d3.select("#y2014").style("background-color","palevioletred");
+          	d3.select("#y2011").style("background-color","pink");
+          	d3.select("#y2012").style("background-color","pink");
+          	d3.select("#y2013").style("background-color","pink");
+          	d3.select("#y2010").style("background-color","pink");
+          	d3.select("#y2015").style("background-color","pink");
+          	d3.select("#y2016").style("background-color","pink");
+          	d3.select("#y2017").style("background-color","pink");
+          	d3.select("#y2018").style("background-color","pink");
+          	d3.select("#y2019").style("background-color","pink");
+          	var str = 'Occupations,year\nLegal,83236.5\nHealth diagnosing and treating practitioners and other technical,78564.4\nComputer and mathematical,77417.2\nLaw enforcement workers including supervisors,69203.4\nManagement,71319.5\nBusiness and financial operations,66972.5\n"Life, physical, and social science",52731.0\nArchitecture and engineering,70454.1\n"Education, training, and library",43953.1\n"Arts, design, entertainment, sports, and media",47612.2\nHealth technologists and technicians,46182.7\nCommunity and social service,44079.5\n"Installation, maintenance, and repair",46003.4\nOffice and administrative support,33121.8\nSales and related,34313.0\nTransportation,30026.3\n"Fire fighting and prevention, and other protective service workers including supervisors",29797.5\nHealthcare support,24499.6\n"Farming, fishing, and forestry",12003.620833333302\nConstruction and extraction,39787.4\nProduction,24485.3\nBuilding and grounds cleaning and maintenance,22849.4\nMaterial moving,22313.8\nPersonal care and service,19475.6\nFood preparation and serving related,17564.5';
             draw(str);
-          } else if (paraID == "salary2015") {
-          	d3.select("#salary2015").style("background-color","palevioletred");
-          	d3.select("#salary2011").style("background-color","pink");
-          	d3.select("#salary2012").style("background-color","pink");
-          	d3.select("#salary2013").style("background-color","pink");
-          	d3.select("#salary2014").style("background-color","pink");
-          	d3.select("#salary2010").style("background-color","pink");
-          	d3.select("#salary2016").style("background-color","pink");
-          	d3.select("#salary2017").style("background-color","pink");
-          	d3.select("#salary2018").style("background-color","pink");
-          	d3.select("#salary2019").style("background-color","pink");
-          	var str = 'Occupations,salary\n0,Management occupations,73571.9\n1,Business and financial operations occupations,68185.0\n2,Computer and mathematical occupations,73205.0\n3,Architecture and engineering occupations,69207.8\n4,"Life, physical, and social science occupations",59742.6\n5,Community and social service occupations,43428.9\n6,Legal occupations,91585.2\n7,"Education, training, and library occupations",48814.3\n8,"Arts, design, entertainment, sports, and media occupations",44764.9\n9,Health diagnosing and treating practitioners and other technical occupations,85304.5\n10,Health technologists and technicians,41390.0\n11,Healthcare support occupations,26647.6\n12,"Fire fighting and prevention, and other protective service workers including supervisors",30215.6\n13,Law enforcement workers including supervisors,69478.0\n14,Food preparation and serving related occupations,19305.9\n15,Building and grounds cleaning and maintenance occupations,24977.5\n16,Personal care and service occupations,20143.8\n17,Sales and related occupations,33053.7\n18,Office and administrative support occupations,33969.0\n19,"Farming, fishing, and forestry occupations",15726.870833333302\n20,Construction and extraction occupations,42486.6\n21,"Installation, maintenance, and repair occupations",44439.2\n22,Production occupations,26725.2\n23,Transportation occupations,33713.1\n24,Material moving occupations,23291.2';
+          } else if (paraID == "y2015") {
+          	d3.select("#y2015").style("background-color","palevioletred");
+          	d3.select("#y2011").style("background-color","pink");
+          	d3.select("#y2012").style("background-color","pink");
+          	d3.select("#y2013").style("background-color","pink");
+          	d3.select("#y2014").style("background-color","pink");
+          	d3.select("#y2010").style("background-color","pink");
+          	d3.select("#y2016").style("background-color","pink");
+          	d3.select("#y2017").style("background-color","pink");
+          	d3.select("#y2018").style("background-color","pink");
+          	d3.select("#y2019").style("background-color","pink");
+          	var str = 'Occupations,year\nLegal,91585.2\nHealth diagnosing and treating practitioners and other technical,85304.5\nComputer and mathematical,73205.0\nLaw enforcement workers including supervisors,69478.0\nManagement,73571.9\nBusiness and financial operations,68185.0\n"Life, physical, and social science",59742.6\nArchitecture and engineering,69207.8\n"Education, training, and library",48814.3\n"Arts, design, entertainment, sports, and media",44764.9\nHealth technologists and technicians,41390.0\nCommunity and social service,43428.9\n"Installation, maintenance, and repair",44439.2\nOffice and administrative support,33969.0\nSales and related,33053.7\nTransportation,33713.1\n"Fire fighting and prevention, and other protective service workers including supervisors",30215.6\nHealthcare support,26647.6\n"Farming, fishing, and forestry",15726.870833333302\nConstruction and extraction,42486.6\nProduction,26725.2\nBuilding and grounds cleaning and maintenance,24977.5\nMaterial moving,23291.2\nPersonal care and service,20143.8\nFood preparation and serving related,19305.9'
+
+;
             draw(str);
-          } else if (paraID == "salary2016") {
-          	d3.select("#salary2016").style("background-color","palevioletred");
-          	d3.select("#salary2011").style("background-color","pink");
-          	d3.select("#salary2012").style("background-color","pink");
-          	d3.select("#salary2013").style("background-color","pink");
-          	d3.select("#salary2014").style("background-color","pink");
-          	d3.select("#salary2015").style("background-color","pink");
-          	d3.select("#salary2010").style("background-color","pink");
-          	d3.select("#salary2017").style("background-color","pink");
-          	d3.select("#salary2018").style("background-color","pink");
-          	d3.select("#salary2019").style("background-color","pink");
-          	var str = 'Occupations,salary\n0,Management occupations,76237.9\n1,Business and financial operations occupations,67834.3\n2,Computer and mathematical occupations,75486.0\n3,Architecture and engineering occupations,69612.7\n4,"Life, physical, and social science occupations",59379.6\n5,Community and social service occupations,42325.0\n6,Legal occupations,100981.1\n7,"Education, training, and library occupations",45966.4\n8,"Arts, design, entertainment, sports, and media occupations",49461.1\n9,Health diagnosing and treating practitioners and other technical occupations,79104.0\n10,Health technologists and technicians,44839.6\n11,Healthcare support occupations,25751.8\n12,"Fire fighting and prevention, and other protective service workers including supervisors",28529.5\n13,Law enforcement workers including supervisors,64433.6\n14,Food preparation and serving related occupations,20797.0\n15,Building and grounds cleaning and maintenance occupations,26210.2\n16,Personal care and service occupations,22910.6\n17,Sales and related occupations,34286.5\n18,Office and administrative support occupations,35857.2\n19,"Farming, fishing, and forestry occupations",16965.320833333302\n20,Construction and extraction occupations,43835.0\n21,"Installation, maintenance, and repair occupations",47686.7\n22,Production occupations,28437.6\n23,Transportation occupations,33283.3\n24,Material moving occupations,23752.4';
+          } else if (paraID == "y2016") {
+          	d3.select("#y2016").style("background-color","palevioletred");
+          	d3.select("#y2011").style("background-color","pink");
+          	d3.select("#y2012").style("background-color","pink");
+          	d3.select("#y2013").style("background-color","pink");
+          	d3.select("#y2014").style("background-color","pink");
+          	d3.select("#y2015").style("background-color","pink");
+          	d3.select("#y2010").style("background-color","pink");
+          	d3.select("#y2017").style("background-color","pink");
+          	d3.select("#y2018").style("background-color","pink");
+          	d3.select("#y2019").style("background-color","pink");
+          	var str = 'Occupations,year\nLegal,100981.1\nHealth diagnosing and treating practitioners and other technical,79104.0\nComputer and mathematical,75486.0\nLaw enforcement workers including supervisors,64433.6\nManagement,76237.9\nBusiness and financial operations,67834.3\n"Life, physical, and social science",59379.6\nArchitecture and engineering,69612.7\n"Education, training, and library",45966.4\n"Arts, design, entertainment, sports, and media",49461.1\nHealth technologists and technicians,44839.6\nCommunity and social service,42325.0\n"Installation, maintenance, and repair",47686.7\nOffice and administrative support,35857.2\nSales and related,34286.5\nTransportation,33283.3\n"Fire fighting and prevention, and other protective service workers including supervisors",28529.5\nHealthcare support,25751.8\n"Farming, fishing, and forestry",16965.320833333302\nConstruction and extraction,43835.0\nProduction,28437.6\nBuilding and grounds cleaning and maintenance,26210.2\nMaterial moving,23752.4\nPersonal care and service,22910.6\nFood preparation and serving related,20797.0';
             draw(str);
-          } else if (paraID == "salary2017") {
-          	d3.select("#salary2017").style("background-color","palevioletred");
-          	d3.select("#salary2011").style("background-color","pink");
-          	d3.select("#salary2012").style("background-color","pink");
-          	d3.select("#salary2013").style("background-color","pink");
-          	d3.select("#salary2014").style("background-color","pink");
-          	d3.select("#salary2015").style("background-color","pink");
-          	d3.select("#salary2016").style("background-color","pink");
-          	d3.select("#salary2010").style("background-color","pink");
-          	d3.select("#salary2018").style("background-color","pink");
-          	d3.select("#salary2019").style("background-color","pink");
-          	var str = 'Occupations,salary2017\n0,Management occupations,77821.8\n1,Business and financial operations occupations,71643.8\n2,Computer and mathematical occupations,80663.1\n3,Architecture and engineering occupations,72242.45\n4,"Life, physical, and social science occupations",67315.7\n5,Community and social service occupations,41810.0\n6,Legal occupations,96452.0\n7,"Education, training, and library occupations",49658.9\n8,"Arts, design, entertainment, sports, and media occupations",50737.8\n9,Health diagnosing and treating practitioners and other technical occupations,81811.7\n10,Health technologists and technicians,46589.3\n11,Healthcare support occupations,25245.4\n12,"Fire fighting and prevention, and other protective service workers including supervisors",38574.0\n13,Law enforcement workers including supervisors,69608.7\n14,Food preparation and serving related occupations,21389.6\n15,Building and grounds cleaning and maintenance occupations,28024.3\n16,Personal care and service occupations,23227.9\n17,Sales and related occupations,35174.1\n18,Office and administrative support occupations,37235.8\n19,"Farming, fishing, and forestry occupations",21202.15\n20,Construction and extraction occupations,46430.1\n21,"Installation, maintenance, and repair occupations",46611.85\n22,Production occupations,31284.4\n23,Transportation occupations,35133.0\n24,Material moving occupations,23755.0';
+          } else if (paraID == "y2017") {
+          	d3.select("#y2017").style("background-color","palevioletred");
+          	d3.select("#y2011").style("background-color","pink");
+          	d3.select("#y2012").style("background-color","pink");
+          	d3.select("#y2013").style("background-color","pink");
+          	d3.select("#y2014").style("background-color","pink");
+          	d3.select("#y2015").style("background-color","pink");
+          	d3.select("#y2016").style("background-color","pink");
+          	d3.select("#y2010").style("background-color","pink");
+          	d3.select("#y2018").style("background-color","pink");
+          	d3.select("#y2019").style("background-color","pink");
+          	var str = 'Occupations,year\nLegal,96452.0\nHealth diagnosing and treating practitioners and other technical,81811.7\nComputer and mathematical,80663.1\nLaw enforcement workers including supervisors,69608.7\nManagement,77821.8\nBusiness and financial operations,71643.8\n"Life, physical, and social science",67315.7\nArchitecture and engineering,72242.45\n"Education, training, and library",49658.9\n"Arts, design, entertainment, sports, and media",50737.8\nHealth technologists and technicians,46589.3\nCommunity and social service,41810.0\n"Installation, maintenance, and repair",46611.85\nOffice and administrative support,37235.8\nSales and related,35174.1\nTransportation,35133.0\n"Fire fighting and prevention, and other protective service workers including supervisors",38574.0\nHealthcare support,25245.4\n"Farming, fishing, and forestry",21202.15\nConstruction and extraction,46430.1\nProduction,31284.4\nBuilding and grounds cleaning and maintenance,28024.3\nMaterial moving,23755.0\nPersonal care and service,23227.9\nFood preparation and serving related,21389.6';
             draw(str);
-          } else if (paraID == "salary2018") {
-          	d3.select("#salary2018").style("background-color","palevioletred");
-          	d3.select("#salary2011").style("background-color","pink");
-          	d3.select("#salary2012").style("background-color","pink");
-          	d3.select("#salary2013").style("background-color","pink");
-          	d3.select("#salary2014").style("background-color","pink");
-          	d3.select("#salary2015").style("background-color","pink");
-          	d3.select("#salary2016").style("background-color","pink");
-          	d3.select("#salary2017").style("background-color","pink");
-          	d3.select("#salary2010").style("background-color","pink");
-          	d3.select("#salary2019").style("background-color","pink");
-          	var str = 'Occupations,salary2018\n0,Management occupations,80119.1\n1,Business and financial operations occupations,74160.2\n2,Computer and mathematical occupations,82133.8\n3,Architecture and engineering occupations,77308.4\n4,"Life, physical, and social science occupations",74664.8\n5,Community and social service occupations,46766.7\n6,Legal occupations,104282.1\n7,"Education, training, and library occupations",49443.3\n8,"Arts, design, entertainment, sports, and media occupations",55391.6\n9,Health diagnosing and treating practitioners and other technical occupations,89215.4\n10,Health technologists and technicians,52378.6\n11,Healthcare support occupations,26585.2\n12,"Fire fighting and prevention, and other protective service workers including supervisors",34964.8\n13,Law enforcement workers including supervisors,68949.0\n14,Food preparation and serving related occupations,24147.0\n15,Building and grounds cleaning and maintenance occupations,27660.7\n16,Personal care and service occupations,27452.7\n17,Sales and related occupations,40100.8\n18,Office and administrative support occupations,42117.6\n19,"Farming, fishing, and forestry occupations",24234.45\n20,Construction and extraction occupations,56175.9\n21,"Installation, maintenance, and repair occupations",45133.3\n22,Production occupations,34433.5\n23,Transportation occupations,36810.1\n24,Material moving occupations,26267.5';
+          } else if (paraID == "y2018") {
+          	d3.select("#y2018").style("background-color","palevioletred");
+          	d3.select("#y2011").style("background-color","pink");
+          	d3.select("#y2012").style("background-color","pink");
+          	d3.select("#y2013").style("background-color","pink");
+          	d3.select("#y2014").style("background-color","pink");
+          	d3.select("#y2015").style("background-color","pink");
+          	d3.select("#y2016").style("background-color","pink");
+          	d3.select("#y2017").style("background-color","pink");
+          	d3.select("#y2010").style("background-color","pink");
+          	d3.select("#y2019").style("background-color","pink");
+          	var str = 'Occupations,year\nLegal,104282.1\nHealth diagnosing and treating practitioners and other technical,89215.4\nComputer and mathematical,82133.8\nLaw enforcement workers including supervisors,68949.0\nManagement,80119.1\nBusiness and financial operations,74160.2\n"Life, physical, and social science",74664.8\nArchitecture and engineering,77308.4\n"Education, training, and library",49443.3\n"Arts, design, entertainment, sports, and media",55391.6\nHealth technologists and technicians,52378.6\nCommunity and social service,46766.7\n"Installation, maintenance, and repair",45133.3\nOffice and administrative support,42117.6\nSales and related,40100.8\nTransportation,36810.1\n"Fire fighting and prevention, and other protective service workers including supervisors",34964.8\nHealthcare support,26585.2\n"Farming, fishing, and forestry",24234.45\nConstruction and extraction,56175.9\nProduction,34433.5\nBuilding and grounds cleaning and maintenance,27660.7\nMaterial moving,26267.5\nPersonal care and service,27452.7\nFood preparation and serving related,24147.0';
             draw(str);
-          } else if (paraID == "salary2019"){
-          	d3.select("#salary2019").style("background-color","palevioletred");
-          	d3.select("#salary2011").style("background-color","pink");
-          	d3.select("#salary2012").style("background-color","pink");
-          	d3.select("#salary2013").style("background-color","pink");
-          	d3.select("#salary2014").style("background-color","pink");
-          	d3.select("#salary2015").style("background-color","pink");
-          	d3.select("#salary2016").style("background-color","pink");
-          	d3.select("#salary2017").style("background-color","pink");
-          	d3.select("#salary2018").style("background-color","pink");
-          	d3.select("#salary2010").style("background-color","pink");
-          	var str = 'Occupations,salary2019\n0,Management occupations,86022.9\n1,Business and financial operations occupations,78493.8\n2,Computer and mathematical occupations,82734.8\n3,Architecture and engineering occupations,74947.0\n4,"Life, physical, and social science occupations",71876.8\n5,Community and social service occupations,53074.3\n6,Legal occupations,110089.9\n7,"Education, training, and library occupations",50917.6\n8,"Arts, design, entertainment, sports, and media occupations",56632.6\n9,Health diagnosing and treating practitioners and other technical occupations,93031.3\n10,Health technologists and technicians,53118.9\n11,Healthcare support occupations,26935.6\n12,"Fire fighting and prevention, and other protective service workers including supervisors",33966.5\n13,Law enforcement workers including supervisors,75077.9\n14,Food preparation and serving related occupations,24881.6\n15,Building and grounds cleaning and maintenance occupations,30035.9\n16,Personal care and service occupations,26490.0\n17,Sales and related occupations,40518.6\n18,Office and administrative support occupations,42243.9\n19,"Farming, fishing, and forestry occupations",23264.15\n20,Construction and extraction occupations,44230.4\n21,"Installation, maintenance, and repair occupations",45228.0\n22,Production occupations,33067.4\n23,Transportation occupations,36431.3\n24,Material moving occupations,26735.3';
+          } else if (paraID == "y2019"){
+          	d3.select("#y2019").style("background-color","palevioletred");
+          	d3.select("#y2011").style("background-color","pink");
+          	d3.select("#y2012").style("background-color","pink");
+          	d3.select("#y2013").style("background-color","pink");
+          	d3.select("#y2014").style("background-color","pink");
+          	d3.select("#y2015").style("background-color","pink");
+          	d3.select("#y2016").style("background-color","pink");
+          	d3.select("#y2017").style("background-color","pink");
+          	d3.select("#y2018").style("background-color","pink");
+          	d3.select("#y2010").style("background-color","pink");
+          	var str = 'Occupations,year\nLegal,110089.9\nHealth diagnosing and treating practitioners and other technical,93031.3\nComputer and mathematical,82734.8\nLaw enforcement workers including supervisors,75077.9\nManagement,86022.9\nBusiness and financial operations,78493.8\n"Life, physical, and social science",71876.8\nArchitecture and engineering,74947.0\n"Education, training, and library",50917.6\n"Arts, design, entertainment, sports, and media",56632.6\nHealth technologists and technicians,53118.9\nCommunity and social service,53074.3\n"Installation, maintenance, and repair",45228.0\nOffice and administrative support,42243.9\nSales and related,40518.6\nTransportation,36431.3\n"Fire fighting and prevention, and other protective service workers including supervisors",33966.5\nHealthcare support,26935.6\n"Farming, fishing, and forestry",23264.15\nConstruction and extraction,44230.4\nProduction,33067.4\nBuilding and grounds cleaning and maintenance,30035.9\nMaterial moving,26735.3\nPersonal care and service,26490.0\nFood preparation and serving related,24881.6';
             draw(str);
           }      });
 
@@ -209,51 +207,51 @@
     var data = getdata(str);
     
     var prewidth = [];
-  	svg.selectAll('rect.bars')
+  	svg2.selectAll('rect.bars2')
    		 .each(function(d, i) {
       	 prewidth.push(+d3.select(this).attr('width'));
     	 });
     
-    const xValue = data => data.salary;
+    const xValue = data => data.year;
     const yValue = data => data.Occupations;
     
     xScale.domain([0, d3$1.max(data, xValue)]); 
     yScale.domain(data.map(yValue));
 
 
-    var bars = svg.selectAll(".bars")
+    var bars2 = svg2.selectAll(".bars2")
       .data(data, yValue);
       
 
-    d3.select(".y_axis")
+    d3.select(".y_axis2")
       .transition()
       .duration(1000)
       .call(yAxis);
 
-    d3.select(".x_axis")
+    d3.select(".x_axis2")
       .transition()
       .duration(1000)
       .delay(20)
       .call(xAxis); 
     
-    bars.exit()
+    bars2.exit()
       .transition()
       .duration(2000)
     	.delay(2000)
       .attr("width", 0)
       .remove();
    
-    var merged_bars = bars.enter()
+    var merged_bars2 = bars2.enter()
       .append("rect") 
-      .attr("class", "bars")
+      .attr("class", "bars2")
     	.attr("transform", `translate(0,${margin.top})`)
       .attr("x", margin.left)
       .attr("y", d => yScale(yValue(d)))
       .attr("width", 0)
       .attr("height", yScale.bandwidth())
-      .merge(bars);
+      .merge(bars2);
       
-      merged_bars.transition()
+      merged_bars2.transition()
       .duration(2000)
     	.attr("fill",function(d,i){
       if (xScale(xValue(d)) > prewidth[i])
@@ -273,7 +271,7 @@
   var data = d3.csvParse(str,function(d){
   	    return {
         	Occupations: d.Occupations, 
-          salary:+d.salary
+          year:+d.year
       }; 
   });
     return data;
