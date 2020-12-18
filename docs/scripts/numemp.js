@@ -10,7 +10,7 @@
   var innerHeight = height - margin.top - margin.bottom;
 
   // set title and axis names
-  const titleText = 'Number of Employed in NYC';
+  const titleText = 'Number Employed by Occupation in NYC 2010-2019';
   const xAxisLabelText = 'Population';
 
   // set x-scale and x-axis

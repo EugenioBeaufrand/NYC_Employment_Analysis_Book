@@ -10,7 +10,7 @@
   var innerHeight = height - margin.top - margin.bottom;
 
   // set title and axis names
-  const titleText = 'Salary in NYC';
+  const titleText = 'Salary by Occupation in NYC 2010-2019';
   const xAxisLabelText = 'Salary';
 
   // set x-scale and x-axis

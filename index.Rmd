@@ -25,4 +25,4 @@ Explore disparities in unemployment by demographic factors. See if there are dem
 Explore disparities in salary across demographics and also across different sectors.
 
 ## Data Sources
-In the Github repository of this project, there is a Word Document 'DataSource' which can be consulted for the links to the data source. The employment data comes directly from the city of new york website and census.gov. The economic + job growth data comes from the nyc.gov website, census.gov.
+The introduction of raw data and data sources can be found from this GitHub repo: https://github.com/tracy3057/NYC_Employment_Analysis_Book/blob/main/02-data.Rmd 
