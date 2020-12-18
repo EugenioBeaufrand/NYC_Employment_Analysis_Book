@@ -24,7 +24,7 @@
 <meta name="author" content="Xinyi Liu, Eugenio Beaufrand" />
 
 
-<meta name="date" content="2020-12-18" />
+<meta name="date" content="2020-12-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,12 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
-<link href="libs/parallel-coordinates-2.1.8/parcoords.css" rel="stylesheet" />
-<script src="libs/parcoords-binding-1.0.0/parcoords.js"></script>
-<script src="libs/d3-5.16.0/d3.min.js"></script>
 
 
 
@@ -89,6 +83,7 @@
 <li class="chapter" data-level="2.3.1" data-path="data-sources-1.html"><a href="data-sources-1.html#numemp-datasets"><i class="fa fa-check"></i><b>2.3.1</b> <code>numemp</code> Datasets</a></li>
 <li class="chapter" data-level="2.3.2" data-path="data-sources-1.html"><a href="data-sources-1.html#salary-datasets"><i class="fa fa-check"></i><b>2.3.2</b> <code>salary</code> Datasets</a></li>
 <li class="chapter" data-level="2.3.3" data-path="data-sources-1.html"><a href="data-sources-1.html#education-datasets"><i class="fa fa-check"></i><b>2.3.3</b> <code>education</code> Datasets</a></li>
+<li class="chapter" data-level="2.3.4" data-path="data-sources-1.html"><a href="data-sources-1.html#gdp-datasets"><i class="fa fa-check"></i><b>2.3.4</b> <code>gdp</code> Datasets</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="data-sources-1.html"><a href="data-sources-1.html#problems-with-data"><i class="fa fa-check"></i><b>2.4</b> Problems with Data</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="data-sources-1.html"><a href="data-sources-1.html#inconsistency-in-occupation-names"><i class="fa fa-check"></i><b>2.4.1</b> Inconsistency in Occupation Names</a></li>
@@ -123,8 +118,8 @@
 </ul></li>
 <li class="chapter" data-level="6" data-path="salary.html"><a href="salary.html"><i class="fa fa-check"></i><b>6</b> Salary</a><ul>
 <li class="chapter" data-level="6.1" data-path="salary.html"><a href="salary.html#overview-of-salary-distribution"><i class="fa fa-check"></i><b>6.1</b> Overview of Salary Distribution</a></li>
-<li class="chapter" data-level="6.2" data-path="salary.html"><a href="salary.html#analyze-on-salary-by-years"><i class="fa fa-check"></i><b>6.2</b> Analyze on Salary by Years</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="salary.html"><a href="salary.html#general-trend-of-salary-by-years"><i class="fa fa-check"></i><b>6.2.1</b> General Trend of Salary by Years</a></li>
+<li class="chapter" data-level="6.2" data-path="salary.html"><a href="salary.html#analyzing-average-salary-from-2010-2019"><i class="fa fa-check"></i><b>6.2</b> Analyzing Average Salary from 2010-2019</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="salary.html"><a href="salary.html#general-trend-of-salary-from-2010-2019"><i class="fa fa-check"></i><b>6.2.1</b> General Trend of Salary from 2010-2019</a></li>
 <li class="chapter" data-level="6.2.2" data-path="salary.html"><a href="salary.html#monotonicity-in-salary-trends"><i class="fa fa-check"></i><b>6.2.2</b> Monotonicity in Salary Trends</a></li>
 <li class="chapter" data-level="6.2.3" data-path="salary.html"><a href="salary.html#percentage-difference-by-years"><i class="fa fa-check"></i><b>6.2.3</b> Percentage Difference by Years</a></li>
 </ul></li>
@@ -132,9 +127,9 @@
 <li class="chapter" data-level="6.3.1" data-path="salary.html"><a href="salary.html#distribution-of-the-highest-and-lowest-wages-in-different-counties"><i class="fa fa-check"></i><b>6.3.1</b> Distribution of the Highest and Lowest Wages in Different Counties</a></li>
 <li class="chapter" data-level="6.3.2" data-path="salary.html"><a href="salary.html#percentage-difference-of-salaries-in-different-counties"><i class="fa fa-check"></i><b>6.3.2</b> Percentage Difference of Salaries in Different Counties</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="salary.html"><a href="salary.html#analyze-on-salary-by-genders"><i class="fa fa-check"></i><b>6.4</b> Analyze on Salary by Genders</a><ul>
+<li class="chapter" data-level="6.4" data-path="salary.html"><a href="salary.html#analyzing-salary-by-genders"><i class="fa fa-check"></i><b>6.4</b> Analyzing Salary by Genders</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="salary.html"><a href="salary.html#percentage-difference-of-salaries-between-genders"><i class="fa fa-check"></i><b>6.4.1</b> Percentage Difference of Salaries between Genders</a></li>
-<li class="chapter" data-level="6.4.2" data-path="salary.html"><a href="salary.html#relation-between-percentage-differenct-of-employment-and-salary-in-gender"><i class="fa fa-check"></i><b>6.4.2</b> Relation between Percentage Differenct of Employment and Salary in Gender</a></li>
+<li class="chapter" data-level="6.4.2" data-path="salary.html"><a href="salary.html#relation-between-percentage-difference-of-employment-and-salary-in-gender"><i class="fa fa-check"></i><b>6.4.2</b> Relation between Percentage Difference of Employment and Salary in Gender</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="education.html"><a href="education.html"><i class="fa fa-check"></i><b>7</b> Education</a></li>
@@ -166,18 +161,19 @@
 <div id="overview-of-salary-distribution" class="section level2">
 <h2><span class="header-section-number">6.1</span> Overview of Salary Distribution</h2>
 <p>In order to have an overview of salary distribution according to different occupations in New York City, we draw a Cleveland Dot Plot to show the 10-year-average salary of different occupations first.</p>
+<p><img src="finalproj_files/figure-html/Overview%20of%20Salary%20Distribution-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p><strong>Observations on Average Salaries by Occupation in NYC:</strong></p>
 <ol style="list-style-type: decimal">
 <li>Huge Differences in Salary for Different Occupations.</li>
 </ol>
 <ul>
-<li>There is a huge difference in salary for different kinds of occupations. The range is up to 72947, which is about 3 times of minimum salary.</li>
+<li>There is a huge difference in salary among certain occupations. The range is up to 72947, which is about 3 times of minimum salary.</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>Five clusters for salary distribution.</li>
 </ol>
 <ul>
-<li>The <strong>first</strong> group is <code>Legal</code>, which has much higher average salary compare with all other occupations.</li>
+<li>The <strong>first</strong> group is <code>Legal</code>, which has much higher average salary compared with all other occupations.</li>
 <li>The <strong>second</strong> group includes 7 different occupations, which ranks second in salary levels among all occupations. We can also divide the second group into four sub-groups according to the salary.
 <ul>
 <li>The first sub-group only includes <code>Health diagnosing and treating practitioners and other technical</code>, which has the second largest salary.</li>
@@ -194,32 +190,37 @@
 </ol>
 <ul>
 <li>From the first group to the fifth group, the salary gap between groups is 11623, 13564, 6048, 11989.</li>
-<li>Among all the gaps, the biggest one is between group 2 and group 3, and the gap is 13564. The smallest gap is between gtoup 3 and group 4, and the gap is 6048.</li>
+<li>Among all the gaps, the biggest one is between group 2 and group 3, and the gap is 13564. The smallest gap is between group 3 and group 4, and the gap is 6048.</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
-<li>Top 3 and Last 3 Occupations in Salaries.</li>
+<li>Highest and lowest salary occupations.</li>
 </ol>
 <ul>
-<li>Top 3
+<li><p>Top 3</p>
 <ul>
 <li>Legal</li>
 <li>Health diagnosing and treating practitioners and other technical</li>
 <li>Computer and mathematical</li>
 </ul></li>
-<li>Last 3
+<li><p>Last 3</p>
 <ul>
 <li>Personal care and service</li>
 <li>Farming, fishing, and forestry</li>
 <li>Food preparation and serving related</li>
 </ul></li>
-<li>As can be seen from the plot, the salary range for the top 3 occupations are large. However, for the last 3 occupations, the salary range is relatively small.</li>
+<li><p>As can be seen from the plot, the salary range for the top 3 occupations are large. However, for the last 3 occupations, the salary range is relatively small.<br />
+<br />
+<br />
+<br />
+</p></li>
 </ul>
 </div>
-<div id="analyze-on-salary-by-years" class="section level2">
-<h2><span class="header-section-number">6.2</span> Analyze on Salary by Years</h2>
-<p>One of the things that affects salary is time. So first, we have an analysis on salaries in different years.</p>
-<div id="general-trend-of-salary-by-years" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> General Trend of Salary by Years</h3>
+<div id="analyzing-average-salary-from-2010-2019" class="section level2">
+<h2><span class="header-section-number">6.2</span> Analyzing Average Salary from 2010-2019</h2>
+<p>One of the things that affects salary is time. In this section, analysis will be performed on salary with respect to years and the passage of time.</p>
+<div id="general-trend-of-salary-from-2010-2019" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> General Trend of Salary from 2010-2019</h3>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p><strong>Observations on Salaries by Occupation NYC through 2010-2019:</strong><br />
 </p>
 <ol style="list-style-type: decimal">
@@ -230,32 +231,36 @@
 </p>
 <p>1.) Legal occupations<br />
 </p>
-<p>This occupation is in an monotonous increasing trend in salary, and the increasing speed is also becoming faster.<br />
+<p>The average salary of workers in legal occupations is increasing monotonically. In this span of years, the rate at which the average salary is increasing is increasing, with a bigger difference betweeen 2015 and 2019 salaries and 2015 and 2010.<br />
 </p>
 <p>2.) Health diagnosing and treating practitioners and other technical occupations<br />
 </p>
-<p>This occupation also has a monotonous increasing trend in salary.<br />
+<p>This occupation has a monotonically increasing salary trend.<br />
 </p>
 <p>3.) Computer and mathematical occupations<br />
 </p>
-<p>This occupation also has a monotonous increasing trend in salary.<br />
+<p>This occupation has a monotonically increasing salary trend.<br />
 </p>
 <p>Last 3<br />
 </p>
 <p>1.) Food preparation and serving related occupations<br />
 </p>
-<p>This occupation has the lowest salary within the year range in 2010. However, its salary is in an increasing trend by years.<br />
+<p>This occupation has the lowest salary within the year range in 2010. However, its salary is increasing over time, and from 2015 to 2019, a rather large salary bump was seen compared to the window from 2010 to 2015.<br />
 </p>
 <p>2.) Farming, fishing, and forestry occupations<br />
 </p>
-<p>The salary for this occupation decreased first and then increased. However, it still did not reach the salary level in 2019 as it was in 2010.<br />
+<p>The salary for this occupation decreased first and then increased. However, by 2019 the salary didn’t increase enough from 2015 to be as high as it was in 2010.<br />
 </p>
 <p>3.) Personal care and service occupations<br />
 </p>
-<p>The salary trend for this occupation also decreased first and then increased. Different from the occupation of farming, fishing, and forestry occupations, the salary only dropped a little bit first and then increased a lot. Therefore, generally speaking, the salary of this occupation increased.<br />
+<p>The salary trend for this occupation also decreased first and then increased. In this case, the salary only dropped a little bit first and then increased a lot. Therefore, generally speaking, the salary of this occupation increased.<br />
 </p>
-<p>In order to see the salary variances of the 25 occupations in detail, we draw boxplot for comparisons.<br />
+<p>In order to see the salary variances of the 25 occupations in detail, a boxplot is drawn for comparisons.<br />
+<br />
+<br />
+<br />
 </p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p><strong>Observations from Boxplot of salaries per year:</strong></p>
 <p>Salaries that seem prone to dramatic fluctuation over time:<br />
 </p>
@@ -283,15 +288,18 @@
 </p>
 <p>6.) Material moving<br />
 </p>
-<p>When reading this plot is that the salaries in any particular occupation may change the viewers perception as to what constitutes more variation. To address this, a second plot has been created in which the box plots are normalized by dividing the salaries in each year by the mean across this sector. While the variation won’t be apparent, the relative degrees of fluctuation will become more apparent.<br />
-</p>
+<p>When reading this plot the difference in size between the salaries of the different occupations may make certain variations seem more pronounced than others when this is not necessarily the case. To address this, a second plot has been created in which the box plots are normalized by dividing the salaries in each year by the mean across this sector. While the true numerical variation won’t be apparent, the relative degrees of fluctuation between occupations will become more apparent.<br />
+<br />
+<br />
+<br />
+<img src="finalproj_files/figure-html/Yearly%20Normalized%20BoxPlot2-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p><strong>Observations from salaries in sector per year:</strong></p>
-<p>In this plot, the total values of employees working in each field in each year are normalized by their averages. There are something special you can see from this normalized boxplot.<br />
-</p>
-<p>1.) Farming, fishing and forestry ranks first in variation in salaries.
+<p>In this plot, the total values of employees working in each field in each year are normalized by their averages. Due to this normalization, it is more clear how the salaries of each occupation type vary over the period from 2010-2019 with respect to themselves.<br />
+<br />
+1.) Farming, fishing and forestry ranks first in variation in salaries.
 This makes sense because this occupation has relatively low salaries, so when normalized, it is more likely to show high variation in salary by years.<br />
-</p>
-<p>2.) Construction and extraction also has huge variance, even when the average salary for this occupation is not very low.
+<br />
+2.) Construction and extraction also has huge variance, even when the average salary for this occupation is not very low.
 There are two outliers in this sector, in 2010, it has the lowest salary which is 26284, and in 2018, it has the highest salary which is 56175. Without the two data points, the variance will be much smaller. There might be more buildings under construction in 2018 and much fewer in 2010.<br />
 </p>
 <p>3.) Healthcare support and Law enforcement workers are the two most stable sectors in salaries.
@@ -300,9 +308,9 @@ Among all the occupations, Healthcare support and Law enforcement workers has th
 </div>
 <div id="monotonicity-in-salary-trends" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Monotonicity in Salary Trends</h3>
-<p>Usually, we tend to think salaries should have increasing trends by years. From the plot, however, we can discover the salaries do not have an increasing trend for all types of occupations. Among all types of occupations, only two types of occupations have lower salaries in the 2019 than in 2010 to 2013, namely, farming, fishing and forestry occupations and healthcare support occupations. Generally speaking, there are two different trends of salaries, namely, a monotonous increasing trend, which includes 18 occupations, and the trend that first decreases then increases, which includes 7 occupations.</p>
-<div id="monotonous-increase" class="section level4">
-<h4><span class="header-section-number">6.2.2.1</span> Monotonous Increase</h4>
+<p>It is often thought that salaries typically increase over time. In this plot however, the salaries of occupations which do not have increasing trends over the time period 2010-2019 will be considered. Among all types of occupations, only two types of occupations have lower salaries in the 2019 than in 2010 to 2013, namely, farming, fishing and forestry occupations and healthcare support occupations. Generally speaking, there are two different trends of salaries, namely, a monotonically increasing trend, which includes 18 occupations, and the trend that first decreases then increases, which includes 7 occupations.</p>
+<div id="monotonic-increase" class="section level4">
+<h4><span class="header-section-number">6.2.2.1</span> Monotonic Increase</h4>
 <p>There are kinds of occupations in this trend group.
 1. Legal occupations
 2. Health diagnosing and treating practitioners and other technical occupations
@@ -338,6 +346,7 @@ Among all the occupations, Healthcare support and Law enforcement workers has th
 </div>
 <div id="detailed-analysis-on-first-decrease-then-increase-occupations" class="section level4">
 <h4><span class="header-section-number">6.2.2.3</span> Detailed Analysis on “First Decrease Then Increase” Occupations</h4>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p><strong>Observations from sectors without clear salary trends:</strong></p>
 <p>From the above plots, we see both the variations in salaries and the general trends for these occupations.<br />
 1. Law enforcement workers including supervisors<br />
@@ -362,28 +371,35 @@ For this occupation, it salary increased a little from 2011 to 2012, and then be
 </div>
 <div id="percentage-difference-by-years" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Percentage Difference by Years</h3>
-<p>It is also very important to analyze on the variations of salaries of different occupations. Because different occupations have different base wages, sometimes it might be more meaningful to calculate the percentage of wage fluctuations in wages. Here, we use the average wages to represent the wage of different occupations.</p>
-<p><strong>Observations from percentage difference of salary via gender:</strong></p>
-<p>As we can see from the above plot, we can discover that the majority of these occupations have increased in salaries in the past decade. Only two of these categories have decreased in salaries. Among all occupations, the occupation of Construction and extraction occupations has the biggest Percentage Difference in salary in 2010 and 2019, and the occupation of Healthcare support occupations have the smallest.<br />
+<p>Along with studying how salaries tend to vary on an absolute scale over the course of years, salary trends can also be investigated from a percent change standpoint. Because different occupations have different base wages, it might be meaningful to percent changes in wages. Each bar in the following plot represents the percent increase or decrease over the course of the years 2010 to 2019.<br />
+<br />
+<img src="finalproj_files/figure-html/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;" /><br />
+<strong>Observations from percentage difference of salary via gender:</strong><br />
+As can be seen from the above plot, we discover that the majority of these occupations have increased in salaries in the past decade. Only two of these categories have decreased in salaries. Among all the occupations, construction and extraction occupations have seen the biggest percent change in salary from 2010 to 2019, and Healthcare support occupations have had the smallest.<br />
+<br />
+<br />
 </p>
 </div>
 </div>
 <div id="analyze-on-salary-by-counties" class="section level2">
 <h2><span class="header-section-number">6.3</span> Analyze on Salary by Counties</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p><strong>Observations on Salaries by Occupation NYC for different counties:</strong></p>
-<p>As can be seen in this plot, for different occupations, the counties with the highest and lowest wages in each occupation are different. For the majority of the occupations, the highest salaries are in New York County and their lowest salaries are in Bronx County. For the relatively low-paid occupations, the highest salaries are in Richmond County.<br />
+<p>As can be seen in this plot, for different occupations, the counties with the highest and lowest wages in each occupation are different. For the majority of the occupations, the highest salaries are in New York County and the lowest salaries are in Bronx County. For the relatively low-paid occupations, the highest salaries tend to be in Richmond County.<br />
 </p>
 <div id="distribution-of-the-highest-and-lowest-wages-in-different-counties" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> Distribution of the Highest and Lowest Wages in Different Counties</h3>
-<p>We draw a dodged bar chart to reflect the specific distribution data of the highest and lowest wages in different counties.<br />
+<p>We draw a side by side bar chart to reflect the specific distribution data of the highest and lowest wages in different counties.<br />
 </p>
-<p><br />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-9-1.png" width="768" style="display: block; margin: auto;" /><br />
+<br />
 <strong>Observations on the Distribution of the Highest and Lowest wages in Different Counties:</strong></p>
-<p>As can be seen from this plot, many occupations have the lowest salaries in Bronx County, some of them are in Kings County and New York County, but none of them appears in Queens County and Richmond County.<br />
+<p>As can be seen from this plot, the place where most occupations see their lowest salary compared to the other counties is Bronx County. While few of the lowest salaries for certain occupations appear in Kings County and New York County, no occupations have the lowest salary in Queens County and Richmond County.<br />
 </p>
-<p>For the occupations with highest salaries, the majority of them are in New York County and Richmond County. Several of them also appear in Queens County, but none of them appear in Bronx County and Kings County.<br />
+<p>For the highest salaries within occupation types, the majority of them are in New York County and Richmond County. Several of them also appear in Queens County, but none of them appear in Bronx County and Kings County.<br />
 </p>
-<p>To see whether there are changes of the distribution of highest and lowest wages in different countries, we draw a stacked bar chart by years. We use different colors to represent different counties.</p>
+<p>To see whether there have been changes in the distribution of the highest and lowest wages in different countries, a stacked bar chart over the years 2010-2019 is drawn. Different colors are used to represent different counties.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-10-1.png" width="864" style="display: block; margin: auto;" /></p>
 <p><strong>Observations on the Probability of having the Highest/Lowest Salaries in Different Counties:</strong></p>
 <p>As can be seen in this plot, from the perspective of each year alone, the situation is slightly different from the overall average, which is reflected in the following aspects.<br />
 </p>
@@ -391,29 +407,45 @@ For this occupation, it salary increased a little from 2011 to 2012, and then be
 <li>For the highest salary<br />
 </li>
 </ol>
-<p>In the overall trend, maximum salary for all occupations do not lie in Bronx County and Kings County. However, as can be seen from the stacked bar chart, in year 2010, 2012, 2013 and 2014, there are some occupations with highest salary in Bronx County. Also, except for year 2014 and year 2017, there are some occupations with highest salary in Kings County.<br />
+<p>In the previous averaged side by side bar chart, the maximum salary does not lie in Bronx County and Kings County for any occupation. However, as can be seen from the stacked bar chart, in year 2010, 2012, 2013 and 2014, there are some occupations with highest salary in Bronx County. Also, except for year 2014 and year 2017, there are some occupations with highest salary in Kings County.<br />
 </p>
 <ol start="2" style="list-style-type: decimal">
 <li>For the lowest salary<br />
 </li>
 </ol>
-<p>In the overall trend, minimum salary for all occupations do not lie in Queens County and Richmond County. However, as can be seen from the stacked bar chart, except for year 2013, there are some occupations with lowest salary in Queens County. Also, except for year 2018, there are some occupations with lowest salary in Richmond County.<br />
-</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Percentage Difference in salaries between different counties<br />
-</li>
-</ol>
-<p>We also discover that the variations among different boroughs for different occupations are different. Therefore, we use a bar chart to order the degree of variance among different boroughs for all types of occupations. For each occupation, we use the salary in five counties to minus the smallest salary, add them up and divide the sum by 5. Then, we divide the value by the smallest salary to represent the variance of each occupation.<br />
+<p>In the previous averaged side by side bar chart, the minimum salary does not lie in Queens County and Richmond County for any occupation. However, as can be seen from the stacked bar chart, in every year but 2013 there are some occupations in which the lowest salary of the five counties for that occupation is in Queens County. Also, in every year but 2018, there are some occupations in which the lowest salary of the five counties for that occupation is in Richmond County.<br />
+<br />
+<br />
+<br />
+<br />
 </p>
 </div>
 <div id="percentage-difference-of-salaries-in-different-counties" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Percentage Difference of Salaries in Different Counties</h3>
-<p><strong>Observations on Percentage Difference of Salaries in Different Counties:</strong></p>
+<p>It can also be discovered that the variations among different boroughs for different occupations are different. Therefore, a bar chart is used to display the degree of variance among different boroughs for all types of occupations. For each occupation, we use the salary in five counties to minus the smallest salary, add them up and divide the sum by 5. Then, we divide the value by the smallest salary to represent the variance of each occupation.<br />
+</p>
+<pre><code>## # A tibble: 25 x 8
+##    Occupations Boroughs Salary_county Salary_occupati~ MinValue MaxValue
+##    &lt;fct&gt;       &lt;fct&gt;            &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+##  1 Management  Bronx C~        54821.           74678.   54821.  104577.
+##  2 Business a~ Bronx C~        54553.           68874.   54553.   92657.
+##  3 Computer a~ Bronx C~        61063.           75489.   61063.   87935.
+##  4 Architectu~ Bronx C~        56376.           67802.   56376.   75284.
+##  5 Life, phys~ Bronx C~        57610.           62795.   57610.   75636.
+##  6 Community ~ Bronx C~        41121.           44002.   41121.   46983.
+##  7 Legal       Bronx C~        64578.           93079.   64578.  155399.
+##  8 Education,~ Bronx C~        39589            46372.   39589    53045.
+##  9 Arts, desi~ Bronx C~        37147            49230.   37147    60332.
+## 10 Health dia~ Bronx C~        71399.           81456.   71399.   98130.
+## # ... with 15 more rows, and 2 more variables: variance &lt;dbl&gt;,
+## #   variance_pct &lt;dbl&gt;</code></pre>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><strong>Observations on Range of Percent Difference in Salaries NYC Counties:</strong></p>
 <ol style="list-style-type: decimal">
-<li>Top 5 in Variation<br />
+<li>Top 5 Highest Ranges of Percent Differences<br />
 </li>
 </ol>
-<p>1.) Sales and related occupation<br />
+<p>1.) Sales and related occupations<br />
 </p>
 <p>2.) Legal occupations<br />
 </p>
@@ -424,7 +456,7 @@ For this occupation, it salary increased a little from 2011 to 2012, and then be
 <p>5.) Arts, design, entertainment, sports, and media occupations<br />
 </p>
 <ol start="2" style="list-style-type: decimal">
-<li>Last 5 in Variation<br />
+<li>Bottom 5 Highest Ranges of Percent Differences<br />
 </li>
 </ol>
 <p>1.) Personal care and service occupations<br />
@@ -439,22 +471,26 @@ For this occupation, it salary increased a little from 2011 to 2012, and then be
 </p>
 </div>
 </div>
-<div id="analyze-on-salary-by-genders" class="section level2">
-<h2><span class="header-section-number">6.4</span> Analyze on Salary by Genders</h2>
-<p><strong>Observations on the Salaries of Different Occupations of Different Genders in NYC:</strong></p>
-<p>As can be seen in this Cleveland dot plot, the salaries of some occupations varies a lot between different genders, while some other occupations have similar salaries for two genders. Also, for some kinds of occupations, male have higher salaries and for other kinds of occupations, woman have higher salaries. To have a deeper understanding of these characteristics, we have a deeper analysis on salaries for different genders in different occupations.<br />
+<div id="analyzing-salary-by-genders" class="section level2">
+<h2><span class="header-section-number">6.4</span> Analyzing Salary by Genders</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><strong>Occupation Average Salaries by Gender NYC:</strong></p>
+<p>As can be seen in this Cleveland dot plot, the salaries of some occupations vary a lot between different genders, while for other occupations the salaries for the two genders are quite similar. Also, for some kinds of occupations, males have higher salaries and for other kinds of occupations, woman have higher salaries. To have a deeper understanding of these characteristics, we have a deeper analysis on salaries for different genders in different occupations.<br />
 </p>
 <div id="percentage-difference-of-salaries-between-genders" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> Percentage Difference of Salaries between Genders</h3>
-<p>We use a bar chart to order the salary variance between genders for different occupations. To quantify the difference, we divide the income difference between male and female by the average salary of the occupation.<br />
+<p>A bar chart is used to order the percentage difference of salaries between genders for different occupations. To quantify the difference, the income difference between male and female is divided by the average salary for that occupation.<br />
 </p>
-<p><strong>Observations on the Percentage Difference of Salaries for Different Genders:</strong></p>
-<p>From the horizontal bar chart above, we discover the following characteristics.<br />
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><strong>Observations on the Percentage Difference of Salaries for Different Genders:</strong><br />
+From the horizontal bar chart above, the following observations can be made.<br />
+<br />
+<br />
+For most of the occupations, male employees have higher salaries than female employees. Female employees only have higher salaries in 4 kinds of occupations among the 25 kinds of occupations, namely, Construction and extraction occupations, Installation, maintenance, and repair occupations, Community and social service occupations, and Transportation occupations.<br />
+<br />
 </p>
-<p>For most of the occupations, male employees have higher salaries than female employees. Female employees only have higher salaries in 4 kinds of occupations among the 25 kinds of occupations, namely, Construction and extraction occupations, Installation, maintenance, and repair occupations, Community and social service occupations, and Transportation occupations.<br />
-</p>
-<div id="top-5-and-last-5-in-variance" class="section level4">
-<h4><span class="header-section-number">6.4.1.1</span> Top 5 and Last 5 in Variance</h4>
+<div id="top-5-and-bottom-5-in-magnitude-of-percent-difference" class="section level4">
+<h4><span class="header-section-number">6.4.1.1</span> Top 5 and Bottom 5 in Magnitude of Percent Difference</h4>
 <ol style="list-style-type: decimal">
 <li>Top 5<br />
 </li>
@@ -470,7 +506,7 @@ For this occupation, it salary increased a little from 2011 to 2012, and then be
 <p>5.)Personal care and service occupations<br />
 </p>
 <ol start="2" style="list-style-type: decimal">
-<li>Last 5<br />
+<li>Bottom 5<br />
 </li>
 </ol>
 <p>1.) Transportation occupations<br />
@@ -484,11 +520,12 @@ For this occupation, it salary increased a little from 2011 to 2012, and then be
 <p>5.) Computer and mathematical occupations</p>
 </div>
 </div>
-<div id="relation-between-percentage-differenct-of-employment-and-salary-in-gender" class="section level3">
-<h3><span class="header-section-number">6.4.2</span> Relation between Percentage Differenct of Employment and Salary in Gender</h3>
-<p>Intuitively, the gender composition of employees in a profession is related to the level of wages for gender. We want to analyze if this intuition makes sense. Therefore, we use two categorical variables to represent the two characteristics, namely “Gender Distribution” and “Salary Distribution”. For the category of “Gender Distribution”, there are two values, Male-dominated, which means there are more male employees in this occupation than female employees, and Female-dominated, which means there are more female employees in this occupation than male employees. For the category of “Salary Distribution”, we also set two values, Male-higher, which means male employees have higher salary in this occupation, and Female-higher, which means female employees have higher salary in this occupation. Then, we draw a mosaic plot to measure the relation.<br />
+<div id="relation-between-percentage-difference-of-employment-and-salary-in-gender" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Relation between Percentage Difference of Employment and Salary in Gender</h3>
+<p>Intuitively, the gender composition of employees in a profession may be related to the level of wages for each gender. We want to analyze if this intuition makes sense. Therefore, we use two categorical variables to represent the two characteristics, namely “Gender Distribution” and “Salary Distribution”. For the category of “Gender Distribution”, there are two values, Male-dominated, which means there are more male employees in this occupation than female employees, and Female-dominated, which means there are more female employees in this occupation than male employees. For the category of “Salary Distribution”, two values are set, Male-higher, which means male employees typically have higher salaries in this occupation, and Female-higher, which means female employees typically have higher salaries in this occupation. Then, we draw a mosaic plot to measure the relation.<br />
 </p>
-<p>From this mosaic plot, we can see that salary distribution is related to gender composition. However, the characteristic of this connection is against tuition. We tend to think that in the “Female-higher” salary distribution group, there will be more female-dominated occupations, and in the “Male-higher” salary distribution group, there will be more male-dominated occupations. However, the conclusion from the plot is opposite against our tuition.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>From this mosaic plot, it can be seen that there may be some relation between salary distribution and gender composition. However, the characteristic of this connection is against tuition. It seems intuitive to think that in the “Female-higher” salary distribution group, there will be more female-dominated occupations, and in the “Male-higher” salary distribution group, there will be more male-dominated occupations. However, based on what can be observed from looking at this plot, the opposite is actually true.</p>
 
 </div>
 </div>
