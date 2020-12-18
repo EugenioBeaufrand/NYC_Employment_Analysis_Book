@@ -69,3 +69,4 @@ interactive-component
 employment-by-years
 salary-by-years
 conclusion
+analysis-on-employment-by-race

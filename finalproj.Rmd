@@ -1,3 +1,114 @@
+--- 
+title: "NYC Employment Analysis"
+author: "Xinyi Liu, Eugenio Beaufrand"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+---
+--- 
+title: "NYC Employment Analysis"
+author: "Xinyi Liu, Eugenio Beaufrand"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+---
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+# Introduction
+
+## Background
+NYC might just be the city with the richest employment landscape in the world. From blue collar workers to big corporation executives, and strong representation from almost every ethnicity, New York has it all. In addition to this, it happens to be a city where the municipality as well as federal government sources provide detailed data about the employment landscape.These factors contribute to the New York as a good candidate for to conduct exploratory data analysis.
+
+## Purpose
+Explore employment and job data in NYC through the period 2010-2019. Potentially draw conclusions about the landscape with regards to employment, demographics, and salary.
+
+## Areas of interest
+Explore the employment of demographics (e.g: race, gender) and their fluctuations. Potential to find disparities in different demographics employment levels, explore reasons why this might be the case. Connect these disparities to this being a probabilistic tendency based on our intuition, current events at the time, or trends.
+
+Explore the employment of people working in different fields. Explore trends in how likely certain sectors are to be employed and how this changes over time. See how this has reacted over our period to current events or trends.
+
+Explore disparities by demographic of people working in different fields. Do people of different demographics prefer to work in certain fields? Does this correspond with our intuition on the matter.
+
+Explore disparities in unemployment by demographic factors. See if there are demographic groups with a higher propensity for unemployment, explore the reasons as to why this might be the case.
+
+Explore disparities in salary across demographics and also across different sectors.
+
+## Data Sources
+In the Github repository of this project, there is a Word Document 'DataSource' which can be consulted for the links to the data source. The employment data comes directly from the city of new york website and census.gov. The economic + job growth data comes from the nyc.gov website, census.gov.
+
+<!--chapter:end:index.Rmd-->
+
+
+# Data sources
+
+Placeholder
+
+
+## Process of Data Collection
+## Logistics of Data Collection
+## Basic Information of Datasets
+### `numemp` Datasets
+#### Sources of `numemp`
+#### Basic Information
+### `salary` Datasets
+#### Sources of `salary`
+#### Basic Information
+### `education` Datasets
+#### Sources of `education`
+#### Basic Information
+### `gdp` Datasets
+#### Sources of `gdp`
+#### Basic Information
+## Problems with Data
+### Inconsistency in Occupation Names
+### Formating Problem Caused by File Download
+### Differences of Table Organizing Methods in Different Years.
+### Characters in Numbers
+### Different Expressions of NAs
+
+<!--chapter:end:02-data.Rmd-->
+
+
+# Data transformation
+
+Placeholder
+
+
+## Transformation Process
+## Transformation Code
+
+<!--chapter:end:03-cleaning.Rmd-->
+
+
+# Missing values
+
+Placeholder
+
+
+## 'numemp' dataset
+### Missing Value Analysis
+#### Initial Analysis
+#### Further Analysis
+### Pre-process Missing Values
+## 'salary' dataset
+### Missing Value Analysis
+#### Initial Analysis
+#### Further Analysis
+### Pre-process Missing Values
+
+<!--chapter:end:04-missing.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
 # Results 
 
 ```{r Imports, include=FALSE,echo=FALSE}
@@ -1525,3 +1636,45 @@ ggplot(Salary_NumEmp,aes(GDP,Value))+
 **Observations on NumEmp vs GDP/NYC GDP Per Capita:**
 
 |   The scatter dot plots above display the relationship between employment and GDP/NYC GDP per capita in different salary categories. From the plots, it can be seen clearly that there is a turning point in the categories of '\$25000 to \$34999','\$35000 to \$49999'. Before the two categories, the number of employed is in a decreasing trend when GDP/NYC GDP per capita goes up. However, in the groups with higher salaries, the number of employed is in a increasing trend when GDP/NYC GDP per capita goes up.
+
+<!--chapter:end:05-results.Rmd-->
+
+
+# Interactive component
+
+Placeholder
+
+
+## Employment by Years
+## Salary by Years
+
+<!--chapter:end:06-interactive.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+# Conclusion
+
+Throughout the course of this project, a thorough analysis was done on the topics of employment, salary, education, and gdp relating to the population of NYC.
+\
+\
+Several interesting discoveries were made by exploring the data and creating visualizations to get a better sense of the dynamics and landscape of these areas. Particularly interesting findings were the proportional representation of race groups in different occupations assuming equal population, investigations into the stability of different occupations, investigations into salary percentage differences and how they varied from males to females, and female and male relative proportionality of having a bachelors degree.
+\
+\
+One limitation of this work is that many of the plots and data are simply estimates. These estimates are within a certain range of confidence, so while they may be fairly representative for data summaries in which a large number of entries were present and the confidence was high, this wasn't always the case. A more thorough analysis could include a detailed consideration of confidence of each data estimate with relation to how the data is being used. 
+\
+\
+Another limitation of this work is that since many of these trends take place over the course of merely a decade, the analyses in this work are very uncertain to be a good baseline for identifying long term trends and behaviors with respect to what was investigated. However these findings may be contemporarily relevant and provide insight perhaps into the next couple of years and potentially beyond.
+\
+\
+Future directions for this work, and something that would have been of great interest during this work is to do a similar analysis but find a data source containing a more comprehensive dataset where income, race, age, educational attaintment, gender, and occupation are all linked. This was not the case in this analysis and in some cases, research on some areas such as education and GDP were limited.
+\
+\
+One lesson learned during the course of this project is that a relatively confined set of data can be permuted in many ways to discover many findings, and that the imagination can be a great asset in finding meaning and intrigue and value from what had been before been a mess of numbers and factors. Another lesson learned is that formatting a large project in RMD is not as easy as it seems. One last lesson learned is that employing this kind of exploratory and visualization work before creating models could very instructive in terms of providing a framework for what to do next. It is the opinion of the authors that with this deep background relating to NYC, that hitting the ground running in taking the next step of the Data Science process will have been aided greatly by this work.
+
+<!--chapter:end:07-conclusion.Rmd-->
+
