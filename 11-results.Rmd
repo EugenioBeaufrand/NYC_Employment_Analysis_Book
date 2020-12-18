@@ -365,21 +365,21 @@ Salary_NumEmp$Earning_Category = factor(Salary_NumEmp$Earning_Category, levels=c
 
 ```{r Themes,include=FALSE,echo=FALSE}
 mytheme <- theme(axis.text=element_text(size = 10),
-  axis.title=element_text(size=12, face = "bold"),
-  plot.title = element_text(size = 14, face = "bold"),
-  legend.title = element_text(size = 12),
-  legend.text = element_text(size = 10))
+  axis.title=element_text(size=14, face = "bold"),
+  plot.title = element_text(size = 14.5, face = "bold",hjust = 0.5),
+  legend.title = element_text(size = 14),
+  legend.text = element_text(size = 12))
 
 mytheme1 <- theme(axis.text=element_text(size = 10),
-  axis.title=element_text(size=12, face = "bold"),
-  plot.title = element_text(size = 18, face = "bold"),
-  legend.title = element_text(size = 12),
-  legend.text = element_text(size = 10))
+  axis.title=element_text(size=14, face = "bold"),
+  plot.title = element_text(size = 18.5, face = "bold",hjust = 0.5),
+  legend.title = element_text(size = 14),
+  legend.text = element_text(size = 12))
 
 mytheme2 <- theme(axis.text=element_text(size = 10),
-  axis.title=element_text(size=12, face = "bold"),
-  plot.title = element_text(size = 15, face = "bold"),
-  legend.title = element_text(size = 12),
+  axis.title=element_text(size=14, face = "bold"),
+  plot.title = element_text(size = 15.5, face = "bold",hjust = 0.5),
+  legend.title = element_text(size = 14),
   legend.text = element_text(size = 10))
 ```
 
@@ -390,15 +390,15 @@ ks <- function (x) { number_format(accuracy = 1,
                                    big.mark = ",")(x) }
 ```
 
-##Employment
-\
-\
+## Employment
+
 In this sub chapter, occupational employment is examined with respect to boroughs, genders, races, and in aggregate.
 \
-\
+
+
 ### Overview of Employment Distribution
 
-In order to have an overview of employment distribution according to different occupations in New York City, we draw a Cleveland Dot Plot to show the 10-year-average of number of employed first.\
+In order to have an overview of employment distribution according to different occupations in New York City, a Cleveland Dot Plot was drawn to show the 10-year-average of number of employed first.\
 
 ```{r Aggregate Cleveland Dot Plot,fig.width=10,echo=FALSE}
 # a general analysis with average numemp of all occupations by using cleveland dot plot
@@ -419,37 +419,37 @@ ggplot(AggregateData) +
 
 2. Three clusters for employment. 
 
-  * The **first** group includes `Office and administrative support`, `Management`, `Sales and related`, which is a group with the biggest number of employed.
-  * The **second** group includes the majority of occupations and have relatively similar number of employed among occupations. 
-  * The **third** group contains `Farming, fishing, and forestry` only, which is the group with the smallest number of employed.
+ + The **first** group includes `Office and administrative support`, `Management`, `Sales and related`, which is a group     with the biggest number of employed.
+ + The **second** group includes the majority of occupations and have relatively similar number of employed among            occupations. 
+ + The **third** group contains `Farming, fishing, and forestry` only, which is the group with the smallest number of        employed.
 
 3. Gaps between the three clusters.
 
   * As can be seen from the plot, the gap between the first group and second group is very large, while the gap between the second and third group is relatively small.
   
-4. Top 3 and Last 3 Occupations in Employment.
+4. Top 3 and Bottom 3 Occupations in Employment:
 
-  * Top 3
-    * Office and administrative support
-    * Management
-    * Sales and related
+ * Top 3:
+  * Office and administrative support
+  * Management
+  * Sales and related
     
-  * Last 3
-    * Farming, fishing, and forestry
-    * Life, physical, and social science
-    * Law enforcement workers
-\
-\
+ * Bottom 3:
+  * Farming, fishing, and forestry
+  * Life, physical, and social science
+  * Law enforcement workers\
+  
+  
+### Analysis on Employment by Years
 
-### Analyze on Employment by Years
-
-One of the things that affects employment is time. So first, we have an analysis on employment in different years.
+Employment tends to change over time. So one area of analysis that was performed was to examine employment throughout the years 2010-2019.
 
 #### General Trend of Employment by Years
 
 ```{r Aggregate Yearly Cleveland Dot Plot filtered into 3 years,fig.width=10,echo=FALSE}
 ggplot(TrimmedAggregateYearlyData) +
-geom_point(aes(YearlyNumEmp, reorder(Occupations,YearlyNumEmp), color = year),size = 2, alpha = 0.75) + ylab('Occupation') + xlab('Number Employed') + ggtitle('Number Employed by Occupation NYC 2010-2019') + scale_x_continuous(labels = ks) +
+geom_point(aes(YearlyNumEmp, reorder(Occupations,YearlyNumEmp), color = year),size = 2, alpha = 0.75) + 
+  ylab('Occupation') + xlab('Number Employed') + ggtitle('Number Employed by Occupation NYC 2010-2019') +                   scale_x_continuous(labels = ks) + 
   scale_fill_manual(values=c('purple','green','yellow')) +
   mytheme
 ```
@@ -458,18 +458,23 @@ geom_point(aes(YearlyNumEmp, reorder(Occupations,YearlyNumEmp), color = year),si
 
 The most striking observations from this Cleveland dot plot are where there are clear trends over the decade, that coincide with intuition about the general trend of a sector. Some of the most striking trends are:\
 
-1.) Production occupations steadily decreasing over the course of the decade, the only sector where the number of employees for 2010 is lowest of the three years.\
+|   1.) Production occupations steadily decreasing over the course of the decade, the only sector where the number of employees for 2010 is lowest of the three years.
 
-2.) Material moving occupations steadily increasing over the course of the decade.\
 
-3.) Computer and mathematical as well as architecture and engineering occupations quite quickly increasing over the course of the decade especially relative to their size.\
+|   2.) Material moving occupations steadily increasing over the course of the decade.
 
-4.) Health care support occupations growing at a stagnant rate from 2010 to 2015, but then growing rapidly from 2015 to 2019.\
 
-5.) Food preparation and serving related occupations growing steadily from 2010 to 2019.\
-\
+|   3.) Computer and mathematical as well as architecture and engineering occupations quite quickly increasing over the course of the decade especially relative to their size.
 
-In order to see the employment variances of the 25 occupations in detail, we draw boxplot for comparisons.\
+
+|   4.) Health care support occupations growing at a stagnant rate from 2010 to 2015, but then growing rapidly from 2015 to 2019.
+
+
+|   5.) Food preparation and serving related occupations growing steadily from 2010 to 2019.
+
+
+
+In order to see the employment variances of the 25 occupations in detail, a boxplot is drawn.\
 
 ```{r Yearly BoxPlot,fig.width=10,fig.height=6,echo=FALSE}
 ggplot(YearlyNumEmps) +
@@ -485,29 +490,37 @@ ggplot(YearlyNumEmps) +
 
 Occupations that seem prone to dramatic fluctuation over time:\
 
-1.) Management occupations\
+|   1.) Management occupations
 
-2.) Office and administrative support occupations\
 
-3.) Health care support occupations\
+|   2.) Office and administrative support occupations
 
-4.) Computer and Mathematical occupations\
+
+|   3.) Health care support occupations
+
+
+|   4.) Computer and Mathematical occupations
+
+\
 
 Occupations where the number of employees has fluctuated very little:\
 
-1.)Law enforcement\
+|   1.)Law enforcement
 
-2.)Fire fighting\
 
-3.)Building and grounds keeping occupations\
+|   2.)Fire fighting
 
-4.)Legal occupations\
 
-Something to be noted when reading this plot is that the number of people working in any particular occupation may change the viewers perception as to what constitutes more variation. To address this, a second plot has been created in which the box plots are normalized by dividing the number employed in each year by the mean across this sector. While the variation in total number employed won't be apparent, the relative degrees of fluctuation will become more apparent.
+|   3.)Building and grounds keeping occupations
+
+
+|   4.)Legal occupations
+
 \
-\
-\
-\
+
+Something to be noted when reading this plot is that the number of people working in any particular occupation may change the viewers perception as to what constitutes more variation. To address this, a second plot has been created in which the box plots are normalized by dividing the number employed in each year by the mean across this sector. While the variation in total number employed won't be apparent, the relative degrees of fluctuation will become more apparent.\
+
+
 ```{r Yearly Normalized BoxPlot,fig.width=10,fig.height=6,echo=FALSE}
 ggplot(YearlyNumEmps) +
   geom_boxplot(aes(x = Normalized, y = reorder(x = Occupations,Normalized, FUN = median)),
@@ -531,75 +544,99 @@ This indicates that the number of people working in law enforcement and firefigh
 
 3.) As a percent of the number of employees working in each sector, the following were most prone to large shifts in number employed:
 
-  * Farming, fishing and forestry
-  * Material moving occupations
-  * Computer and mathematical occupations
-  * Health technologists and technicians
-  * Healthcare support occupations
+ * Farming, fishing and forestry
+ * Material moving occupations
+ * Computer and mathematical occupations
+ * Health technologists and technicians
+ * Healthcare support occupations
 
 By contrast, these professions were the most stable:
 
-  * Legal occupations
-  * Sales occupations
-  * Law enforcement workers
-  * Fire fighters
-  * Construction and extraction occupations
-\
-\
-
-
+ * Legal occupations
+ * Sales occupations
+ * Law enforcement workers
+ * Fire fighters
+ * Construction and extraction occupations\
+ 
+ 
 #### Monotonicity in Employment Trends
 
-From the plot above, we can divide all occupations into three catogories. The first group is in a monotonous increasing trend, the second group is in a monotonous decreasing trend, and the third group do not have a monotonous trend in number of employed people by years. 
+From the yearly cleveland dot plot above, all occupations are divided into three categories. The first group is in a monotonous increasing trend, the second group is in a monotonic decreasing trend, and the third group do not have a monotonic trend in number of employed people by years. 
 
-##### Monotonous Increasing
+**Monotonically Increasing:**
 
-We have 14 kinds of occupations in this group:\
-1. Management Occupations\
-2. Healthcare support occupations\
-3. Business and financial operations occupations\
-4. Computer and mathematical occupations\
-5. Education, training and library occupations\
-6. Art, design, entertainment, sports and media occupations\
-7. Health, design and treating practitioners and other technical occupations\
-8. Construction and extraction occupations\
-9. Architecture and engineering occupations\
-10. Fire fighting and prevention, and other protective service workers including supervisors\
-11. Community and social service occupations\
-12. Life, physical, and social service occupations\
-13. Law enforcement workers including supervisors\
-14. Farming, fishing and forestry occupations\
+Within this group are 14 kinds of occupations:\
 
-##### Monotonous Decreasing
-We have only one kind of occupations in this group:\
-1. Production occupations\
+|   1. Management Occupations
 
-##### Not monotonous
-We have 10 kinds of occupations in this group:\
-1. Office and administrative support occupations\
-2. Food preparation and serving related occupations\
-3. Transportation occupations\
-4. Material moving occupations\
-5. Health technologists and technicians\
-6. Personal care and service occupations\
-7. Building and grounds cleaning and maintenance occupations\
-8. Sales and related occupations\
-9. Legal occupations\
-10. Installation, maintenance, and repair occupations\
+|   2. Healthcare support occupations
 
-We further study on the group that does not a monotonous trend with line chart.
+|   3. Business and financial operations occupations
 
+|   4. Computer and mathematical occupations
 
-##### Occupations without Monotonous Trend
+|   5. Education, training and library occupations
 
-```{r, fig.height=11,fig.width=10,echo=FALSE}
-NotMonotonous
+|   6. Art, design, entertainment, sports and media occupations
+
+|   7. Health, design and treating practitioners and other technical occupations
+
+|   8. Construction and extraction occupations
+
+|   9. Architecture and engineering occupations
+
+|   10. Fire fighting and prevention, and other protective service workers including supervisors
+  
+|   11. Community and social service occupations
+
+|   12. Life, physical, and social service occupations
+
+|   13. Law enforcement workers including supervisors
+
+|   14. Farming, fishing and forestry occupations
+
+\
+**Monotonically Decreasing:**
+
+Within this group is only one kind of occupation:\
+
+|   1. Production occupations
+
+\
+**Not Monotonic:**
+
+Within this group are 10 different occupations:\
+
+|   1. Office and administrative support occupations
+
+|   2. Food preparation and serving related occupations
+
+|   3. Transportation occupations
+
+|   4. Material moving occupations
+
+|   5. Health technologists and technicians
+
+|   6. Personal care and service occupations
+
+|   7. Building and grounds cleaning and maintenance occupations
+
+|   8. Sales and related occupations
+
+|   9. Legal occupations
+
+|   10. Installation, maintenance, and repair occupations
+
+\
+Further study is conducted on the group that does not a monotonic trend with line chart.
+
+```{r, fig.height=11,fig.width=10,echo=FALSE, fig.align='center'}
 ggplot(NotMonotonous,aes(year,YearlyNumEmp,group = Occupations)) +
   geom_line(size = 1,color = "black") +
   geom_point(color = "royalblue3", size = 2) +
   facet_wrap(~Occupations,ncol=2,scales = "free_y") +
   scale_y_continuous(labels = ks) +
-    theme(axis.text=element_text(size=8),
+    theme(axis.text=element_text(size=10),
       axis.title=element_text(size=15,face="bold"),
         strip.text.x = element_text(
         size = 12, face = "bold.italic"
@@ -607,47 +644,69 @@ ggplot(NotMonotonous,aes(year,YearlyNumEmp,group = Occupations)) +
       strip.text.y = element_text(
         size = 12, color = "red", face = "bold.italic"
         ),
-      plot.title = element_text(size = 18, face = "bold"))+
+      plot.title = element_text(size = 18, face = "bold",hjust = 0.5,vjust = 2))+
   ylab('Number of Employees') + xlab('Occupations') + ggtitle('Employment in Sectors without clear trends')
 ```
 
 **Observations from sectors without clear employment trends:**
 
 Here are descriptions of how these sectors have fluctuated:\
+\
 
-1. Office and administrative support occupations\
-The number of employees in this group was consistently high before 2017, while from 2017 to 2019, the number of employees dropped dramatically.\
+|   1. Office and administrative support occupations
 
-2. Food preparation and serving related occupations\
-In this group, the peak of the number of employees were present in 2015.\
+|       The number of employees in this group was consistently high before 2017, while from 2017 to 2019, the number of employees dropped dramatically.
+\
 
-3. Transportation occupations\
-Generally speaking, the number of employees was increasing. However, from 2018 to 2019, there was a rather pronounced drop, which is the reason that the number of employed in 2019 was smaller than that in 2015.\
+|   2. Food preparation and serving related occupations
 
-4. Material moving occupations\
-For this group, the number of employees dropped slightly from 2010 to 2011, then increased from 2011 to 2012. Afterwards, the number of employees started to decrease again until 2016. Then there was a sudden increase from 2016 to 2018 and maintained at a high level in 2019 with a subtle decrease.\
+|       In this group, the peak of the number of employees were present in 2015.
 
-5. Health technologists and technicians\
-The number of employees was consistently low from 2010 to 2013. Then the number started to increase until 2015 and maintained a relatively high level afterwards. Despite frequent dips and spikes, it seems that the number of employees in this occupation is trending upward on the whole.\
+\
 
-6. Personal care and service occupations\
-Generally speaking, the number of employees in this group increased from 2010 to 2016, then it dropped slightly from 2016 to 2017 and then dropped significantly lot from 2017 to 2018, accompanied by another slight drop from 2018 to 2019.\
+|   3. Transportation occupations
 
-7. Building and grounds cleaning and maintenance occupations\
-From 2010 to 2012, the number of employees in this group was decreasing, then the number increased a lot from 2012 to 2013 and continued to decrease from 2013 to 2016. Then it continued to increase for a little bit again from 2016 to 2017, but returned to a dropping trend from 2017 to 2019.\
+|       Generally speaking, the number of employees was increasing. However, from 2018 to 2019, there was a rather pronounced drop, which is the reason that the number of employed in 2019 was smaller than that in 2015.
+\
 
-8. Sales and related occupations\
-The number of employed increased a lot from 2010 to 2011 for this group. Then within the year range from 2011 to 2016, the number remained at a high value, with two relatively low values in 2013 and 2015. However, the number of employed dropped a lot from 2016 to 2018, accompanied by a subtle increase from 2018 to 2019.\
+|   4. Material moving occupations
 
-9. Legal occupations\
-Generally speaking, the number of employees for this group was relatively stable, the changing pattern was in the shape of a wave. The two troughs were in year 2013 and 2018 and the two crests were in year 2012 and 2016.\
+|       For this group, the number of employees dropped slightly from 2010 to 2011, then increased from 2011 to 2012. Afterwards, the number of employees started to decrease again until 2016. Then there was a sudden increase from 2016 to 2018 and maintained at a high level in 2019 with a subtle decrease.
+\
 
-10. Installation, maintenance and repair occupations\
-The number of employees in this group was relatively stable as well and the changing pattern was also like the shape of a wave. The trough were in year 2016 and the two crests were in year 2013 and 2015.\
+|   5. Health technologists and technicians
+
+|       The number of employees was consistently low from 2010 to 2013. Then the number started to increase until 2015 and maintained a relatively high level afterwards. Despite frequent dips and spikes, it seems that the number of employees in this occupation is trending upward on the whole.
+\
+
+|   6. Personal care and service occupations
+
+|       Generally speaking, the number of employees in this group increased from 2010 to 2016, then it dropped slightly from 2016 to 2017 and then dropped significantly lot from 2017 to 2018, accompanied by another slight drop from 2018 to 2019.
+\
+
+|   7. Building and grounds cleaning and maintenance occupations
+
+|       From 2010 to 2012, the number of employees in this group was decreasing, then the number increased a lot from 2012 to 2013 and continued to decrease from 2013 to 2016. Then it continued to increase for a little bit again from 2016 to 2017, but returned to a dropping trend from 2017 to 2019.
+\
+
+|   8. Sales and related occupations
+
+|       The number of employed increased a lot from 2010 to 2011 for this group. Then within the year range from 2011 to 2016, the number remained at a high value, with two relatively low values in 2013 and 2015. However, the number of employed dropped a lot from 2016 to 2018, accompanied by a subtle increase from 2018 to 2019.
+\
+
+|   9. Legal occupations
+
+|       Generally speaking, the number of employees for this group was relatively stable, the changing pattern was in the shape of a wave. The two troughs were in year 2013 and 2018 and the two crests were in year 2012 and 2016.
+
+\
+
+|   10. Installation, maintenance and repair occupations
+
+|       The number of employees in this group was relatively stable as well and the changing pattern was also like the shape of a wave. The trough were in year 2016 and the two crests were in year 2013 and 2015.
 \
 \
 
-### Analyze on Employment by Counties
+### Analysis of Employment by Counties
 
 Employment also shows different characteristics in different counties. So we also do analysis on employment in different counties.\
 
@@ -677,30 +736,25 @@ Note: Each line represents one year. The numbers on the axis represent the propo
 **Observations from sector groups employment across counties:**
 \
 \
-Observing this plot is that certain counties stand out in terms of how many of their people work in certain areas:
+Observing this plot, it can be seen that certain counties stand out in terms of how many of their people work in certain areas:
 \
-\
-New York has great representation in Management, business, science, and arts with roughly 60% of its population routinely working in those fields across 2010-2019, which is at roughly 15% higher than for any other county. 
-\
-\
-Bronx County has great representation in service occupations, with roughly 35% of its population working routinely in this sector, which is at least 10% higher than for any other county.
-\
-\
-Richmond County and Queens County seem to have good representation in natural resources, construction, and maintenance occupations. 
-\
-\
-New York, perhaps because of the high representation in the management, business, science, and arts cluster has clearly the lowest representation in service, natural resources, construction and maintenance, and production, transportation, management and material moving. New York also has the lowest representation in several years in Sales and Office occupations.
-\
-\
-Of all the counties, Queens county, Kings county, and Richmond county seem to track each other most, and have the most similar levels of representation across the sector clusters.
-\
-\
-Of all the counties, New York county and Bronx county seem to be the most different. Across almost each sector, low values for one almost certainly means that high values will appear for the other.
 
+ * New York has great representation in Management, business, science, and arts with roughly 60% of its population        routinely working in those fields across 2010-2019, which is at roughly 15% higher than for any other county.
+ 
+ * Bronx County has great representation in service occupations, with roughly 35% of its population working routinely in  this sector, which is at least 10% higher than for any other county.
+ 
+ * Richmond County and Queens County seem to have good representation in natural resources, construction, and maintenance occupations. 
+ 
+ * New York, perhaps because of the high representation in the management, business, science, and arts cluster has clearly the lowest representation in service, natural resources, construction and maintenance, and production, transportation, management and material moving. New York also has the lowest representation in several years in Sales and Office occupations.
+ 
+ * Of all the counties, Queens county, Kings county, and Richmond county seem to track each other most, and have the most similar levels of representation across the sector clusters.
+ 
+ * Of all the counties, New York county and Bronx county seem to be the most different. Across almost each sector, low values for one almost certainly means that high values will appear for the other.\
+ 
+ 
+### Analysis on Employment by Gender
 
-### Analyze on Employment by Genders
-
-Employment in different occupations have different gender distributions. In order to have a more comprehensive understanding on this aspect, we analyze Employment by genders.\
+The two genders often have different levels of employment throughout the occupations. In order to have a more comprehensive understanding of these relationships, analysis on genders role in employment will be conducted.\
 
 ```{r Gender Cleveland Dot Plot,fig.width=10,echo=FALSE}
 ggplot(GenderData, aes(MeanNumEmpbyGender,fct_reorder2(Occupations,Gender=='Female',MeanNumEmpbyGender, .desc=FALSE), color = Gender)) + 
@@ -712,15 +766,13 @@ scale_x_continuous(labels = ks) + scale_color_manual(values=c('seagreen3','mediu
 
 **Observations on Number Employed by Occupation NYC for different genders:**
 
-A broad takeaway from studying this plot is that generally men tend to dominate the majority of professions, with 17 occupations being majority male, and only 8 occupations being majority female.
-\
-\
-The occupations in which females account for the vast majority of employees are Office and administrative support, education, training, and library, healthcare support, and personal care and service.
-\
-\
-The occupations in which males account for the vast majority of employees are construction and extraction, transportation, and installation, maintenance and repair.
-\
-\
+ * A broad takeaway from studying this plot is that generally men tend to dominate the majority of professions, with 17 occupations being majority male, and only 8 occupations being majority female.
+
+ * The occupations in which females account for the vast majority of employees are Office and administrative support, education, training, and library, healthcare support, and personal care and service.
+
+ * The occupations in which males account for the vast majority of employees are construction and extraction, transportation, and installation, maintenance and repair.\
+ 
+ 
 ```{r Gender Composition by Occupation,fig.width=10,fig.height=6,echo=FALSE}
 ggplot(GenderData.tidy,aes(x = fct_reorder2(Occupations,Gender == "Female",prop,.desc=FALSE), y=prop,fill=Gender,group=Gender)) + 
   geom_bar(position='fill', stat='identity')+
@@ -732,7 +784,7 @@ ggplot(GenderData.tidy,aes(x = fct_reorder2(Occupations,Gender == "Female",prop,
 
 **Observations from gender composition by occupation:**
 
-From this plot, we can list the top ten occupations with high percentages of male and the top 10 occupations with high percentages of female.\
+From this plot, the top 10 occupations for males and females in terms of proportional representation can be listed.\
 
 **Top 10 occupations for males:**
 
@@ -778,7 +830,6 @@ From this plot, we can list the top ten occupations with high percentages of mal
 
 10. Legal occupations\
 
-\
 
 ### Analyze on Employment by Races
 
@@ -797,6 +848,7 @@ ggplot(PropsOfPropsRaceTidy, aes(fill = race, y = Occupation, x = Proportion)) +
 
 **Observations from Relative Likelihood of Sector Employment by Race:**
 \
+\
 Note: This plot was formed by comparing the proportions of each race group working in each sector. If for a particular sector each group accounts for 0.25 in this plot, then each race group has the same percentage of its people working in that sector. This has the effect of displaying what the race demographics of a sector would look like assuming all races had the same population.
 \
 \
@@ -814,20 +866,18 @@ Note: This plot was formed by comparing the proportions of each race group worki
 
 7.) It seems that a typical Asian person is much more likely than persons of other races to work in computer and mathematical operations, architecture and engineering operations, business and financial operations, health diagnosing and treating practitioners and other technical occupations.\ \
 
-8.) It seems that a typical Asian person is much less likely than persons of other races to work in Law enforcement occupations, fire fighting and prevention occupations, community and social service occupations, and building and grounds cleaning and maintenance occupations.\\
-\
+8.) It seems that a typical Asian person is much less likely than persons of other races to work in Law enforcement occupations, fire fighting and prevention occupations, community and social service occupations, and building and grounds cleaning and maintenance occupations.\
 
-##Salary
-\
-\
+## Salary
+
 In this sub chapter, Salary is examined across the boroughs, occupations, races, genders with varying degrees of granularity from very specific analyses on races and gender to in aggregate.
 \
-\
+
 ### Overview of Salary Distribution
 
 In order to have an overview of salary distribution according to different occupations in New York City, we draw a Cleveland Dot Plot to show the 10-year-average salary of different occupations first.
 
-```{r Overview of Salary Distribution,fig.width=10,fig.align='center',echo = FALSE}
+```{r Overview of Salary Distribution,fig.width=10,fig.height = 6,fig.align='center',echo = FALSE}
 ggplot(NewSalary) +
   geom_point(aes(Salary_occupation, reorder(Occupations,Salary_occupation)),color = "royalblue3", size = 2, alpha = 0.75) + ylab('Occupation') + xlab('Salary') + 
   ggtitle('Average Salaries of Different Occupations in NYC') +
@@ -839,44 +889,42 @@ ggplot(NewSalary) +
 
 1. Huge Differences in Salary for Different Occupations.
 
-  * There is a huge difference in salary among certain occupations. The range is up to `r as.integer(max(NewSalary$Salary_occupation) - min(NewSalary$Salary_occupation))`, which is about `r as.integer((max(NewSalary$Salary_occupation) - min(NewSalary$Salary_occupation))/min(NewSalary$Salary_occupation))` times of minimum salary.
+ * There is a huge difference in salary among certain occupations. The range is up to `r as.integer(max(NewSalary$Salary_occupation) - min(NewSalary$Salary_occupation))`, which is about `r as.integer((max(NewSalary$Salary_occupation) - min(NewSalary$Salary_occupation))/min(NewSalary$Salary_occupation))` times of minimum salary.
 
 2. Five clusters for salary distribution. 
 
-  * The **first** group is `Legal`, which has much higher average salary compared with all other occupations.
-  * The **second** group includes 7 different occupations, which ranks second in salary levels among all occupations. We can also divide the second group into four sub-groups according to the salary. 
+ * The **first** group is `Legal`, which has much higher average salary compared with all other occupations.
+ * The **second** group includes 7 different occupations, which ranks second in salary levels among all occupations. We can also divide the second group into four sub-groups according to the salary. 
     * The first sub-group only includes `Health diagnosing and treating practitioners and other technical`, which has the second largest salary.
     * The second sub-group includes `Computer and mathematical` and `Management`. They have very similar average salary, the difference in salary of the two occupations is only `r as.integer(NewSalary[21,13] - NewSalary[251,13])`.
     * The third sub-group includes `Law enforcement workers`, `Business and financial operations` and `Architecture and engineering`. The salary range of this sub-group is also small, it is `r as.integer(NewSalary[23861,13] - NewSalary[31,13])`.
     * The fourth sub-group contains only one occupation, which is `Life, physical, and social science`
-  * The **third** group contains `Arts, design, entertainment, sports, and media`, `Health technologists and technicians`, `Education, training, and library`, `Installation, maintenance, and repair`, `Community and social service` and `Construction and extraction`. The salary range of this group is `r as.integer(NewSalary[1334,13] - NewSalary[1704,13])`.
-  * The **Fourth** group contains `Office and administrative support`, `Sales and related`, `Transportation` and `Fire fighting and prevention`. The salary range of this group is `r as.integer(NewSalary[1934,13] - NewSalary[1879,13])`.
-  * The **Fifth** group contains `Production`, `Healthcare support`, `Building and grounds cleaning and maintenance`, `Material moving`, `Personal care and service`, `Farming, fishing, and forestry`, `Food preparation and serving related`. The salary range of this group is `r as.integer(NewSalary[974,13] - NewSalary[2144,13])`.
+ * The **third** group contains `Arts, design, entertainment, sports, and media`, `Health technologists and technicians`, `Education, training, and library`, `Installation, maintenance, and repair`, `Community and social service` and `Construction and extraction`. The salary range of this group is `r as.integer(NewSalary[1334,13] - NewSalary[1704,13])`.
+ * The **Fourth** group contains `Office and administrative support`, `Sales and related`, `Transportation` and `Fire fighting and prevention`. The salary range of this group is `r as.integer(NewSalary[1934,13] - NewSalary[1879,13])`.
+ * The **Fifth** group contains `Production`, `Healthcare support`, `Building and grounds cleaning and maintenance`, `Material moving`, `Personal care and service`, `Farming, fishing, and forestry`, `Food preparation and serving related`. The salary range of this group is `r as.integer(NewSalary[974,13] - NewSalary[2144,13])`.
 
 3. Gaps between the five clusters.
 
-  * From the first group to the fifth group, the salary gap between groups is `r as.integer(NewSalary[818,13] - NewSalary[100,13])`, `r as.integer(NewSalary[41,13] - NewSalary[1334,13])`, `r as.integer(NewSalary[1704,13] - NewSalary[1934,13])`, `r as.integer(NewSalary[1879,13] - NewSalary[2144,13])`.
-  * Among all the gaps, the biggest one is between group 2 and group 3, and the gap is `r as.integer(NewSalary[41,13] - NewSalary[1334,13])`. The smallest gap is between group 3 and group 4, and the gap is `r as.integer(NewSalary[1704,13] - NewSalary[1934,13])`.
+ * From the first group to the fifth group, the salary gap between groups is `r as.integer(NewSalary[818,13] - NewSalary[100,13])`, `r as.integer(NewSalary[41,13] - NewSalary[1334,13])`, `r as.integer(NewSalary[1704,13] - NewSalary[1934,13])`, `r as.integer(NewSalary[1879,13] - NewSalary[2144,13])`.
+ * Among all the gaps, the biggest one is between group 2 and group 3, and the gap is `r as.integer(NewSalary[41,13] - NewSalary[1334,13])`. The smallest gap is between group 3 and group 4, and the gap is `r as.integer(NewSalary[1704,13] - NewSalary[1934,13])`.
   
 4. Highest and lowest salary occupations.
 
-  * Top 3
+ * Top 3:
   
     * Legal
     * Health diagnosing and treating practitioners and other technical
-    * Computer and mathematical
-    
-  * Last 3
+    * Computer and mathematical\
+\
+
+ * Bottom 3:
   
     * Personal care and service
     * Farming, fishing, and forestry
     * Food preparation and serving related
   
-  * As can be seen from the plot, the salary range for the top 3 occupations are large. However, for the last 3 occupations, the salary range is relatively small.
-\
-\
-\
-\
+As can be seen from the plot, the salary range for the top 3 occupations are large. However, for the bottom 3 occupations, the salary range is relatively small.\
+
 
 ### Analyzing Average Salary from 2010-2019
 
@@ -886,51 +934,50 @@ One of the things that affects salary is time. In this section, analysis will be
 
 ```{r,fig.width=10,fig.align='center', echo = FALSE}
 ggplot(NewSalary1) +
-  geom_point(aes(Salary_year, reorder(Occupations,Salary_avg), color = year),size = 2, alpha = 0.75) + ylab('Occupation') + xlab('Salary') + 
-  ggtitle('Salaries of Different Occupations of Different Times in NYC')+
-  scale_x_continuous(labels = ks)+
-  scale_fill_manual(values=c('purple','green','yellow')) +
+  geom_point(aes(Salary_year, reorder(Occupations,Salary_avg), color = year),size = 2, alpha = 0.75) + ylab('Occupation')+   xlab('Salary') + 
+  ggtitle('Salaries of Different Occupations NYC 2010-2019') +
+  scale_x_continuous(labels = ks) +
+  scale_color_viridis_d() +
   mytheme
 ```
 
 **Observations on Salaries by Occupation NYC through 2010-2019:**\
 
+1. Salary Trends for Top 3 and Bottom 3 Occupations\
 
-1. Salary Trends for Top 3 and Last 3 Occupations\
+Top 3:\
 
-Top 3\
+ * 1.) Legal occupations\
 
-1.) Legal occupations\
+   * The average salary of workers in legal occupations is increasing monotonically. In this span of years, the rate at which the average salary is increasing is increasing, with a bigger difference betweeen 2015 and 2019 salaries and 2015 and 2010.\
 
-The average salary of workers in legal occupations is increasing monotonically. In this span of years, the rate at which the average salary is increasing is increasing, with a bigger difference betweeen 2015 and 2019 salaries and 2015 and 2010.\
+ * 2.) Health diagnosing and treating practitioners and other technical occupations\
 
-2.) Health diagnosing and treating practitioners and other technical occupations\
+   * This occupation has a monotonically increasing salary trend.\
 
-This occupation has a monotonically increasing salary trend.\
+ * 3.) Computer and mathematical occupations\
 
-3.) Computer and mathematical occupations\
+   * This occupation has a monotonically increasing salary trend.\
 
-This occupation has a monotonically increasing salary trend.\
+Bottom 3:\
 
-Last 3\
+ * 1.) Food preparation and serving related occupations\
 
-1.) Food preparation and serving related occupations\
+   * This occupation has the lowest salary within the year range in 2010. However, its salary is increasing over time, and from 2015 to 2019, a rather large salary bump was seen compared to the window from 2010 to 2015.\
 
-This occupation has the lowest salary within the year range in 2010. However, its salary is increasing over time, and from 2015 to 2019, a rather large salary bump was seen compared to the window from 2010 to 2015.\
+ * 2.) Farming, fishing, and forestry occupations\
 
-2.) Farming, fishing, and forestry occupations\
+   * The salary for this occupation decreased first and then increased. However, by 2019 the salary didn't increase enough from 2015 to be as high as it was in 2010.\
 
-The salary for this occupation decreased first and then increased. However, by 2019 the salary didn't increase enough from 2015 to be as high as it was in 2010.\
+ * 3.) Personal care and service occupations\
 
-3.) Personal care and service occupations\
-
-The salary trend for this occupation also decreased first and then increased. In this case, the salary only dropped a little bit first and then increased a lot. Therefore, generally speaking, the salary of this occupation increased.\
+   * The salary trend for this occupation also decreased first and then increased. In this case, the salary only dropped a little bit first and then increased a lot. Therefore, generally speaking, the salary of this occupation increased.\
+\
 
 
 In order to see the salary variances of the 25 occupations in detail, a boxplot is drawn for comparisons.\
 \
-\
-\
+
 
 ```{r,fig.width=10,fig.height=6,fig.align='center', echo = FALSE}
 ggplot(NewSalaryWithVariance) +
@@ -947,35 +994,36 @@ ggplot(NewSalaryWithVariance) +
 
 Salaries that seem prone to dramatic fluctuation over time:\
 
-1.) Legal occupations\
+|   1.) Legal occupations
 
-2.) Computer and Mathematical occupations\
+|   2.) Computer and Mathematical occupations
 
-3.) Architecture and engineering occupations\
+|   3.) Architecture and engineering occupations
 
-4.) Life, physical, and social science\
+|   4.) Life, physical, and social science
 
-5.) Farming, fishing, and forestry occupations\
+|   5.) Farming, fishing, and forestry occupations
 
+\
 Salaries where the number of employees has fluctuated very little:\
 
-1.) Law enforcement\
+|   1.) Law enforcement
 
-2.) Health technologists and technicians\
+|   2.) Health technologists and technicians
 
-3.) Installation, maintenance, and repair\
+|   3.) Installation, maintenance, and repair
 
-4.) Community and social service\
+|   4.) Community and social service
 
-5.) Healthcare support\
+|   5.) Healthcare support
 
-6.) Material moving\
+|   6.) Material moving
 
-When reading this plot the difference in size between the salaries of the different occupations may make certain variations seem more pronounced than others when this is not necessarily the case. To address this, a second plot has been created in which the box plots are normalized by dividing the salaries in each year by the mean across this sector. While the true numerical variation won't be apparent, the relative degrees of fluctuation between occupations will become more apparent.
 \
-\
-\
-\
+
+When reading this plot the difference in size between the salaries of the different occupations may make certain variations seem more pronounced than others when this is not necessarily the case. To address this, a second plot has been created in which the box plots are normalized by dividing the salaries in each year by the mean across this sector. While the true numerical variation won't be apparent, the relative degrees of fluctuation between occupations will become more apparent.\
+
+
 ```{r Yearly Normalized BoxPlot2,fig.width=10,fig.height=6,fig.align='center', echo = FALSE}
 ggplot(NewSalaryWithVariance2) +
   geom_boxplot(aes(x = Normalized, y = reorder(x = Occupations,Normalized, FUN = median)),
@@ -1007,39 +1055,63 @@ It is often thought that salaries typically increase over time. In this plot how
 
 ##### Monotonic Increase
 
-There are kinds of occupations in this trend group.
-1. Legal occupations
-2. Health diagnosing and treating practitioners and other technical occupations
-3. Computer and mathematical occupations
-4. Management occupations
-5. Business and financial operations occupations
-6. Architecture and engineering occupations
-7. Arts, design, entertainment, sports, and media occupations
-8. Education, training, and library occupations
-9. Installation, maintenance, and repair occupations
-10. Community and social service occupations
-11. Construction and extraction occupations
-12. Office and administrative support occupations
-13. Sales and related occupations
-14. Transportation occupations
-15. Production occupations
-16. Building and grounds cleaning and maintenance occupations
-17. Material moving occupations
-18. Food preparation and serving related occupations
+|   1. Legal occupations
+
+|   2. Health diagnosing and treating practitioners and other technical occupations
+
+|   3. Computer and mathematical occupations
+
+|   4. Management occupations
+
+|   5. Business and financial operations occupations
+
+|   6. Architecture and engineering occupations
+
+|   7. Arts, design, entertainment, sports, and media occupations
+
+|   8. Education, training, and library occupations
+
+|   9. Installation, maintenance, and repair occupations
+
+|   10. Community and social service occupations
+
+|   11. Construction and extraction occupations
+
+|   12. Office and administrative support occupations
+
+|   13. Sales and related occupations
+
+|   14. Transportation occupations
+
+|   15. Production occupations
+
+|   16. Building and grounds cleaning and maintenance occupations
+
+|   17. Material moving occupations
+
+|   18. Food preparation and serving related occupations
+
+\
 
 ##### First Decrease Then Increase
 
-1. Law enforcement workers including supervisors
-2. Life, physical, and social science occupations
-3. Health technologists and technicians
-4. Fire fighting and prevention, and other protective service workers including supervisors
-5. Healthcare support occupations
-6. Personal care and service occupations
-7. Farming, fishing, and forestry occupations
+|   1. Law enforcement workers including supervisors
 
-In this category, the salaries of some occupations decreased a lot and then increased a little, which makes these categories have a decreasing trend in general. However, for other occupations, the salaries decreased a little first and then increased a lot. For these occupations, they are in an increasing trend in general. To learn more about the exact changing trends of salaries in this group, we draw scatter plots to analyze the trends of these occupations in detail.
+|   2. Life, physical, and social science occupations
 
-##### Detailed Analysis on "First Decrease Then Increase" Occupations
+|   3. Health technologists and technicians
+
+|   4. Fire fighting and prevention, and other protective service workers including supervisors
+
+|   5. Healthcare support occupations
+
+|   6. Personal care and service occupations
+
+|   7. Farming, fishing, and forestry occupations
+
+\
+In this category, the salaries of some occupations decreased a lot and then increased a little, which makes these categories have a decreasing trend in general. However, for other occupations, the salaries decreased a little first and then increased a lot. For these occupations, they are in an increasing trend in general. To learn more about the exact changing trends of salaries in this group, we draw scatter plots to analyze the trends of these occupations in detail.\
+
 
 ```{r,fig.height=11,fig.width=10,fig.align='center', echo = FALSE}
 ggplot(NotMonotonousSal1,aes(year,Salary_YearlyAvg,group = Occupations)) +
@@ -1061,30 +1133,50 @@ ggplot(NotMonotonousSal1,aes(year,Salary_YearlyAvg,group = Occupations)) +
 
 **Observations from sectors without clear salary trends:**
 
-From the above plots, we see both the variations in salaries and the general trends for these occupations.\
-1. Law enforcement workers including supervisors\
-For this occupation, the salary is in the trend of a wave. The crests are in year 2011, year 2015, and year 2019. The troughs are in year 2012 and year 2016. Besides, there are two special points for this occupation.\
-a) The salary dropped a lot from 2015 to 2016, and then returned to normal quickly from 2016 to 2017.\
-b) The salary was in an decreasing trend from 2017 to 2018, but it did not continue to decrease, instead, it increased a lot from year 2018 to 2019.\
-2. Life, physical, and social science occupations\
+From the above plots, we see both the variations in salaries and the general trends for these occupations.
+
+
+1. Law enforcement workers including supervisors:\
+\
+For this occupation, the salary is in the trend of a wave. The crests are in year 2011, year 2015, and year 2019. The troughs are in year 2012 and year 2016. Besides this, are two special points for this occupation.
+
+ * The salary dropped a lot from 2015 to 2016, and then returned to normal quickly from 2016 to 2017.
+ * The salary was in an decreasing trend from 2017 to 2018, but it did not continue to decrease, instead, it increased a lot from year 2018 to 2019.
+
+
+2. Life, physical, and social science occupations:\
+\
 For this occupation, the salary is in also in the trend of a wave. At the same time, it is in an increasing trend in general. The crests are in year 2013 and 2018. The troughs are in year 2012 and 2014.\
-3. Health technologists and technicians\
+
+3. Health technologists and technicians:\
+\
 From year 2010 to 2013, the salary of this occupation grew slightly at a steady rate. However, from 2014 to 2015, the salary had a sudden drop. After that, the salary started to increase at a higher rate.\
-4. Fire fighting and prevention, and other protective service workers including supervisors\
-The salary of this group is in a waving trend and remains at a certain level in general. The crests are in 2012, 2013 and 2017, and the troughs are in 2011 and 2016. However, there is a special point for this occupation.\
-a) The salary had a sudden increase from year 2016 to year 2017.\
-5. Healthcare support occupations\
-Generally speaking, the salary trend is in a decreasing trend. The crests occurred in year 2010, 2013, and 2015. The troughs occured in year 2014 and 2017.\
-6. Personal care and service occupations\
+\
+4. Fire fighting and prevention, and other protective service workers including supervisors:\
+\
+The salary of this group is in a waving trend and remains at a certain level in general. The crests are in 2012, 2013 and 2017, and the troughs are in 2011 and 2016. However, there is a special point for this occupation.
+
+ * The salary had a sudden increase from year 2016 to year 2017.\ 
+ 
+
+5. Healthcare support occupations:\
+\
+Generally speaking, the salary trend is in a decreasing trend. The crests occurred in year 2010, 2013, and 2015. The troughs occurred in year 2014 and 2017.\
+\
+6. Personal care and service occupations:\
+\
 Generally speaking, the salary of this occupation is in an increasing trend. It remained relatively stable before 2015, after that, the salary increased at a relatively high speed.\
-7. Farming, fishing, and forestry occupations\
+\
+7. Farming, fishing, and forestry occupations:\
+\
 For this occupation, it salary increased a little from 2011 to 2012, and then began to decrease at a high speed from 2012 to 2014. After that, the salary recovered at a lower but steady speed.\
+
 
 #### Percentage Difference by Years
 
-Along with studying how salaries tend to vary on an absolute scale over the course of years, salary trends can also be investigated from a percent change standpoint. Because different occupations have different base wages, it might be meaningful to percent changes in wages. Each bar in the following plot represents the percent increase or decrease over the course of the years 2010 to 2019.
-\
-\
+Along with studying how salaries tend to vary on an absolute scale over the course of years, salary trends can also be investigated from a percent change standpoint. Because different occupations have different base wages, it might be meaningful to percent changes in wages. Each bar in the following plot represents the percent increase or decrease over the course of the years 2010 to 2019.\
+
+
 ```{r,fig.height=6,fig.width=10,fig.align='center', echo = FALSE}
 # draw cleveland dot plot according to variance
 ggplot(NewSalaryWithVariance1,aes(x=fct_reorder(Occupations, abs(variance_pct)), y = variance_pct)) +
@@ -1099,16 +1191,14 @@ ggplot(NewSalaryWithVariance1,aes(x=fct_reorder(Occupations, abs(variance_pct)),
 **Observations from percentage difference of salary via gender:**
 \
 As can be seen from the above plot, we discover that the majority of these occupations have increased in salaries in the past decade. Only two of these categories have decreased in salaries. Among all the occupations, construction and extraction occupations have seen the biggest percent change in salary from 2010 to 2019, and Healthcare support occupations have had the smallest.\
-\
-\
 
-### Analyze on Salary by Counties
+### Analysis of Salary by Counties
 
 ```{r,fig.width=10,fig.align='center', echo = FALSE}
 ggplot(NewSalary) +
   geom_point(aes(Salary_county, reorder(Occupations,Salary_county), color = Boroughs),size = 2, alpha = 0.75) + ylab('Occupation') + xlab('Salary') + 
   scale_x_continuous(labels = ks)+
-  ggtitle('Salaries of Different Occupations of Different Counties in NYC')+
+  ggtitle('Average Salaries of Different Occupations for NYC Counties')+
   mytheme
 ```
 
@@ -1118,7 +1208,7 @@ As can be seen in this plot, for different occupations, the counties with the hi
 
 #### Distribution of the Highest and Lowest Wages in Different Counties
 
-We draw a side by side bar chart to reflect the specific distribution data of the highest and lowest wages in different counties.\
+A side by side bar chart was drawn to reflect the specific distribution data of the highest and lowest wages in different counties.\
 
 ```{r,fig.width=8,fig.align='center', echo = FALSE}
 # use 0 or 1 to mark the boroughs with min and max
@@ -1137,7 +1227,8 @@ As can be seen from this plot, the place where most occupations see their lowest
 
 For the highest salaries within occupation types, the majority of them are in New York County and Richmond County. Several of them also appear in Queens County, but none of them appear in Bronx County and Kings County.\
 
-To see whether there have been changes in the distribution of the highest and lowest wages in different countries, a stacked bar chart over the years 2010-2019 is drawn. Different colors are used to represent different counties.
+To see whether there have been changes in the distribution of the highest and lowest wages in different countries, a stacked bar chart over the years 2010-2019 is drawn. Different colors are used to represent different counties.\
+
 
 ```{r,fig.width=9,fig.align='center', echo = FALSE}
 ggplot(data = summary, aes(fill=Boroughs, x=year, y=prop)) +
@@ -1160,10 +1251,7 @@ In the previous averaged side by side bar chart, the maximum salary does not lie
 2. For the lowest salary\
 
 In the previous averaged side by side bar chart, the minimum salary does not lie in Queens County and Richmond County for any occupation. However, as can be seen from the stacked bar chart, in every year but 2013 there are some occupations in which the lowest salary of the five counties for that occupation is in Queens County. Also, in every year but 2018, there are some occupations in which the lowest salary of the five counties for that occupation is in Richmond County.\
-\
-\
-\
-\
+
 
 #### Percentage Difference of Salaries in Different Counties
 
@@ -1181,30 +1269,34 @@ ggplot(CountySalary3,aes(x=fct_reorder(Occupations, variance_pct), y = variance_
 
 **Observations on Range of Percent Difference in Salaries NYC Counties:**
 
-1. Top 5 Highest Ranges of Percent Differences\
+1. Top 5 Highest Ranges of Percent Differences
+\
 
-1.) Sales and related occupations\
+|       1.) Sales and related occupations
 
-2.) Legal occupations\
+|       2.) Legal occupations
 
-3.) Management occupations\
+|       3.) Management occupations
 
-4.) Farming, fishing, and forestry occupations\
+|       4.) Farming, fishing, and forestry occupations
 
-5.) Arts, design, entertainment, sports, and media occupations\
+|       5.) Arts, design, entertainment, sports, and media occupations
 
-2. Bottom 5 Highest Ranges of Percent Differences\
+\
+2. Bottom 5 Highest Ranges of Percent Differences
+\
 
-1.) Personal care and service occupations\
+|       1.) Personal care and service occupations
 
-2.) Health technologists and technicians\
+|       2.) Health technologists and technicians
 
-3.) Community and social service occupations\
+|       3.) Community and social service occupations
 
-4.) Food preparation and serving related occupations\
+|       4.) Food preparation and serving related occupations
 
-5.) Life, physical, and social science occupations\
+|       5.) Life, physical, and social science occupations
 
+\
 
 ### Analyzing Salary by Genders
 
@@ -1240,7 +1332,6 @@ ggplot(GenderSalary,aes(x=fct_reorder(Occupations, abs(variance_pct)), y = varia
 \
 From the horizontal bar chart above, the following observations can be made.\
 \
-\
 For most of the occupations, male employees have higher salaries than female employees. Female employees only have higher salaries in 4 kinds of occupations among the 25 kinds of occupations, namely, Construction and extraction occupations, Installation, maintenance, and repair occupations, Community and social service occupations, and Transportation occupations.
 \
 \
@@ -1249,33 +1340,36 @@ For most of the occupations, male employees have higher salaries than female emp
 
 1. Top 5\
 
-1.) Sales and related occupations\
+|       1.) Sales and related occupations
 
-2.) Building and grounds cleaning and maintenance occupations\
+|       2.) Building and grounds cleaning and maintenance occupations
 
-3.) Material moving occupations\
+|       3.) Material moving occupations
 
-4.) Production occupations\
+|       4.) Production occupations
 
-5.)Personal care and service occupations\
+|       5.)Personal care and service occupations
 
+\
 
 2. Bottom 5\
 
-1.) Transportation occupations\
+|       1.) Transportation occupations
 
-2.) Office and administrative support occupations\
+|       2.) Office and administrative support occupations
 
-3.) Community and social service occupations\
+|       3.) Community and social service occupations
 
-4.) Installation, maintenance, and repair occupations\
+|       4.) Installation, maintenance, and repair occupations
 
-5.) Computer and mathematical occupations
+|       5.) Computer and mathematical occupations
 
+\
 
 #### Relation between Percentage Difference of Employment and Salary in Gender
 
-Intuitively, the gender composition of employees in a profession may be related to the level of wages for each gender. We want to analyze if this intuition makes sense. Therefore, we use two categorical variables to represent the two characteristics, namely "Gender Distribution" and "Salary Distribution". For the category of "Gender Distribution", there are two values, Male-dominated, which means there are more male employees in this occupation than female employees, and Female-dominated, which means there are more female employees in this occupation than male employees. For the category of "Salary Distribution", two values are set, Male-higher, which means male employees typically have higher salaries in this occupation, and Female-higher, which means female employees typically have higher salaries in this occupation. Then, we draw a mosaic plot to measure the relation.\
+Intuitively, the gender composition of employees in a profession may be related to the level of wages for each gender. It is desired to analyze if this intuition makes sense. Therefore, two categorical variables are used to represent the two characteristics, namely "Gender Distribution" and "Salary Distribution". For the category of "Gender Distribution", there are two values, Male-dominated, which means there are more male employees in this occupation than female employees, and Female-dominated, which means there are more female employees in this occupation than male employees. For the category of "Salary Distribution", two values are set, Male-higher, which means male employees typically have higher salaries in this occupation, and Female-higher, which means female employees typically have higher salaries in this occupation. Then, a mosaic plot is drawn measure the relation.\
+
 
 ```{r,fig.width = 6.75,fig.height = 6.75,fig.align='center', echo = FALSE}
 mosaic(Gender.Distribution ~ Salary_Distribution, direction = "v", GenderNumSal, highlighting_fill = c(colors$'0', colors$'1'),
@@ -1286,13 +1380,12 @@ mosaic(Gender.Distribution ~ Salary_Distribution, direction = "v", GenderNumSal,
 \
 From this mosaic plot, it can be seen that there may be some relation between salary distribution and gender composition. However, the characteristic of this connection is against tuition. It seems intuitive to think that in the "Female-higher" salary distribution group, there will be more female-dominated occupations, and in the "Male-higher" salary distribution group, there will be more male-dominated occupations. However, based on what can be observed from looking at this plot, the opposite is actually true.
 \
-\
-##Education
-\
-\
-In this section Education trends are examined. The changes in education over time and across genders are studied, and how educational attainment impacts economic measures such as average salaries.
-\
-\
+
+## Education
+
+In this section Education trends are examined. The changes in education over time and across genders are studied, and how educational attainment impacts economic measures such as average salaries.\
+
+
 ```{r NYC Salary vs. Education Level,echo=FALSE}
 ggplot(Total_New_York,aes(NumEducated,Salary,color = Gender))+
   geom_point()+
@@ -1307,24 +1400,14 @@ ggplot(Total_New_York,aes(NumEducated,Salary,color = Gender))+
 \
 **Observations from Number Educated vs Salary from 2010-2019**
 \
+
+ * A broad take away that can be observed from this plot is that as the number of people becoming more highly educated increases, the number of people earning more increases. Also, as the number of people with lower educational credentials increases, the number of people with increasingly lower salaries also increases.\
+ * Considering the plot concerning those with less education than high school, it is clear to see that in years where the number of employees is higher, that the average salary is lower.\
+ * Considering the plot concerning high school graduates, it seems that there exists no clear relationship.\
+ * Considering the plot for those who have completed some college or an associates degree, it seems that for years in which the number of people in this category is higher, the average salary in those years is lower. This relationship appears as a line upon which both males and females lie, however it may be worth noting that they are on opposite sides.\
+ * Considering the plot for Bachelors degree and up, there is a clear and strong relationship. As the number of people educated increase, the average salary in that year will also be higher. This plot is distinct from the one for some college or associates degree because males and females in this case both lie upon their line, which in this plot are both upsloping.\
 \
-A broad take away that can be observed from this plot is that as the number of people becoming more highly educated increases, the number of people earning more increases. Also, as the number of people with lower educational credentials increases, the number of people with increasingly lower salaries also increases.
-\
-\
-Considering the plot concerning those with less education than high school, it is clear to see that in years where the number of employees is higher, that the average salary is lower.
-\
-\
-Considering the plot concerning high school graduates, it seems that there exists no clear relationship.
-\
-\
-Considering the plot for those who have completed some college or an associates degree, it seems that for years in which the number of people in this category is higher, the average salary in those years is lower. This relationship appears as a line upon which both males and females lie, however it may be worth noting that they are on opposite sides.
-\
-\
-Considering the plot for Bachelors degree and up, there is a clear and strong relationship. As the number of people educated increase, the average salary in that year will also be higher. This plot is distinct from the one for some college or associates degree because males and females in this case both lie upon their line, which in this plot are both upsloping.
-\
-\
-\
-\
+
 ```{r Proportion with Bachelors Degree vs Average NYC Salary,echo=FALSE}
 ggplot(data = SalaryByPropEdu,aes(PropEdu,Salary)) + 
   geom_line(size = 1, col = 'black') + 
@@ -1337,16 +1420,10 @@ ggplot(data = SalaryByPropEdu,aes(PropEdu,Salary)) +
 ```
 \
 **Observations from Proportion with Bachelors Degree vs Average NYC Salary from 2010-2019:**
-\
-\
-It seems that in years where the Proportion of people with Bachelor's Degrees increases, that the average salary is higher. This would suggest that when there are more educated people, the typical person earns more. According to the trend observed in this plot, it seems that the average salary has risen by 1700 dollars for each percentage point increase in bachelors degree education proportion.
-\
-\
-It is worth noting that this linear relationship cannot be certified to be causal and there is no way given this data to make a determination. It can be seen in the next plot that the total number of Bachelor's Degrees over time is steadily rising over time. Since salaries also tend to rise over time, it isn't clear that salaries would stop rising if education levels stopped rising.
-\
-\
-\
-\
+
+* It seems that in years where the Proportion of people with Bachelor's Degrees increases, that the average salary is higher. This would suggest that when there are more educated people, the typical person earns more. According to the trend observed in this plot, it seems that the average salary has risen by 1700 dollars for each percentage point increase in bachelors degree education proportion.\
+* It is worth noting that this linear relationship cannot be certified to be causal and there is no way given this data to make a determination. It can be seen in the next plot that the total number of Bachelor's Degrees over time is steadily rising over time. Since salaries also tend to rise over time, it isn't clear that salaries would stop rising if education levels stopped rising.\
+
 
 ```{r Proportion with Bachelors Degree,echo=FALSE}
 ggplot(data = PropBachelor,aes(Year,PropBachelor)) + 
@@ -1358,15 +1435,13 @@ ggtitle("Proportion with Bachelors Degree") +
 geom_point(size = 2.5, col = 'royalblue3') +
 mytheme
 ```
-
+\
 **Observation of Bachelor's proportions over time:**
+
+|  It appears that the proportion of people with Bachelor's Degrees is steadily increasing over time. In the last 10 years the proportion of people with a bachelors has increased by roughly 5%, from around 32.5% to 37.5%. This indicates an average increase of just under half a percent per year.
+
 \
-\
-It appears that the proportion of people with Bachelor's Degrees is steadily increasing over time. In the last 10 years the proportion of people with a bachelors has increased by roughly 5%, from around 32.5% to 37.5%. This indicates an average increase of just under half a percent per year.
-\
-\
-\
-\
+
 ```{r Proportion Male and Female with Bachelors Degree, echo=FALSE}
 PropBachelorByGenderTidy <- pivot_longer(PropBachelorByGender[,1:3],!Year,names_to = 'Gender',values_to = 'Proportion')
 
@@ -1377,17 +1452,13 @@ scale_x_continuous(breaks = seq(2010,2019)) + ylim(.25,.75) + scale_color_manual
 ggtitle("Proportion Male and Female with Bachelors Degree") +
 mytheme
 ```
+\
 **Observations from Proportion of Males and Females with Bachelors Degrees from 2010-2019:**
-\
-\
-It seems that in 2010, a larger proportion of females than men had bachelor's degrees, and this trend maintains throughout the entirety of the decade. While the proportions are increasing over time for both males and females, it seems that the rate of increase for both genders is relatively equal.
-\
-\
-This is confirmed by the gap between the male and female dots on the graph fluctuating in distance from each other but remaining relatively equally spaced apart. It seems that in NYC, while females have more bachelors degrees, both males and females are becoming more well educated at a similar rate.
-\
-\
-\
-\
+
+* It seems that in 2010, a larger proportion of females than men had bachelor's degrees, and this trend maintains throughout the entirety of the decade. While the proportions are increasing over time for both males and females, it seems that the rate of increase for both genders is relatively equal.\
+* This is confirmed by the gap between the male and female dots on the graph fluctuating in distance from each other but remaining relatively equally spaced apart. It seems that in NYC, while females have more bachelors degrees, both males and females are becoming more well educated at a similar rate.\
+
+
 ```{r Difference between Female and Male with Bachelors, echo=FALSE}
 ggplot(data = PropBachelorByGender,aes(Year,Difference)) + geom_line(size = 1, col = 'black') +
 xlab('Year') + 
@@ -1400,18 +1471,16 @@ mytheme
 ```
 \
 **Observations from Difference in Proportion of Females and Males with a Bachelor's Degree from 2010-2019:**
-\
-\
-Confirming the observation from the last graph, the difference between the proportion of females and males with a bachelors degree over the decade has seen some minor fluctuation, but overall has remained relatively unchanged. Females have had throughout the course 1.25% to 2.5% higher of a proportion of bachelors degree than men.
-\
+
+|   Confirming the observation from the last graph, the difference between the proportion of females and males with a bachelors degree over the decade has seen some minor fluctuation, but overall has remained relatively unchanged. Females have had throughout the course 1.25% to 2.5% higher of a proportion of bachelors degree than men.
 \
 
-##GDP
-\
+## GDP
+
 \
 In this section how GDP intersects with average salaries is briefly investigated.
 \
-\
+
 ```{r,fig.width=14,fig.height=9,echo=FALSE}
 # plot
 ggplot(Salary_NumEmp,aes(NYCGDP,Value))+
@@ -1419,8 +1488,8 @@ ggplot(Salary_NumEmp,aes(NYCGDP,Value))+
   scale_x_continuous(labels = ks)+
   scale_y_continuous(labels = ks)+
   xlab("NYC GDP Per Capita")+
-  ylab("NumEmp")+
-  ggtitle("NumEmp vs NYC GDP Per Capita")+
+  ylab("Employees")+
+  ggtitle("Employees vs NYC GDP Per Capita")+
     theme(axis.text=element_text(size=8),
       axis.title=element_text(size=15,face="bold"),
         strip.text.x = element_text(
@@ -1439,8 +1508,8 @@ ggplot(Salary_NumEmp,aes(GDP,Value))+
   scale_x_continuous(labels = ks)+
   scale_y_continuous(labels = ks)+
   xlab("GDP Per Capita")+
-  ylab("NumEmp")+
-  ggtitle("NumEmp vs GDP Per Capita")+
+  ylab("Employees")+
+  ggtitle("Employees vs GDP Per Capita")+
       theme(axis.text=element_text(size=8),
       axis.title=element_text(size=15,face="bold"),
         strip.text.x = element_text(
@@ -1455,4 +1524,4 @@ ggplot(Salary_NumEmp,aes(GDP,Value))+
 
 **Observations on NumEmp vs GDP/NYC GDP Per Capita:**
 
-The scatter dot plots above display the relationship between employment and GDP/NYC GDP per capita in different salary categories. From the plots, it can be seen clearly that there is a turning point in the categories of '\$25000 to \$34999','\$35000 to \$49999'. Before the two categories, the number of employed is in a decreasing trend when GDP/NYC GDP per capita goes up. However, in the groups with higher salaries, the number of employed is in a increasing trend when GDP/NYC GDP per capita goes up.
+|   The scatter dot plots above display the relationship between employment and GDP/NYC GDP per capita in different salary categories. From the plots, it can be seen clearly that there is a turning point in the categories of '\$25000 to \$34999','\$35000 to \$49999'. Before the two categories, the number of employed is in a decreasing trend when GDP/NYC GDP per capita goes up. However, in the groups with higher salaries, the number of employed is in a increasing trend when GDP/NYC GDP per capita goes up.
