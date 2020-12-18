@@ -1,4 +1,4 @@
-# Interactive component for Employment
+# Interactive component
 
 ## Employment by Years
 
