@@ -101,3 +101,14 @@ analyzing-salary-by-genders-1
 percentage-difference-of-salaries-between-genders-1
 top-5-and-bottom-5-in-magnitude-of-percent-difference-1
 relation-between-percentage-difference-of-employment-and-salary-in-gender-1
+results
+overview-of-employment-distribution-1
+salary-1
+overview-of-salary-distribution-1
+education-1
+employment-1
+analysis-of-employment-by-counties
+analysis-on-employment-by-gender
+analysis-on-employment-by-years
+analysis-of-salary-by-counties
+gdp-1
